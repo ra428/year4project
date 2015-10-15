@@ -11,12 +11,14 @@ d = 1;
 N = 50;
 h = linspace(0,10,N);
 f = zeros(1,N);
+df = f;
 
 for i = 1:N
     f(i) = theorem1(h(i), A, B, C);
+    df(i) = dtheorem1(h(i), A, B, C);
 end
 
-plot(h, f)
+plot(h, f,h,df)
 xlabel('h')
 ylabel('f(h')
 
