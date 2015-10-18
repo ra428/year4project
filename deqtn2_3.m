@@ -1,4 +1,4 @@
-function a = dtheorem1(h, A, B, C)
+function a = d_eqtn2_3(h, A, B, C)
 % a = dtheorem1(h,A,B,C)
 % evaluate df/dh
 

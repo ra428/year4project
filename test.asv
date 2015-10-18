@@ -1,13 +1,9 @@
 % Matlab code implementation attempt of Astrom 1995
 
-% Input which test case to see
-example =input('Example 1,2,4 or 0:  ');
+% Testing basics
+exa
 
 switch example
-    case 0
-        A = input('A:\n');
-        B = input('B:\n');
-        C = input('C:\n');
     case 1
         % Example 1
         A = [-1 1 0; 0 -1 1; 0 0 -1];
@@ -19,7 +15,7 @@ switch example
         B = [1; 6; 6];
         C = [1 0 0 ];
     case 3
-        disp('No state space matrices were given for Example 3')
+        disp('No state space matrices given')
         return
     case 4
         % Example 4
@@ -29,30 +25,33 @@ switch example
         
 end
 
-% Relay characteristics
+
 epsilon = 0;
 d = 1;
 
-% Samples that are evaluated
-h_max = 40;
-N = h_max*100;
-h = linspace(0,h_max,N);
+N = 5000;
+h = linspace(0,50,N);
+%f = zeros(1,N);
+%df = f;
 
-% Evaluate equation2_3
 for i = 1:N
-    f(i) = eqtn2_3(h(i), A, B, C) - epsilon/d;
+    f(i) = eqtn2_3(h(i), A, B, C);
+    %df(i) = deqtn2_3(h(i), A2, B2, C2);
 end
 
-
-
-% Plot results
+%plot(h, f,h,df)
 plot(h,f)
-I(1) = xlabel('$h$');
-I(2) = ylabel('$f(h) - \epsilon/d$');
-I(3) = legend('$f(h)- \epsilon/d$');
+xlabel('h')
+ylabel('f(h)')
 grid on
+I = legend('$f(h)$', '$\frac{df(h)}{dh}$')
 set(I, 'Interpreter','Latex')
 
+
+%
+% fun = @(x) eqtn2_3(x,A2,B2,C2);
+%
+% x = fminbnd(fun, 1e-2,1e2)
 
 
 
