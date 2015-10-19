@@ -7,8 +7,6 @@ function [h, f_data] = step1(f,h_data)
 % h = 0 means that it could not find solutions, and shows you
 % a plot of the values it tred
 
-fprintf('Step 1\n') % Let user know where the program is 
-
 % Evaluate equation2_3 and find where sign changes (indicating root)
 j = 2;
 error_check = 0;
@@ -38,7 +36,7 @@ if error_check % at least one root found
         h_upper = h_pos(1+m);
         h_middle = 0.5*(h_lower+h_upper);
         
-        fprintf('Bisecting \n')
+        display('Bisecting')
         while iterations<=iter_max
             if f(h_middle)*f(h_upper) < 0
                 h_lower = h_middle;
@@ -54,7 +52,7 @@ if error_check % at least one root found
         h(k) = h_middle;
     end
     
-    fprintf('%d solutions found\n', 0.5*max(size(h_pos)))
+    fprintf('%d solutions found', 0.5*max(size(h_pos))))
 else
     fprintf('No sign changes found! \nHave a look at the plot \n')
     h=0;

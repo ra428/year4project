@@ -50,13 +50,11 @@ f = @(x)eqtn2_3(x,A,B,C) - epsilon/d;
 
 %% Step 1
 % Evaluate where f(h) = epsilon/d
+
 [h,f_data] = step1(f,h_data);
 
 %% Step 2
 % Evaluate x(0),\dot(x)(0),W and check stability
-[a,v,stability] = step2(h,A,B,C,d);
+[a,v] = step2(h,A,B,C);
 
-%% Step 3
-% Evaluate y(t) for 0<t<h and check condition
-y = step3(stability, h,A,B,C,d,epsilon);
 
