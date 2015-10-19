@@ -13,7 +13,7 @@ fprintf('Step 1\n') % Let user know where the program is
 j = 2;
 error_check = 0;
 fprintf('Evaluating f(h) from h = %d to %d\n',min(h_data),max(h_data))
-for i = 1:max(size(h_data))
+for i = 1:size(h_data,2)
     f_data(i) = f(h_data(i));
     if i>1
         % Record where sign changes occur
@@ -31,7 +31,7 @@ end
 % Bisection to get a more accurate value of h
 if error_check % at least one root found
     iter_max = 8;
-    for k = 1:0.5*max(size(h_pos))
+    for k = 1:0.5*size(h_pos,2)
         iterations = 1;
         m = 2*k - 1;
         h_lower = h_pos(m);
@@ -54,7 +54,7 @@ if error_check % at least one root found
         h(k) = h_middle;
     end
     
-    fprintf('%d solutions found\n', 0.5*max(size(h_pos)))
+    fprintf('%d solutions found\n', 0.5*size(h_pos,2))
 else
     fprintf('No sign changes found! \nHave a look at the plot \n')
     h=0;

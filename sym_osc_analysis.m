@@ -58,5 +58,5 @@ f = @(x)eqtn2_3(x,A,B,C) - epsilon/d;
 
 %% Step 3
 % Evaluate y(t) for 0<t<h and check condition
-y = step3(stability, h,A,B,C,d,epsilon);
+y = step3(stability, h,A,B,C,d,epsilon,a);
 
