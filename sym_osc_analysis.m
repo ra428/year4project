@@ -54,12 +54,7 @@ f = @(x)eqtn2_3(x,A,B,C) - epsilon/d;
 
 %% Step 2
 
-sz=':';
-for i = 1:max(size(A))-2
-    sz=[sz,',:'];
-end
-
-W=zeros(size(A));W
+W=zeros(size(A));
 
 for i = 1:max(size(h))
     a(:,i) = eqtn2_3(h(i),A,B,eye(size(A)));
