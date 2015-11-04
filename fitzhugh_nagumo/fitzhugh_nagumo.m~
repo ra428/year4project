@@ -1,16 +1,24 @@
 % FitzHugh-Nagumo model
+% From Keener and Sneyd book, equations (5.38), (5.39). (5.40)
+
+% Set up various variables
+tpan = [0 100];         % Time interval
+v0 = 0.5 ;              % Initial condition
+epsilon = 0.01;         % Controls how 'fast' v is compared to w
+alpha = 0.1;            % Control the shape of F(V)
+gamma = 0.5;            % Parameter in equation (5.39)
+
+% Call ODE solver
+[t,v ] = ode45(@dstate, tspan, v0);
+plot(t,y)
 
 
-function [t,v] = call_dstate()
-    tspan = [0 100]; % Time interval
-    v0 = 0.5 ; % Initial condition
-    
-    [t,v ] = ode45(@dstate, tspan, v0);
-    plot(t,y)
-
+    function dydt = fitzhugh_nagmuo(t,v)
+        dydt = zeros(2,1);
         function F = NL_Resistor(V,varargin)
         % function F = NL_Resistor(V,varargin)
         % Model the nonlinear resistor with input V and alpha (optional)
+        % Equation (5.40) in Keener and Sneyd book
             if size(varargin,1)<0
                 alpha = 0.1;
             else
