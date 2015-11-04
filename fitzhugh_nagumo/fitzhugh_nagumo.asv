@@ -1,0 +1,6 @@
+% Test out FitzHugh-Nagumo model from Keener and Sneyd Chapter 5
+clear all
+close all
+
+% Set up various variables
+tspan = [0 3
