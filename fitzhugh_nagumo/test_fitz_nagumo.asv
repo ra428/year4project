@@ -3,12 +3,11 @@ clear all
 close all
 
 % Set up various variables
-tspan = [0 20];      % Time interval
+tspan = [0 200];      % Time interval
 v0 = [0.5;0.5];     % Intial condition
 
 % ODE solver
-global v
-global f
+global f_relay
 %[t,v] = ode45(@fitzhugh_nagumo, tspan, v0);
 [t,v] = ode45(@fn_relay, tspan, v0);
 
@@ -17,8 +16,11 @@ global f
 % Action potential
 figure(1)
 plot(t,v(:,1))
+hold on
+plot(linspace(0,200,size(f_relay,2)),f_relay,'ro')
 xlabel('Time')
 ylabel('Voltage')
+hold off
 
 % limit cycle
 figure(2)

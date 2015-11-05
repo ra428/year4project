@@ -1,9 +1,9 @@
 % Test out FitzHugh-Nagumo model from Keener and Sneyd Chapter 5
 clear all
 close all
-
+tmax = 20;
 % Set up various variables
-tspan = [0 20];      % Time interval
+tspan = [0 tmax];      % Time interval
 v0 = [0.5;0.5];     % Intial condition
 
 % ODE solver
@@ -17,7 +17,7 @@ global f_relay
 figure(1)
 plot(t,v(:,1))
 hold on
-plot(linspace(0,20,size(f_relay,2)),f_relay,'ro')
+plot(linspace(0,tmax,size(f_relay,2)),f_relay,'ro')
 xlabel('Time')
 ylabel('Voltage')
 hold off
