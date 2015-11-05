@@ -1,6 +1,26 @@
-% Test out FitzHugh-Nagumo model from Keener and Sneyd Chapter 5
-clear all
-close all
+function dvdt = fitzhugh_nagumo(t,v)
+% function dvdt = fitzhugh_nagumo(t,v)
+% FitzHugh-Nagumo model
+% From Keener and Sneyd book, equations (5.38), (5.39). (5.40)
 
-% Set up various variables
-tspan = [0 3
+%I_app = 0.5;        % External applied current    
+I_app = 20;
+epsilon = 0.01;     % Controls how 'fast' v is compared to w
+gamma = 0.5;        % Parameter in equation (5.39)
+dvdt = zeros(2,1);  % empty column
+dvdt(1) = (NL_resistor(v(1)) - v(2) + I_app)/epsilon; % Equation (5.38)
+dvdt(2) = v(1) - gamma*v(2);        % Equation (5.39)
+
+    function F = NL_resistor(v)
+        % function F = NL_Resistor(v)
+        % Model the nonlinear resistor with input V and alpha (optional)
+        % Equation (5.40) in Keener and Sneyd book
+        alpha = 0.1;            % Control the shape of F(V)
+        % F = v*(1-v)*(v-alpha);
+        % F = heaviside(v - alpha) - v; 
+        if v <0.5*alpha
+            F = -v;
+        elseif
+    end
+end
+
