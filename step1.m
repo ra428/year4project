@@ -61,11 +61,14 @@ else
 end
 
 % Plot results
+figure()
 plot(h_data,f_data)
 I(1) = xlabel('$h$');
 I(2) = ylabel('$f(h) - \epsilon/d$');
 I(3) = legend('$f(h)- \epsilon/d$');
 grid on
 set(I, 'Interpreter','Latex')
+hold on
+plot(h,zeros(size(h,2)),'ro')
 
 end
