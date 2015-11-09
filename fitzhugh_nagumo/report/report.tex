@@ -1,0 +1,118 @@
+\documentclass[a4paper]{article}
+\usepackage[textwidth=16cm,textheight=24cm]{geometry}
+\usepackage{amsmath,amssymb,gensymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage {wrapfig} %text to wrap around a figure
+\usepackage{caption,subcaption} % figures
+\usepackage[titletoc]{appendix}
+%\usepackage[toc,page]{appendix}
+\usepackage{booktabs} %tables?
+\usepackage{cleveref} %clever referecing use \cref{}
+%\crefname{appsec}{Appendix}{Appendices}
+\usepackage{floatrow}
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\usepackage{listings} % typesetting code
+\usepackage{xcolor}
+\usepackage{multirow} %merge rows
+\usepackage{array} % to left align bullets
+\usepackage{enumitem} %
+\usepackage{placeins}%to use \FloatBarrier command to prevent floats appearing beyond a certain point
+\crefname{appsec}{Appendix}{Appendices}
+
+%\newcommand{\HRule}{\rule{\linewidth}{0.1mm}} 
+
+\graphicspath{{C:/Users/RAK/Documents/IIB/4F13/1/}}
+\DeclareGraphicsExtensions{.png,.jpg,.PNG,.jpeg}
+
+   
+\begin{document}
+\begin{center}
+
+{\huge{{\textbf{Relay feedback systems and models of excitability and biochemical oscillators}}}}\vspace{0.1cm}
+\end{center}
+
+\section{Theory} 
+Consider a linear time invariant system described by:
+\begin{align}\dot{x} &= Ax + Bu  \\
+y &= Cx\end{align}
+With an asymmetric relay:
+\begin{equation}
+	u(t)=\begin{cases}
+	               d_1 \text{ if } e > \epsilon \text{ or } (e >-\epsilon \text{ and } u(t-) = d_1)\\
+	                -d_2 \text{ if } e < -\epsilon \text{ or } (e < \epsilon \text{ and } u(t-) = -d_2)\\
+	              
+	            \end{cases}
+\end{equation}
+When the input-output is relationship is $e = -y$,  \r{A}str\"{o}m\cite{astrom1995} derived the necessary conditions for a limit cycle (with asymmetric oscillations)  with period T:
+\begin{equation}
+\begin{cases}
+	        C(I - \Phi)^{-1}(\Phi_2\Gamma_1d_1 - \Gamma_2d_2) = -\epsilon\\
+	        C(I - \Phi)^{-1}(-\Phi_1\Gamma_2d_2 + \Gamma_1d_1) = \epsilon        \\
+	              
+	            \end{cases}
+\end{equation}
+where
+\begin{align}\Phi = e^{AT} \text{,\hspace{0.3cm}  } \Phi_1 = e^{A\tau} \text{,\hspace{0.3cm}  } \Phi_2 = e^{A(T-\tau)} \\
+\Gamma_1 = \int_{0}^{\tau}e^{As}dsB\text{,\hspace{0.3cm}  } \Gamma_2 = \int_{0}^{T-\tau}e^{As}dsB
+\end{align}
+The conditions for local stability of the limit cycle was also derived by \r{A}str\"{o}m\cite{astrom1995}:\\
+\emph{Limit cycle is stable only if the eigenvalues of the matrix $W$ lie inside the unit disc.} 
+
+$W$ is defined as follows:
+
+\begin{equation}
+W = \left(I - \frac{w_2C}{Cw_2}\right)\Phi_2\left(I - \frac{w_1C}{Cw_1}\right)\Phi_1
+\end{equation}
+where
+\begin{equation}
+w_1 = \Phi_1(Aa_1 + Bd_1) \text{ ,\hspace{0.3cm}} w_2 = \Phi_2(Aa_1 - Bd_2)
+\end{equation}
+\begin{equation}
+a_1 = (I - \Phi)^{-1}(\Phi_2\Gamma_1d_1 - \Gamma_2d_2) \text{, \hspace{0.3cm}} a_2 = (I - \Phi)^{-1}(-\Phi_1\Gamma_2d_2 + \Gamma_1d_1)
+\end{equation}
+ 
+
+
+
+
+\section{FitzHugh-Nagumo and relay feedback}
+The FitzHugh-Nagumo equations extract the essential behaviour of the Hodgkin-Huxley fast-slow phase plane and presents it in a simplified form \cite{keener}. The traditional FitzHugh-Nagumo equations are:
+\begin{align}
+\epsilon \dot{v} &= f(v) - w + I_{\text{app}}\\
+\dot{w} &= v - \gamma w \\
+\end{align}
+where:
+\begin{equation}
+f(v) = v(1-v)(v-\alpha), \text{\hspace{0.4cm} for }0 <\alpha<1\text{ , } \epsilon\ll 1
+\end{equation}
+Here $v$, is the `fast' variable representing the voltage, $I_{\text{app}}$ is the applied current and $w$ is the `slow' variable representing the current.  $f(v)$ is the cubic nullcline\footnote{Nullcline of a variable $x$ is defined as where $\dot{x} = 0$} for $v$ and nullcline for $w$ is linear. With $\alpha = 0.1, \gamma = 0.5, \epsilon = 0.01$ and $I_{\text{app}} = 0.5$, the unique rest point (where the $v$ and $w$ nullclines intersect) is unstable. This results in stable periodic oscillations \cite{keener} as reproduced in Figure \ref{fitz-nagumo}. 
+
+Observing the limit cycle behaviour of the current and voltage in the phase plane reveals a hysteresis characteristic very similar to a relay element. Approximating the relationship between $w$ and $v$ as a relay could simplify the FitzHugh-Nagumo equations. Converting the equations to state space form, with $x$ as the current and $y$ as the input to the relay ($y = e$) and $u$ as the voltage output :
+\begin{align}
+\dot{x} &= -\tfrac{1}{2}x + u \\
+y &= x\\
+u &= 
+\end{align}
+where the state relations from 
+
+
+
+
+
+
+
+\begin{thebibliography}{9}
+
+\bibitem{astrom1995}
+K.J.\r{A}str\"{o}m , (1995) \emph{Oscillations in systems with relay feedback}. IMA Vol. Math. Appl. : Adap. Control, Filtering, Signal Processing, Volume 74, Pages 1-25. 
+
+\bibitem{keener}
+J.Keener and J.Sneyd, \emph{Mathematical Physiology}. Springer-Verlag New York. Volume 8/I. Second Edition. ISBN 978-0-387-75846-6. 
+
+\bibitem{fall}
+C.P.Fall, E.S.Marland, J.M.Wagner, J.J.Tyson, \emph{Computational Cell Biology}. Springer. Volume 20. ISBN 0-387-95369-8. 
+
+\end{thebibliography}
+
+\end{document}
