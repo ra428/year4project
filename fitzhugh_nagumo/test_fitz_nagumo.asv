@@ -12,8 +12,8 @@ v0 = [0.9864;0.5];     % Intial condition [voltage current]
 
 % Variables for simulink
 T = 0.9104; tau = 0.4496;
-d1 = 0.9864;
-d2 = 0.2829;
+d1 = 1;
+d2 = 0.28;
 out = getAsymmetricRelayHysteresisForFitzNagumo(T,tau,d1,d2);
 epsilon_1 = out(1);
 epsilon_2 = out(2);

@@ -2,6 +2,7 @@ function z = polynom(b,p)
 % function z = polynom(b,p)
 % returns real root of bz - 1/(1 + z^p) = 0
 % uses matlab function root() to find roots of polynomial
+% page 246 of Computation Cell Biology
 
 z = [];
 poly = zeros(1,p+2);

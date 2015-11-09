@@ -4,9 +4,9 @@ A = -0.5;
 B = 1;
 C = 1;
 
-fun = @(s) exp(A*s)*B;
-Gamma_1 = integral(fun,0,tau, 'ArrayValue', true);
-Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true);
+fun = @(s) exp(A*s);
+Gamma_1 = integral(fun,0,tau, 'ArrayValue', true) * B;
+Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true) * B;
 Phi = fun(T);
 Phi_1 = fun(tau);
 Phi_2 = fun(T-tau);
