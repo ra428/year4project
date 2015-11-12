@@ -5,7 +5,7 @@ function dvdt = fitzhugh_nagumo(t,v)
 
 %I_app = 0.5;        % External applied current    
 I_app = 0.5;
-epsilon = 0.01;     % Controls how 'fast' v is compared to w
+epsilon = 0.001;     % Controls how 'fast' v is compared to w
 gamma = 0.5;        % Parameter in equation (5.39)
 dvdt = zeros(2,1);  % empty column
 dvdt(1) = (NL_resistor(v(1)) - v(2) + I_app)/epsilon; % Equation (5.38)
