@@ -1,10 +1,10 @@
-function e = getAsymmetricRelayHysteresisForFitzNagumo(T,tau,d1,d2)
+function e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,T,tau,d1,d2)
 % function e = getAsymmetricRelayHysteresisForFitzNagumo(T,tau,d1,d2)
-A = -0.5;
-B = 1;
-C = 1;
+% A = -0.5;
+% B = 1;
+% C = 1;
 
-fun = @(s) exp(A*s);
+fun = @(s) expm(A*s);
 Gamma_1 = integral(fun,0,tau, 'ArrayValue', true) * B;
 Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true) * B;
 Phi = fun(T);

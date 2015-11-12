@@ -7,7 +7,7 @@ tmax = 3;
 epsilon_1 = 0.4723; epsilon_2 = 0.6666;
 T = 0.9104; tau = 0.4496;
 %d1 = 0.9864;d2 = 0.2829;
-d1 = 0.9864; d2 =0.2829; 
+d1 = 0.9; d2 =0.2; 
 A = zeros_of_theorem_5_1(epsilon_1, epsilon_2, d1, d2, T, tau)
 B = 1; C = 1; D = 0;
 % out = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,T,tau,d1,d2);
@@ -16,7 +16,7 @@ B = 1; C = 1; D = 0;
 [a1 , a2 ] = getInitialConditionsAsymmRelay(A,B,C,d1,d2,T,tau);
 X0 = a1;
 
- stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
+ stable = checkStability(A,B,C,T,tau,d1,d2) % Stabi
 
 %% ODE solver
 % Set up various variables
@@ -37,6 +37,7 @@ figure(1)
 plot(t,v(:,1))
 hold on
 plot(simout.time,simout.data(:,1))
+%plot(linspace(0,tmax,size(f_relay,2)),f_relay,'ro')
 xlabel('Time')
 ylabel('Voltage')
 hold off
@@ -48,7 +49,7 @@ hold on
 v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
 alpha = 0.1; I_app = 0.5;
 f = (-v2.^3 + (1+alpha).*v2.^2 - alpha.*v2)+I_app;
-%plot(f,v2,'--')
+plot(f,v2,'--')
 plot(simout.data(:,2),simout.data(:,1))
 xlabel('Current')
 ylabel('Voltage')
