@@ -1,7 +1,7 @@
 %% Test out FitzHugh-Nagumo model from Keener and Sneyd Chapter 5
 clear all
 close all
-tmax = 3;
+tmax = 6;
 
 %% ODE solver
 % Set up various variables
@@ -11,12 +11,12 @@ v0 = [0.9;0.5];        % Intial condition [voltage current]
 [t,v] = ode15s(@fitzhugh_nagumo, tspan, v0);
 
 %% Variables for simulink
-                            % epsilon_1 = min (v(:,2));   %0.4723;
-                            % epsilon_2 = max(v(:,2));    %0.6666;
-                            %                             %T = 0.9104; tau = 0.4496;
+epsilon_1 = min (v(:,2));   %0.4723;
+epsilon_2 = max(v(:,2));    %0.6666;
+                            %T = 0.9104; tau = 0.4496;
 T = 0.519; tau = 0.1975;
                             %d1 = 0.9864; d2 =0.2829; 
-d1 = 0.75;d2 = 0.25;
+d1 = 0.5;d2 = 0.25;
 gamma = 0.5;
 alpha = -2;
                             %A = zeros_of_theorem_5_1(epsilon_1, epsilon_2, d1, d2, T, tau);
@@ -32,10 +32,10 @@ stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
 
 
 %% Simulink
-set_param('fitz_relay', 'StopTime', 'tmax')
-set_param('fitz_relay/Relay','OffOutputValue','d1','OnOutputValue','-d2','OffSwitchValue','epsilon_1', 'OnSwitchValue','epsilon_2' )
-set_param('fitz_relay/State-Space','A','A','B','B','C','C','D','D','X0','X0')
-simulate_fitz = sim('fitz_relay'); 
+set_param('fitz_relay_added_current', 'StopTime', 'tmax')
+set_param('fitz_relay_added_current/Relay','OffOutputValue','d1','OnOutputValue','-d2','OffSwitchValue','epsilon_1', 'OnSwitchValue','epsilon_2' )
+set_param('fitz_relay/State-Space','A','A','X0','X0')
+simulate_fitz = sim('fitz_relay_added_current'); 
 
 %% Show Results
 % Action potential
@@ -46,7 +46,6 @@ plot(relay_output.time,relay_output.data(:,1)+ alpha*current.data(:,1))
 %plot(simout.time,relay_output.data(:,1))
 xlabel('Time')
 ylabel('Voltage')
-legend('FitzHugh-Nagumo','Relay feedback')
 hold off
 
 % limit cycle
