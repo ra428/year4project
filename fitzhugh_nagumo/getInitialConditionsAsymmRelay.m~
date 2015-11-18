@@ -12,7 +12,7 @@ Phi_1 = fun(tau);
 Phi_2 = fun(T-tau);
 
 % Equations (5.5)
-a1 = inv((eye(size(A)) - Phi)) * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
-a2 = inv((eye(size(A)) - Phi)) * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
+a1 = (eye(size(A)) - Phi)^-1 * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
+a2 = (eye(size(A)) - Phi)^-1 * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
 
 
