@@ -1,39 +1,60 @@
-% Test out FitzHugh-Nagumo model from Keener and Sneyd Chapter 5
+% Test out goodwin
 clear all
 close all
 
 global p
 global b
 
-tmax = 40;
+p = 9999999;                % Exponent
+b = 0.99;                 % Related to rate of production/consumption
+
+%% Find b small enough to cause oscillations
+% z = 1;
+% while (b*z >= 1-8/p)
+%     b = b - 0.1;
+%     z = polynom(b,p);
+%     disp ('Still reducing b')
+% end
+
+%% ODE solver
+
+
+%% Set up variables for Simulink
+A = b*[-1 0 0 ; 1 -1 0; 0 1 -1];
+B = [1; 0 ; 0];C = [0 0 1];D = 0;
+d1 = 1; d2 = 0;
+T = 5.93; tau = 0.19;
+[a1 a2]= getInitialConditionsAsymmRelay(A,B,C,d2,d1,T,tau);
+X0 = -a2;
+
+%% ODE solver
+tmax = 100;
 % Set up various variables
 tspan = [0 tmax];      % Time interval
-v0 = [0;0;0]';         % Intial condition
+% v0 = [1;1.02;1.02;1];         % Intial condition
+[t,v] = ode15s(@goodwin, tspan, X0);
 
-p = 50;
-b = 1;
-z = 1;
-
-while (b*z >= 1-8/p)
-    b = b - 0.1;
-    z = polynom(b,p);
-    disp ('Still reducing b')  
-end
-
-% ODE solver
-[t,v] = ode45(@goodwin, tspan, v0);
-
-% Set up variables for Simulink
-A = b*[-1 0 0 ; 1 -1 0; 0 1 -1];
-B = [1; 0 ; 0];
-C = [0 0 1];
-D = 0;
-X0 = getInitialConditionsAsymmRelay(A,B,C,d1,d2,T,tau);
-
+%% Simulink
+set_param('goodwin_relay','StopTime','tmax')
+set_param('goodwin_relay/State-Space','A','A','B','B','C','C','D','D','X0','X0')
+simulate_goodwin = sim('goodwin_relay');
 
 %% Show Results
 % Circadian rhythim
 figure(1)
 plot(t,v(:,3))
+hold on
+plot(x3.time,x3.data)
 xlabel('Time')
 ylabel('Concentration')
+legend('Goodwin','Relay System')
+grid on
+
+figure(2)
+plot(t,(1+v(:,3).^p).^-1)   % The relay part's behavour
+hold on
+plot(relay_output.time,relay_output.data)
+xlabel('Time')
+ylabel('Ouput')
+legend('Goodwin nonlinear term','Relay output')
+axis([0 tmax -.5 1.5])
