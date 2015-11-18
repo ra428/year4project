@@ -48,7 +48,7 @@ xlabel('Time')
 ylabel('Voltage')
 hold off
 
-% limit cycle
+% Limit cycle
 figure(2)
 plot(v(:,2),v(:,1))
 hold on
