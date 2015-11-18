@@ -5,8 +5,8 @@ close all
 global p
 global b
 
-p = 9999999;                % Exponent
-b = 0.99;                 % Related to rate of production/consumption
+p = 99999999;                % Exponent
+b = 0.99;                   % Related to rate of production/consumption
 
 %% Find b small enough to cause oscillations
 % z = 1;
@@ -16,21 +16,18 @@ b = 0.99;                 % Related to rate of production/consumption
 %     disp ('Still reducing b')
 % end
 
-%% ODE solver
-
-
 %% Set up variables for Simulink
 A = b*[-1 0 0 ; 1 -1 0; 0 1 -1];
 B = [1; 0 ; 0];C = [0 0 1];D = 0;
 d1 = 1; d2 = 0;
 T = 5.93; tau = 0.19;
 [a1 a2]= getInitialConditionsAsymmRelay(A,B,C,d2,d1,T,tau);
-X0 = -a2;
+X0 = -a1;
 
 %% ODE solver
 tmax = 100;
 % Set up various variables
-tspan = [0 tmax];      % Time interval
+tspan = [0 tmax];               % Time interval
 % v0 = [1;1.02;1.02;1];         % Intial condition
 [t,v] = ode15s(@goodwin, tspan, X0);
 
@@ -50,6 +47,7 @@ ylabel('Concentration')
 legend('Goodwin','Relay System')
 grid on
 
+% Relay outputs
 figure(2)
 plot(t,(1+v(:,3).^p).^-1)   % The relay part's behavour
 hold on
