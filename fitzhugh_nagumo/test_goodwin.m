@@ -25,7 +25,7 @@ T = 5.93; tau = 0.19;
 X0 = -a1;
 
 %% ODE solver
-tmax = 100;
+tmax = 50;
 % Set up various variables
 tspan = [0 tmax];               % Time interval
 % v0 = [1;1.02;1.02;1];         % Intial condition

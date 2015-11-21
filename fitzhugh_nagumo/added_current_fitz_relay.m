@@ -22,19 +22,19 @@ alpha = -2;
                             %A = zeros_of_theorem_5_1(epsilon_1, epsilon_2, d1, d2, T, tau);
 A = gamma-alpha;
 B = 1; C = 1; D = 0;
-out = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,T,tau,d1,d2);
-epsilon_1 = out(1)
-epsilon_2 = out(2)
+                            out = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,T,tau,d1,d2);
+                            epsilon_1 = out(1)
+                            epsilon_2 = out(2)
 [a1 , a2 ] = getInitialConditionsAsymmRelay(A,B,C,d1,d2,T,tau);
                             %X0 = 0.5;
 X0 =a1;
-stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
+% stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
 
 
 %% Simulink
 set_param('fitz_relay_added_current', 'StopTime', 'tmax')
 set_param('fitz_relay_added_current/Relay','OffOutputValue','d1','OnOutputValue','-d2','OffSwitchValue','epsilon_1', 'OnSwitchValue','epsilon_2' )
-set_param('fitz_relay/State-Space','A','A','X0','X0')
+set_param('fitz_relay_added_current/State-Space','A','A','X0','X0')
 simulate_fitz = sim('fitz_relay_added_current'); 
 
 %% Show Results

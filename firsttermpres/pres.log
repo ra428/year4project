@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2014.10.19)  19 NOV 2015 01:37
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2014.10.19)  19 NOV 2015 09:17
 entering extended mode
 **pres.tex
 (C:\Users\RAK\Documents\Project\year4project\firsttermpres\pres.tex
@@ -1100,7 +1100,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 [5
 
 ]
-Overfull \hbox (7.01312pt too wide) in alignment at lines 165--165
+Overfull \hbox (7.01312pt too wide) in alignment at lines 160--160
  [][][] []
  []
 
@@ -1108,39 +1108,39 @@ Overfull \hbox (7.01312pt too wide) in alignment at lines 165--165
 
 ]
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/AP_fitz_na
-gumo.jpg, id=226, 511.9125pt x 390.45876pt>
+gumo.jpg, id=241, 511.9125pt x 390.45876pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/AP_fi
 tz_nagumo.jpg Graphic file (type jpg)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/AP_fit
 z_nagumo.jpg>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/AP_fitz_nagumo.jpg used on input line 188.
+agumo/figures/AP_fitz_nagumo.jpg used on input line 183.
 (pdftex.def)             Requested size: 122.91406pt x 93.74776pt.
  [7
 
  <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/AP_fitz_n
 agumo.jpg>]
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_nagum
-o_voltage_time.png, id=246, 421.575pt x 316.18124pt>
+o_voltage_time.png, id=264, 421.575pt x 316.18124pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 nagumo_voltage_time.png Graphic file (type png)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_n
 agumo_voltage_time.png>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_nagumo_voltage_time.png used on input line 211.
+agumo/figures/fitz_nagumo_voltage_time.png used on input line 206.
 (pdftex.def)             Requested size: 153.64493pt x 115.23392pt.
 
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_nagum
-o_hysteresis.png, id=247, 421.575pt x 316.18124pt>
+o_hysteresis.png, id=265, 421.575pt x 316.18124pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 nagumo_hysteresis.png Graphic file (type png)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_n
 agumo_hysteresis.png>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_nagumo_hysteresis.png used on input line 211.
+agumo/figures/fitz_nagumo_hysteresis.png used on input line 206.
 (pdftex.def)             Requested size: 153.64493pt x 115.23392pt.
  [8
 
@@ -1148,25 +1148,25 @@ agumo/figures/fitz_nagumo_hysteresis.png used on input line 211.
 mo_voltage_time.png (PNG copy)> <C:/Users/RAK/Documents/Project/year4project/fi
 tzhugh_nagumo/figures/fitz_nagumo_hysteresis.png (PNG copy)>]
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_nagum
-o_speed_voltage_time.png, id=267, 421.575pt x 316.18124pt>
+o_speed_voltage_time.png, id=288, 421.575pt x 316.18124pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 nagumo_speed_voltage_time.png Graphic file (type png)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_n
 agumo_speed_voltage_time.png>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_nagumo_speed_voltage_time.png used on input line 211.
+agumo/figures/fitz_nagumo_speed_voltage_time.png used on input line 206.
 (pdftex.def)             Requested size: 153.64493pt x 115.23392pt.
 
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_nagum
-o_speed.png, id=268, 421.575pt x 316.18124pt>
+o_speed.png, id=289, 421.575pt x 316.18124pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 nagumo_speed.png Graphic file (type png)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_n
 agumo_speed.png>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_nagumo_speed.png used on input line 211.
+agumo/figures/fitz_nagumo_speed.png used on input line 206.
 (pdftex.def)             Requested size: 153.64493pt x 115.23392pt.
  [9
 
@@ -1174,25 +1174,25 @@ agumo/figures/fitz_nagumo_speed.png used on input line 211.
 mo_speed_voltage_time.png (PNG copy)> <C:/Users/RAK/Documents/Project/year4proj
 ect/fitzhugh_nagumo/figures/fitz_nagumo_speed.png (PNG copy)>]
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_relay
-_transfer.jpg, id=287, 666.23906pt x 438.13687pt>
+_transfer.jpg, id=311, 666.23906pt x 438.13687pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 relay_transfer.jpg Graphic file (type jpg)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_r
 elay_transfer.jpg>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_relay_transfer.jpg used on input line 226.
+agumo/figures/fitz_relay_transfer.jpg used on input line 221.
 (pdftex.def)             Requested size: 153.64493pt x 101.03677pt.
 
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_rot_r
-elay_voltage_time.jpg, id=288, 562.1pt x 421.575pt>
+elay_voltage_time.jpg, id=312, 562.1pt x 421.575pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_
 rot_relay_voltage_time.jpg Graphic file (type jpg)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/fitz_r
 ot_relay_voltage_time.jpg>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/fitz_rot_relay_voltage_time.jpg used on input line 226.
+agumo/figures/fitz_rot_relay_voltage_time.jpg used on input line 221.
 (pdftex.def)             Requested size: 153.64493pt x 115.2291pt.
  [10
 
@@ -1201,45 +1201,59 @@ y_transfer.jpg> <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/fi
 gures/fitz_rot_relay_voltage_time.jpg>] [11
 
 ]
+<C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwin_no
+nlinear_element.png, id=358, 421.575pt x 316.18124pt>
+File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodw
+in_nonlinear_element.png Graphic file (type png)
+
+<use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwi
+n_nonlinear_element.png>
+Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
+agumo/figures/goodwin_nonlinear_element.png used on input line 251.
+(pdftex.def)             Requested size: 215.10196pt x 161.32748pt.
+ [12
+
+ <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwin_n
+onlinear_element.png (PNG copy)>]
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwin_re
-lay_transfer.jpg, id=328, 645.91313pt x 430.60875pt>
+lay_transfer.jpg, id=380, 645.91313pt x 430.60875pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodw
 in_relay_transfer.jpg Graphic file (type jpg)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwi
 n_relay_transfer.jpg>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/goodwin_relay_transfer.jpg used on input line 259.
+agumo/figures/goodwin_relay_transfer.jpg used on input line 266.
 (pdftex.def)             Requested size: 153.64493pt x 102.42833pt.
 
 <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwin_re
-lay_x3.jpg, id=329, 562.1pt x 421.575pt>
+lay_x3.jpg, id=381, 562.1pt x 421.575pt>
 File: C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodw
 in_relay_x3.jpg Graphic file (type jpg)
 
 <use C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwi
 n_relay_x3.jpg>
 Package pdftex.def Info: C:/Users/RAK/Documents/Project/year4project/fitzhugh_n
-agumo/figures/goodwin_relay_x3.jpg used on input line 259.
+agumo/figures/goodwin_relay_x3.jpg used on input line 266.
 (pdftex.def)             Requested size: 153.64493pt x 115.2291pt.
- [12
+ [13
 
  <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo/figures/goodwin_r
 elay_transfer.jpg> <C:/Users/RAK/Documents/Project/year4project/fitzhugh_nagumo
-/figures/goodwin_relay_x3.jpg>] [13
+/figures/goodwin_relay_x3.jpg>] [14
 
-] [14
+] [15
 
 ]
 \tf@nav=\write6
 \tf@toc=\write7
 \tf@snm=\write8
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 296.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 296.
 
 (C:\Users\RAK\Documents\Project\year4project\firsttermpres\pres.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 296.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 296.
 
 
 Package rerunfilecheck Warning: File `pres.out' has changed.
@@ -1247,19 +1261,19 @@ Package rerunfilecheck Warning: File `pres.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `pres.out':
-(rerunfilecheck)             Before: DCCA0A635D9301C996E0C18F2D2F7C8E;785
-(rerunfilecheck)             After:  21DA0D70F4669F1BFF374FF62DA23F85;910.
+(rerunfilecheck)             Before: 1465FC234B5ED20E9D2E40B93130F07B;656
+(rerunfilecheck)             After:  6B11E505CBC304396DE698868A268C03;910.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 296.
  ) 
 Here is how much of TeX's memory you used:
- 22973 strings out of 493921
- 490135 string characters out of 3144881
- 571515 words of memory out of 3000000
- 25683 multiletter control sequences out of 15000+200000
+ 22984 strings out of 493921
+ 490609 string characters out of 3144881
+ 573396 words of memory out of 3000000
+ 25691 multiletter control sequences out of 15000+200000
  14573 words of font info for 55 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  56i,20n,67p,405b,1033s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1275,9 +1289,9 @@ x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Program Files (x86
 )/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmssi9.pfb><C:/Program Files (x86)/
 MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on pres.pdf (14 pages, 410562 bytes).
+Output written on pres.pdf (15 pages, 436318 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 240 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 48 named destinations out of 1000 (max. 500000)
+ 229 words of extra memory for PDF output out of 10000 (max. 10000000)
 

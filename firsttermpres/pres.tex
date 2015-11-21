@@ -129,11 +129,10 @@
 \item Auto-tuning of process controllers
 \item Simplify biological oscillations
 \item Unsolved research problems exist
-%	\begin{itemize}
-%	\item What are the conditions for stable limit cycle oscillations?
-%	\item Why do the oscillations converge towards the limit cycle so quickly?
-%	\item Is it possible to have several limit cycles depending on the initial conditions?
-% \end{itemize}
+	\begin{itemize}
+	\item Why do the oscillations converge towards the limit cycle so quickly?
+	\item Is it possible to have several limit cycles depending on the initial conditions?
+ \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -146,12 +145,8 @@
 \column{.75\textwidth}
 	\begin{itemize}
     \item Conditions for limit cycles
-    \begin{itemize}
-      \item Symmetric periodic oscillations
-      \item Systems with time delays
-      \item Asymmetric periodic oscillations
-    \end{itemize}
     \item Conditions for local stability
+	\item Initial conditions for oscillations
   \end{itemize}
 \column{.25\textwidth}
 %\begin{center}
@@ -178,7 +173,7 @@ y = Cx
 \item Fast and slow variables
 \end{itemize}
 \item FitzHugh-Nagumo model extracts the essential behaviour
-\item Simplified form, with two variables
+\item Only two variables
 \end{itemize}
 \column{.4\textwidth}
 \begin{figure}
@@ -229,18 +224,30 @@ y = Cx
 \section{Goodwin Oscillator}
 \subsection{Intro}
 \begin{frame}
+	\frametitle{Goodwin Oscillator}
+	
+	\begin{itemize}
+	\item Biochemical oscillator based on negative feedback
+	\item Concentration of mRNA, protein and end product
+	\end{itemize}
+	
+
+	\begin{align*}
+	\text{mRNA \hspace{1cm}}\frac{dx_1}{dt'} &= \frac{1}{1 + x_3^p} - b_1x_1 \\
+	\text{Protein \hspace{1cm}}	\frac{dx_2}{dt'} &= b_2(x_1 - x_2) \\
+	\text{Product \hspace{1cm}}	\frac{dx_3}{dt'} &= b_3(x_2 - x_3) \\
+	\end{align*}
+
+%	\begin{figure}
+%	\includegraphics<2>\\[width=0.7\textwidth]{goodwin_nonlinear_element}
+%	\end{figure}
+\end{frame}
+
+\begin{frame}
 \frametitle{Goodwin Oscillator}
-
-\begin{itemize}
-\item Biochemical oscillator based on negative feedback
-\item Concentration of mRNA, proten and end product
-\end{itemize}
-
-\begin{align*}
-\frac{dx_1}{dt'} &= \frac{1}{1 + x_3^p} - b_1x_1 \\
-\frac{dx_2}{dt'} &= b_2(x_1 - x_2) \\
-\frac{dx_3}{dt'} &= b_3(x_2 - x_3) \\
-\end{align*}
+\begin{figure}
+	\includegraphics[width=0.7\textwidth]{goodwin_nonlinear_element}
+\end{figure}
 \end{frame}
 
 \subsection{Modelling with relay feedback}
@@ -277,7 +284,7 @@ y = Cx
     \item Bridged classical control theory with non-linear oscillations currently being studied in biology
     \begin{itemize}
 	\item FitzHugh-Nagumo model 
-    \item Goodwin model
+    \item Goodwin Oscillator model
 \end{itemize}
 	\item Study differential positivity
 	\item Apply this analysis to relay feedback systems
