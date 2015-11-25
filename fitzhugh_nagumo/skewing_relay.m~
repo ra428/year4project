@@ -1,0 +1,44 @@
+a = [-1.1262 -1.1262 -.9976 -.9976;...
+      0.2693 -0.6883  0.0061 -1.003];
+  
+
+skew = [1 0; 1 1];
+skew2 = inv(skew);
+
+for i = 1:4
+   b(:,i) = skew*a(:,i);
+end
+
+
+ax1 = linspace(-5,5);
+ax2 = 0*ax1;
+
+x1 = [ax2;ax1];
+x2 = skew2*x2;
+
+
+
+figure()
+
+plot(a(1,1),a(1,2),'xb')
+hold on;grid on
+plot(a(2,1),a(2,2),'xr')
+plot(a(3,1),a(3,2),'xg')
+plot(a(4,1),a(4,2),'xm')
+
+plot(b(1,1),a(1,2),'xb')
+hold on;grid on
+plot(b(2,1),a(2,2),'xr')
+plot(b(3,1),a(3,2),'xg')
+plot(b(4,1),a(4,2),'xm')
+
+plot(ax1,ax2,'black')
+plot(ax2,ax1,'black')
+
+plot(x2(1,:),x2(2,:),'black--')
+
+axis([-.5 .5 0.4 2.2])
+
+
+
+
