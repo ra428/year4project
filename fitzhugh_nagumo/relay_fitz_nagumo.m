@@ -26,15 +26,15 @@ plot(a(1,1:2:end),a(2,1:2:end),'m')
 plot(a(1,3:4),a(2,3:4),'m')
 grid on
 
-%% Move these points up in the y-axis to take into account I_app
-for i = 1:4
-    a(:,i) = a(:,i) + [0;I_app];
-end
-
-plot(a(1,1:2),a(2,1:2),'m')
-plot(a(1,2:2:end),a(2,2:2:end),'m')
-plot(a(1,1:2:end),a(2,1:2:end),'m')
-plot(a(1,3:4),a(2,3:4),'m')
+% % %% Move these points up in the y-axis to take into account I_app
+% % for i = 1:4
+% %     a(:,i) = a(:,i) + [0;I_app];
+% % end
+% % 
+% % plot(a(1,1:2),a(2,1:2),'m')
+% % plot(a(1,2:2:end),a(2,2:2:end),'m')
+% % plot(a(1,1:2:end),a(2,1:2:end),'m')
+% % plot(a(1,3:4),a(2,3:4),'m')
 
 %% Reflect these points about the y=x line, so just swap the x with y
 % So now the x-axis is the current and the y-axis is the voltage
@@ -103,15 +103,15 @@ d1 = abs(mean([a(2,1) a(2,3)]));
 d2 = abs(mean([a(2,2) a(2,4)]));
 
 
-% %% Relay properties
-% epsilon_1 = -.0643; 
-% epsilon_2 = .0643;   
-% d1 =0.4912;
-% d2 =0.49215;
-
-% Transformation variables
-% beta1 = 0.3540;
-% beta2 = 1.0619;
+% % % %% Relay properties
+% % % epsilon_1 = -.0643; 
+% % % epsilon_2 = .0643;   
+% % % d1 =0.4912;
+% % % d2 =0.49215;
+% % 
+% % % Transformation variables
+% % % beta1 = 0.3540;
+% % % beta2 = 1.0619;
 gamma = 0.5;
 % alpha = -2;
 
@@ -131,7 +131,7 @@ simulate_fitz = sim('fitz_relay');
 
 %% Recover actual results
 actual_voltage = relay_output.data+alpha*current.data - beta1;
-actual_current = current.data - beta2 - I_app;
+actual_current = current.data - beta2;                                           %- I_app;
 
 %% Plot Results
 % Action potential
