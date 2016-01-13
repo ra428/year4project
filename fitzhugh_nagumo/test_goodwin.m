@@ -1,12 +1,13 @@
 % Test out goodwin
 clear all
-close all
+% close all
 
 global p
 global b
 
-p = 99999999;                % Exponent
-b = 0.99;                   % Related to rate of production/consumption
+p = 99999999;               % Exponent
+% p = 990;
+b = .99;                   % Related to rate of production/consumption
 
 %% Find b small enough to cause oscillations
 % z = 1;
@@ -25,11 +26,14 @@ T = 5.93; tau = 0.19;
 X0 = -a1;
 
 %% ODE solver
-tmax = 50;
+tmax = 100;
 % Set up various variables
 tspan = [0 tmax];               % Time interval
 % v0 = [1;1.02;1.02;1];         % Intial condition
-[t,v] = ode15s(@goodwin, tspan, X0);
+% [t,v] = ode15s(@goodwin, tspan, X0);
+% [t,v] = ode23s(@goodwin, tspan, X0);
+[t,v] = ode23tb(@goodwin, tspan, X0);
+% [t,v] = ode45(@goodwin, tspan, X0);
 
 %% Simulink
 set_param('goodwin_relay','StopTime','tmax')
@@ -38,7 +42,7 @@ simulate_goodwin = sim('goodwin_relay');
 
 %% Show Results
 % Circadian rhythim
-figure(1)
+figure()
 plot(t,v(:,3))
 hold on
 plot(x3.time,x3.data)
@@ -47,12 +51,12 @@ ylabel('Concentration')
 legend('Goodwin','Relay System')
 grid on
 
-% Relay outputs
-figure(2)
-plot(t,(1+v(:,3).^p).^-1)   % The relay part's behavour
-hold on
-plot(relay_output.time,relay_output.data)
-xlabel('Time')
-ylabel('Ouput')
-legend('Goodwin nonlinear term','Relay output')
-axis([0 tmax -.5 1.5])
+% % Relay outputs
+% figure(2)
+% plot(t,(1+v(:,3).^p).^-1)   % The relay part's behavour
+% hold on
+% plot(relay_output.time,relay_output.data)
+% xlabel('Time')
+% ylabel('Ouput')
+% legend('Goodwin nonlinear term','Relay output')
+% axis([0 tmax -.5 1.5])
