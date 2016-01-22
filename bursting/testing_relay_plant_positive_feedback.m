@@ -14,6 +14,7 @@ upper_thresh = b*d*ones(1,500);
 lower_thresh = -upper_thresh;
 
 % Assign the variables to simulink model
+load_system('relay_feedback_with_positive_loop')
 set_param('relay_feedback_with_positive_loop', 'StopTime', 'tmax');
 set_param('relay_feedback_with_positive_loop/Relay','OffOutputValue','-d','OnOutputValue','d');
 set_param('relay_feedback_with_positive_loop/Gain','Gain','b');
