@@ -42,7 +42,7 @@ cc = hsv(15);
 % legend('\gamma = 0.','\gamma = 0.2','\gamma = 0.4','\gamma = 0.6','\gamma = 0.8')
 
 for iteration = 1:5
-    ef = .75/(5*iteration);
+    ef = ef/5;
 
     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,ef),[-4,4])
     set(h1,'Color',cc(iteration+10,:));
