@@ -1,11 +1,11 @@
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
-linear_plant = @(xs,xf) (xf-.5*xs);
+linear_plant = @(xs,xf) (xf-.35*xs);
                     
-%alpha = 0.4;
+% alpha = 0.4;
 alpha =.5;
-u = .5 ; beta = 0.5;
+u = 1.25 ; beta = 0.5;
 gamma = 1;
 ef = 0.0075;
 delta = .5;
@@ -41,15 +41,16 @@ cc = hsv(15);
 % end
 % legend('\gamma = 0.','\gamma = 0.2','\gamma = 0.4','\gamma = 0.6','\gamma = 0.8')
 
-for iteration = 1:5
-    ef = .75/(5*iteration);
+% for iteration = 1:5
+%     ef = .0075/(5*iteration);
 
     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,ef),[-4,4])
-    set(h1,'Color',cc(iteration+10,:));
+    set(h1,'Color',cc(10,:));
+    grid on
     hold on
     
-end
-legend('\delta = 0.0','\delta = 0.2','\delta = 0.4','\delta = 0.6','\delta = 0.8')
+% end
+% legend('\delta = 0.0','\delta = 0.2','\delta = 0.4','\delta = 0.6','\delta = 0.8')
 
 h2 = ezplot(@(x,y)linear_plant(x,y),[-4,4])
 title('Phase portrait')
