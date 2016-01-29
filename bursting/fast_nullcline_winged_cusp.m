@@ -4,12 +4,12 @@ clear
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
-linear_plant = @(xs,xf,ts) (xf-ts*xs);
+linear_plant = @(xs,xf,ts) ((xf-xs)/ts);
                     
 % alpha = .2;
 alpha = 0.25;
 beta = 0.5;
-gamma = 1;
+gamma = 0.5;
 delta = 0.5;
 u = 0.5 ;
 tf = 0.0075;
@@ -60,14 +60,14 @@ cc = hsv(15);
 
 % Plot winged cusp
 h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
-set(h1,'Color',cc(floor(15*rand(1)),:));
+set(h1,'Color',cc(ceil(15*rand(1)),:));
 hold on
 
 % Plot linear plant
 h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
 
 title('Phase portrait')
-[x,y] = meshgrid(-4:1:4,-4:1:4);
+[x,y] = meshgrid(-.4:.1:.8,-1:.1:1);
 grid on
 
 % Plot trajectories
