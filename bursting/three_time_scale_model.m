@@ -1,6 +1,4 @@
 clear all
-
-
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
@@ -25,22 +23,22 @@ alpha_period = t_max;
 alpha_width = 1; % %of period
 alpha_delay1 = 4000;
 alpha_delay2 = 7000;
-slow_plant_X0 = -2;
-fast_plant_X0 = -1;
+slow_plant_X0 = 0;
+fast_plant_X0 = 1;
 
 %% Simulink
-load_system('rest_spike_bistability_original')
+load_system('three_time_scale')
 %set_param('rest_spike_bistability_original', 'StopTime', 't_max')
-set_param('rest_spike_bistability_original/Constant1','Value','u')
-set_param('rest_spike_bistability_original/Constant2','Value','alpha')
-set_param('rest_spike_bistability_original/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
-set_param('rest_spike_bistability_original/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
-set_param('rest_spike_bistability_original/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
-set_param('rest_spike_bistability_original/Gain','Gain','1+beta')
-set_param('rest_spike_bistability_original/Gain1','Gain','gamma/2')
-set_param('rest_spike_bistability_original/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
-set_param('rest_spike_bistability_original/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
-% SimOut = sim('rest_spike_bistability_original','StopTime','10000');
+set_param('three_time_scale/Constant1','Value','u')
+set_param('three_time_scale/Constant2','Value','alpha')
+set_param('three_time_scale/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
+set_param('three_time_scale/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
+set_param('three_time_scale/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
+set_param('three_time_scale/Gain','Gain','1+beta')
+set_param('three_time_scale/Gain1','Gain','gamma/2')
+% set_param('three_time_scale/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
+% set_param('three_time_scale/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
+SimOut = sim('three_time_scale','StopTime','10000');
 
 %% Plot
 cc = hsv(15);
@@ -64,7 +62,7 @@ grid on
  quiver(x,y,xs_dot,xf_dot)
 
 % Plot history
-%plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
+plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
 
 title('Phase portrait')
 xlabel('x_s')
