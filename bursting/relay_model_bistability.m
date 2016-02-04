@@ -4,8 +4,8 @@ clear all
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
-fast_nullcline_relay = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
-    ((-xf + sign(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
+fast_nullcline_relay = @(xs,xf,u,gamma,beta2,alpha,delta,ef)...
+    ((-xf + sign(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta2*xf+ alpha))/ef);
 
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
@@ -14,33 +14,34 @@ m = 0.65;
 alpha = 0.25;
 %beta = .5;
 beta = .5;
+beta2 = ((beta-1)/m);
 gamma = 1;
 delta = 0.3;
 u = 0.5 ;
 tf = 0.0075;
 ts = 1/2;
 t_max = 10000;
-alpha_max = 1;
+alpha_max = 1.75;
 alpha_period = t_max;
 alpha_width = 1; % %of period
 alpha_delay1 = 4000;
 alpha_delay2 = 7000;
-slow_plant_X0 = -2;
-fast_plant_X0 = -1;
+slow_plant_X0 = -1;
+fast_plant_X0 = -0.5;
 
 %% Simulink
-load_system('rest_spike_bistability_original')
+load_system('rest_spike_bistability')
 %set_param('rest_spike_bistability_original', 'StopTime', 't_max')
-set_param('rest_spike_bistability_original/Constant1','Value','u')
-set_param('rest_spike_bistability_original/Constant2','Value','alpha')
-set_param('rest_spike_bistability_original/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
-set_param('rest_spike_bistability_original/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
-set_param('rest_spike_bistability_original/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
-set_param('rest_spike_bistability_original/Gain','Gain','1+beta')
-set_param('rest_spike_bistability_original/Gain1','Gain','gamma/2')
-set_param('rest_spike_bistability_original/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
-set_param('rest_spike_bistability_original/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
-% SimOut = sim('rest_spike_bistability_original','StopTime','10000');
+set_param('rest_spike_bistability/Constant1','Value','u')
+set_param('rest_spike_bistability/Constant2','Value','alpha')
+set_param('rest_spike_bistability/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
+set_param('rest_spike_bistability/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
+set_param('rest_spike_bistability/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
+set_param('rest_spike_bistability/Gain','Gain','1+beta2')
+set_param('rest_spike_bistability/Gain1','Gain','gamma/2')
+set_param('rest_spike_bistability/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
+set_param('rest_spike_bistability/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
+SimOut = sim('rest_spike_bistability','StopTime','10000');
 
 %% Plot
 cc = hsv(15);
@@ -49,8 +50,9 @@ cc = hsv(15);
 % set(h1,'Color','b');
 hold on
 
-h3 = ezplot(@(x,y)fast_nullcline_relay(x,y,u,gamma,((beta-1)/m),alpha,delta,tf),[-4,4]);
-set(h3,'Color',cc(ceil(15*rand(1)),:));
+h3 = ezplot(@(x,y)fast_nullcline_relay(x,y,u,gamma,beta2,alpha,delta,tf),[-4,4]);
+%set(h3,'Color',cc(ceil(15*rand(1)),:));
+set(h3,'Color','g');
 
 % Plot linear plant
 h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
@@ -59,12 +61,12 @@ h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
 grid on
 
 % Plot trajectories
- xf_dot = fast_nullcline_relay(x,y,u,gamma,beta,alpha,delta,tf);
+ xf_dot = fast_nullcline_relay(x,y,u,gamma,beta2,alpha,delta,tf);
  xs_dot = linear_plant(x,y,ts);
  quiver(x,y,xs_dot,xf_dot)
 
 % Plot history
-%plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
+plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
 
 title('Phase portrait')
 xlabel('x_s')
@@ -73,8 +75,8 @@ ylabel('x_f')
 
 
 
-% figure(2)
-% plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
+figure(2)
+plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 
 
 
