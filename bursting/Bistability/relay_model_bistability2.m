@@ -1,12 +1,12 @@
+% Relay model for bistability
 clear all
 
-
+%% Functions
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
 fast_nullcline_relay = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + sign(bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
-
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
@@ -83,8 +83,6 @@ plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
 title('Phase portrait')
 xlabel('x_s')
 ylabel('x_f')
-
-
 
 
 figure(2)
