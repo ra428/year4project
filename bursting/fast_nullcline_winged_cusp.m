@@ -80,6 +80,26 @@ ylabel('x_f')
 
 
 
+% Plot the Figure 4 equivalent to show bistability
+figure(3)
+for i = 1:6;
+    subplot(2,3,i)
+    alpha_var = i/6-0.3;
+    h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha_var,delta,tf),[-4,4]);
+    set(h1,'Color','b');
+    hold on
+    h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+end
+
+
+
+
+
+
+
+
+
+
 
 % for iteration = 1:5
 %     alpha = iteration/5;
