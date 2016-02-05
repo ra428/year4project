@@ -1,11 +1,12 @@
+% Relay model for bistability
 clear all
 
+%% Functions
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));
 fast_nullcline = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + tanh(xf+ bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
 fast_nullcline_relay = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + sign(bump(u + xs +0.5*gamma*xf,delta) + beta*xf+ alpha))/ef);
-
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
@@ -98,4 +99,40 @@ title('Phase portrait')
 xlabel('x_s')
 ylabel('x_f')
 
+figure(2)
+plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 
+
+
+
+
+
+% for iteration = 1:5
+%     alpha = iteration/5;
+% 
+%     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,ef),[-4,4])
+%     set(h1,'Color',cc(iteration+10,:));
+%     hold on
+%     
+% end
+% legend('\alpha = 0.2','\alpha = 0.4','\alpha = 0.6','\alpha = 0.8','\alpha = 1')
+
+% for iteration = 1:5
+%     beta = iteration/5;
+% 
+%     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,ef),[-4,4])
+%     set(h1,'Color',cc(iteration+5,:));
+%     hold on
+%     
+% end
+% legend('\beta = 0.2','\beta = 0.4','\beta = 0.6','\beta = 0.8','\beta = 1')
+
+% for iteration = 1:5
+%     gamma = (iteration-1)/5;
+% 
+%     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,ef),[-4,4])
+%     set(h1,'Color',cc(iteration+8,:));
+%     hold on
+%     
+% end
+% legend('\gamma = 0.','\gamma = 0.2','\gamma = 0.4','\gamma = 0.6','\gamma = 0.8')
