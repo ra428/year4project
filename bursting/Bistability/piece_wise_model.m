@@ -25,7 +25,7 @@ delta = 0.5;
 u = 0.8 ;
 tf = 0.0075;
 ts = 1;
-tmax = 10000;
+tmax = 3500;
 alpha_max = 1.75;
 alpha_period = tmax;
 alpha_width = 1; % %of period
@@ -38,7 +38,7 @@ fast_plant_X0 = -1.05;
 load_system('piece_wise_bump_model')
 set_param('piece_wise_bump_model/Constant1','Value','u')
 set_param('piece_wise_bump_model/Constant2','Value','alpha')
-set_param('piece_wise_bump_model/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
+% set_param('piece_wise_bump_model/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
 set_param('piece_wise_bump_model/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
 set_param('piece_wise_bump_model/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
 set_param('piece_wise_bump_model/Gain','Gain','beta')
@@ -48,47 +48,64 @@ set_param('piece_wise_bump_model/Pulse Generator1','Amplitude','-1*alpha_max','P
 SimOut = sim('piece_wise_bump_model','StopTime','tmax');
 
 %% Plot
-cc = hsv(15);
-% Plot winged cusp
-% h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
-% set(h1,'Color','b');
-hold on
+% cc = hsv(15);
+% % Plot winged cusp
+% % h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
+% % set(h1,'Color','b');
+% hold on
+% 
+% h3 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
+% set(h3,'Color',cc(ceil(15*rand(1)),:));
+% % set(h3,'Color','g');
+% 
+% % Plot linear plant
+% h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+% 
+% [x,y] = meshgrid(-2:.1:1,-1.5:.1:1.5);
+% grid on
+% 
+% % Plot trajectories
+% %  xf_dot = fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf);
+% %  xs_dot = linear_plant(x,y,ts);
+% %  quiver(x,y,xs_dot,xf_dot)
+% 
+% % Plot history
+% % plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
+% DELAY = 0.001;
+% sparse_index = 32;
+% % for i = 1:numel(SimOut.get('xs').Data)/sparse_index
+% %     %clf;
+% %     %plot(SimOut.get('xs').Data,SimOut.get('xf').Data);
+% %     %hold on;
+% %     plot(SimOut.get('xs').Data(sparse_index*i),SimOut.get('xf').Data(sparse_index*i),'o');
+% %     pause(DELAY);
+% % end
+% 
+% title('Phase portrait')
+% xlabel('x_s')
+% ylabel('x_f')
+% 
+% figure(2)
+% plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 
-h3 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
-set(h3,'Color',cc(ceil(15*rand(1)),:));
-% set(h3,'Color','g');
-
-% Plot linear plant
-h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
-
-[x,y] = meshgrid(-2:.1:1,-1.5:.1:1.5);
-grid on
-
-% Plot trajectories
-%  xf_dot = fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf);
-%  xs_dot = linear_plant(x,y,ts);
-%  quiver(x,y,xs_dot,xf_dot)
-
-% Plot history
-% plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
-DELAY = 0.001;
-sparse_index = 32;
-% for i = 1:numel(SimOut.get('xs').Data)/sparse_index
-%     %clf;
-%     %plot(SimOut.get('xs').Data,SimOut.get('xf').Data);
-%     %hold on;
-%     plot(SimOut.get('xs').Data(sparse_index*i),SimOut.get('xf').Data(sparse_index*i),'o');
-%     pause(DELAY);
-% end
-
-title('Phase portrait')
-xlabel('x_s')
-ylabel('x_f')
-
-figure(2)
-plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
-
-
+%% Plot varying nullcline with phase portait
+% Plot varying nullcline and history
+disp('Starting plotting')
+figure(4)
+speed = 400;
+delay = 0.001;
+for i = 1:speed:numel(SimOut.get('alpha_vary').Time)
+    figure(4)
+    h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('alpha_vary').Data(i),delta,tf),[-4,4]);
+    set(h1,'Color','b');
+    hold on
+    h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+    plot(SimOut.get('xs').Data(i),SimOut.get('xf').Data(i),'or')
+    text = sprintf('alpha = %f', SimOut.get('alpha_vary').Data(i));
+    legend(text)
+    hold off
+    pause(delay)
+end
 
 
 
