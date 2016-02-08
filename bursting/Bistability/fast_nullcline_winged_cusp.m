@@ -44,51 +44,57 @@ set_param('rest_spike_bistability_original/Pulse Generator1','Amplitude','-1*alp
 
 %% Plot
 cc = hsv(15);
-% Plot winged cusp
- h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
- set(h1,'Color','b');
-hold on
-
-% h3 = ezplot(@(x,y)fast_nullcline_relay(x,y,u,gamma,((beta-1)/m),alpha,delta,tf),[-4,4]);
-% set(h3,'Color',cc(ceil(15*rand(1)),:));
-
-% Plot linear plant
-h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
-
-[x,y] = meshgrid(-2:.1:1,-1.5:.1:1.5);
-grid on
-
-% Plot trajectories
- xf_dot = fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf);
- xs_dot = linear_plant(x,y,ts);
- quiver(x,y,xs_dot,xf_dot)
-
-% Plot history
-%plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
-
-title('Phase portrait')
-xlabel('x_s')
-ylabel('x_f')
-
-
-
+% % Plot winged cusp
+%  h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
+%  set(h1,'Color','b');
+% hold on
 % 
+% % h3 = ezplot(@(x,y)fast_nullcline_relay(x,y,u,gamma,((beta-1)/m),alpha,delta,tf),[-4,4]);
+% % set(h3,'Color',cc(ceil(15*rand(1)),:));
+% 
+% % Plot linear plant
+% h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+% 
+% [x,y] = meshgrid(-2:.1:1,-1.5:.1:1.5);
+% grid on
+% 
+% % Plot trajectories
+% %  xf_dot = fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf);
+% %  xs_dot = linear_plant(x,y,ts);
+% %  quiver(x,y,xs_dot,xf_dot)
+% 
+% % Plot history
+% %plot(SimOut.get('xs').Data, SimOut.get('xf').Data, 'r')
+% 
+% title('Phase portrait')
+% xlabel('x_s')
+% ylabel('x_f')
+
+
 %   figure(2)
 %   plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 
+% % Plot the Figure 4 equivalent to show bistability
+% figure(3)
+% for i = 1:6;
+%     subplot(2,3,i)
+%     alpha_var = i/6-0.3;
+%     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha_var,delta,tf),[-4,4]);
+%     set(h1,'Color','b');
+%     hold on
+%     h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+% end
 
-
-
-
-% Plot the Figure 4 equivalent to show bistability
-figure(3)
-for i = 1:6;
-    subplot(2,3,i)
-    alpha_var = i/6-0.3;
-    h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha_var,delta,tf),[-4,4]);
-    set(h1,'Color','b');
-    hold on
-    h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+% Plot varying nullcline and history
+figure(4)
+for i = 1:numel(Simout.get('alpha_vary').Time)
+     h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,Simout.get('alpha_vary').Time(i),delta,tf),[-4,4]);
+     set(h1,'Color','b');
+     hold on
+     h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+     
+     
+    
 end
 
 
@@ -99,7 +105,7 @@ end
 
 
 
-
+%% Testing
 
 % for iteration = 1:5
 %     alpha = iteration/5;
