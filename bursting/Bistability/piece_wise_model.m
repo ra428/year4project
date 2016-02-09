@@ -15,7 +15,8 @@ linear_plant = @(xs,xf,ts) (xf-xs*ts);
 m = 0.65;
 alpha = 0.5;
 % beta = .25;
-beta = 0.45;
+% beta = 0.45;
+beta = 0.27;
 % beta_hat = 1 + beta;
 % beta_relay = -(1-beta_hat)/m;
 % %beta = beta_relay;
@@ -24,7 +25,7 @@ gamma = 1;
 delta = 0.5;
 u = 0.8 ;
 tf = 0.0075;
-ts = 1;
+ts = 0.25;
 tmax = 3500;
 alpha_max = 1.75;
 alpha_period = tmax;
@@ -33,6 +34,7 @@ alpha_delay1 = 200;
 alpha_delay2 = 300;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
+sine_alpha_max = 0.65;
 
 %% Simulink
 load_system('piece_wise_bump_model')
@@ -45,7 +47,10 @@ set_param('piece_wise_bump_model/Gain','Gain','beta')
 set_param('piece_wise_bump_model/Gain1','Gain','gamma/2')
 set_param('piece_wise_bump_model/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
 set_param('piece_wise_bump_model/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
+set_param('piece_wise_bump_model/Sine Wave','Amplitude','sine_alpha_max')
+
 SimOut = sim('piece_wise_bump_model','StopTime','tmax');
+
 
 %% Plot
 % cc = hsv(15);
@@ -85,14 +90,14 @@ SimOut = sim('piece_wise_bump_model','StopTime','tmax');
 % xlabel('x_s')
 % ylabel('x_f')
 % 
-% figure(2)
-% plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
+figure(2)
+plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 
 %% Plot varying nullcline with phase portait
 % Plot varying nullcline and history
 disp('Starting plotting')
 figure(4)
-speed = 400;
+speed = 800;
 delay = 0.001;
 for i = 1:speed:numel(SimOut.get('alpha_vary').Time)
     figure(4)
@@ -101,7 +106,7 @@ for i = 1:speed:numel(SimOut.get('alpha_vary').Time)
     hold on
     h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
     plot(SimOut.get('xs').Data(i),SimOut.get('xf').Data(i),'or')
-    text = sprintf('alpha = %f', SimOut.get('alpha_vary').Data(i));
+    text = sprintf('\\alpha = %f', SimOut.get('alpha_vary').Data(i));
     legend(text)
     hold off
     pause(delay)
