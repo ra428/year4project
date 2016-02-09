@@ -25,8 +25,7 @@ gamma = 1;
 delta = 0.5;
 u = 0.8 ;
 tf = 0.0075;
-% ts = 0.25;
-ts = 1;
+ts = 0.25;
 tmax = 3500;
 alpha_max = 1.75;
 alpha_period = tmax;
@@ -96,20 +95,17 @@ plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 hold on
 plot(SimOut.get('alpha_vary').Time, SimOut.get('alpha_vary').Data,'r')
 plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
-xlabel('Time')
-legend('xf','alpha','bump_input')
 hold off
 
 
 %% Plot varying nullcline with phase portait
 % % Plot varying nullcline and history
 disp('Starting plotting')
-figure(3)
-speed = 1600;
-delay = 0.00001;
+figure(4)
+speed = 800;
+delay = 0.001;
 for i = 1:speed:numel(SimOut.get('alpha_vary').Time)
-    figure(3)
-    subplot(1,2,1);
+      subplot(1,2,1);
     h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('alpha_vary').Data(i),delta,tf),[-4,4]);
     set(h1,'Color','b');
     hold on
@@ -117,42 +113,15 @@ for i = 1:speed:numel(SimOut.get('alpha_vary').Time)
     plot(SimOut.get('xs').Data(i),SimOut.get('xf').Data(i),'or')
     text = sprintf('\\alpha = %f', SimOut.get('alpha_vary').Data(i));
     legend(text)
-    title('Phase Portrait')
-    xlabel('xs')
-    ylabel('xf')
     hold off
     subplot(1,2,2);
     h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
     set(h3,'Color','b');
     hold on
-    plot(SimOut.get('bump_input').Data(i),piece_wise_bump2(SimOut.get('bump_input').Data(i)),'o')
-    xlabel('Input')
-    ylabel('Output')
-    title('Behaviour of bump')
+    plot(SimOut.get('bump_input').Data(i),SimOut.get('bump_input').Data(i),'or')
     hold off
     pause(delay)
 end
 
-figure(3)
-subplot(1,2,1);
-    h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('alpha_vary').Data(i),delta,tf),[-4,4]);
-    set(h1,'Color','b');
-    hold on
-    h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
-    plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'r')
-%     text = sprintf('\\alpha = %f', SimOut.get('alpha_vary').Data(i));
-%     legend(text)
-    title('Phase Portrait')
-    xlabel('xs')
-    ylabel('xf')
-    
-    
-subplot(1,2,2);
-h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
-    set(h3,'Color','b');
-    hold on
-    plot(SimOut.get('bump_input').Data,piece_wise_bump2(SimOut.get('bump_input').Data),'r')
-    xlabel('Input')
-    ylabel('Output')
-    title('Behaviour of bump')
+
 
