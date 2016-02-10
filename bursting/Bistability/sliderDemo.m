@@ -13,7 +13,7 @@ init_ui()
         setappdata(hfig,'delta',0.5);
         setappdata(hfig,'u',0.5);
         setappdata(hfig,'tf',0.5);
-        setappdata(hfig,'ts',0.5);
+        setappdata(hfig,'ts',1);
 %         updatePlot(hfig)
         
         %% Sliders
@@ -55,7 +55,7 @@ init_ui()
             'Callback',@slider_callback4);
         slider4_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
-            'Position',[0.9 0.005 0.05 0.05],...
+            'Position',[0.95 0.005 0.05 0.05],...
             'String','u');
         
         slider5 = uicontrol('Parent', hfig,'Style','slider',...
@@ -65,8 +65,19 @@ init_ui()
             'Callback',@slider_callback5);
         slider5_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
-            'Position',[0.9 0.05 0.05 0.05],...
+            'Position',[0.95 0.05 0.05 0.05],...
             'String','δ');
+  
+        slider6 = uicontrol('Parent', hfig,'Style','slider',...
+            'Units','normalized',...
+            'Position',[0.55 0.1 0.4 0.05],...
+            'Tag','slider4',...
+            'Callback',@slider_callback6);
+        slider6_label = uicontrol('Parent',hfig,'Style','text',...
+            'Units','normalized',...
+            'Position',[0.95 0.1 0.05 0.05],...
+            'String','τs');
+        
     end
 %% Callback
     function slider_callback1(hObject,eventdata)
@@ -93,6 +104,11 @@ init_ui()
         updatePlot(hObject)
     end
 
+    function slider_callback6(hObject,eventdata)
+        setappdata(hObject.Parent,'ts',hObject.Value);
+        updatePlot(hObject)
+    end
+
 
 %% Update plot
     function updatePlot(hObject)
@@ -112,11 +128,13 @@ init_ui()
         gamma = getappdata(hObject.Parent,'gamma');
         u = getappdata(hObject.Parent,'u');
         delta = getappdata(hObject.Parent,'delta');
-        display([alpha beta gamma delta u])
+        ts = getappdata(hObject.Parent,'ts');        
+        fprintf('α    β    γ    δ    u    τ_s \n')
+        disp([alpha beta gamma delta u ts])
         
         % Other parameters
         tf = 0.0075;
-        ts = 1;
+%         ts = 1;
         
 %         h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
         h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
