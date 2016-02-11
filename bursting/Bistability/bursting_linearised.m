@@ -20,8 +20,8 @@ u = 0.8;
 alpha_const = 0.1;
 tf = 0.0075;
 ts = 1;
-tus = 200;
-tmax = 7000;
+tus = 800;
+tmax = 2500;
 ultra_slow_plant_X0 = 0;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
@@ -36,7 +36,6 @@ set_param('bursting_linear/State-Space1','A','-1/ts','B','1/ts','C','1','D','0',
 set_param('bursting_linear/State-Space2','A','-1/tus','B','-1/tus','C','1','D','0','X0','ultra_slow_plant_X0')
 set_param('bursting_linear/Gain','Gain','beta')
 set_param('bursting_linear/Gain1','Gain','gamma/2')
-
 SimOut = sim('bursting_linear','StopTime','tmax');
 
 
@@ -85,7 +84,7 @@ plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
 legend('xf','alpha','bump_input')
-text = sprintf('\\tau_{US}=%d',tus)
+text = sprintf('\\tau_{US}=%d',tus);
 title(text)
 
 
