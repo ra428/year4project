@@ -21,10 +21,9 @@ alpha_const = 0.1;
 tf = 0.0075;
 ts = 1;
 % tus = 800;
-tus = 20;
-tmax = 20;
-% ultra_slow_plant_X0 = 0;
-ultra_slow_plant_X0 = 0.61;
+tus = 0;
+tmax = 1000;
+ultra_slow_plant_X0 = 0;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
 
