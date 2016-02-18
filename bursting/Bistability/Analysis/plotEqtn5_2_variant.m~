@@ -89,6 +89,7 @@ initUI(sysParam)
             'Position',[sLeft sY+5*sHeight sWidth sHeight],...
             'Tag','slider4',...
             'Value',getappdata(hfig,'beta'),...
+            'Min',0, 'Max',2,...
             'Callback',@slider_callback6);
         slider6_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
@@ -111,7 +112,7 @@ initUI(sysParam)
             'Units','normalized',...
             'Position',[sLeft sY+7*sHeight sWidth sHeight],...
             'Tag','slider8',...
-            'Min',0,'Max',5000,...
+            'Min',0,'Max',0.5,...
             'Value',getappdata(hfig,'tau'),...
             'Callback',@slider_callback8);
         slider8_label = uicontrol('Parent',hfig,'Style','text',...
@@ -167,20 +168,29 @@ initUI(sysParam)
         alpha = getappdata(hObject.Parent,'alpha');
         beta = getappdata(hObject.Parent,'beta');
         u = getappdata(hObject.Parent,'u');
-        tau = getappdata(hObject.Parent,'tau');
-        T = 1700;
+        tau = getappdata(hObject.Parent,'tau')
+        Tmax = getappdata(hObject.Parent,'T')
         kb = 0.5;
         d = 1;
         
-        e1 =  1 - beta + alpha + kb * u;
-        e2 = -1 + beta + alpha + kb * u;
+        %         e1 =  1 - beta + alpha + kb * u;
+        %         e2 = -1 + beta + alpha + kb * u;
         
-        fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,T,tau);
-        plot(fh.T,fh.h1,'r')
-        hold on
-        plot(fh.T,fh.h2)
+        e1 =  1 - beta - alpha - kb * u;
+        e2 = -1 + beta - alpha - kb * u;
+        
+        fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,Tmax,tau);
+        disp('Plotting')
+                plot(fh.T,fh.h1,'r')
+                hold on
+                plot(fh.T,fh.h2,'b')
+          legend('fh1','fh2')
+        abs_fh = abs(fh.h1)+abs(fh.h2);
+        solution = find(abs_fh<0.001)/500
+        plot(fh.T,abs_fh,'g')
+        axis([0 Tmax -2 2])
         xlabel('T')
-        legend('fh1','fh2')
+        hold off
         
         
     end
@@ -189,34 +199,34 @@ initUI(sysParam)
         fh = evalEqtn5_2_variant(sysParam.A, sysParam.B, sysParam.C, ...
             sysParam.D, sysParam.e1, sysParam.e2, sysParam.d, sysParam.T,...
             sysParam.tau);
-        plot(fh.T,fh.h1)
-        hold on
-        plot(fh.T,fh.h2)
-        xlabel('T')
-        legend('fh1','fh2')
+        %         plot(fh.T,fh.h1,'r')
+        %         hold on
+        %         plot(fh.T,fh.h2,'b')
+        %         xlabel('T')
+        %         legend('fh1','fh2')
+        % %         axis([0 1 -2 2])
+        %         legend('fh1','fh2')
+        hold off
     end
 
     function fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,T,tau)
         Phi = @(s) exp(A*s);
-        G = @(t) B * integral(Phi,0,t,'ArrayValue', true);
+        G = @(t) B * (Phi(t)-1)/A; % G = B * integral of e^Ax from 0 to t
         I = eye(size(A));
         
-        Tmax = T + 1000;
         arrayMax = 500;
-        fh.T = linspace(0, Tmax, arrayMax);
+        fh.T = linspace(0, T, arrayMax);
         fh.h1 = zeros(arrayMax,1);
         fh.h2 = zeros(arrayMax,1);
         
         for i = 1:arrayMax
             % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
-            fh.h1(i) = D*d + C * (I - Phi(fh.T(i)))^-1 ...
-                * (Phi(fh.T(i) - tau) * ...
-                G(tau)*d - G(fh.T(i) - tau)*d) + e2;
+            fh.h1(i) = D*d + C * ((I - Phi(fh.T(i)))^-1) ...
+                * (Phi(fh.T(i) - tau) * G(tau)*d - G(fh.T(i) - tau)*d) - e2;
             
             % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) - ε1 = 0
-            fh.h2(i) = -D*d + C * (I - Phi(fh.T(i)))^-1 ...
-                * (-Phi(tau) * ...
-                G(fh.T(i) - tau)*d + G(tau)*d) - e1;
+            fh.h2(i) = -D*d + C * ((I - Phi(fh.T(i)))^-1) ...
+                * (-Phi(tau) * G(fh.T(i) - tau)*d + G(tau)*d) - e1;
         end
         
     end

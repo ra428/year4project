@@ -89,7 +89,7 @@ initUI(sysParam)
             'Position',[sLeft sY+5*sHeight sWidth sHeight],...
             'Tag','slider4',...
             'Value',getappdata(hfig,'beta'),...
-                        'Min',0, 'Max',2,...
+            'Min',0, 'Max',2,...
             'Callback',@slider_callback6);
         slider6_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
@@ -169,24 +169,41 @@ initUI(sysParam)
         beta = getappdata(hObject.Parent,'beta');
         u = getappdata(hObject.Parent,'u');
         tau = getappdata(hObject.Parent,'tau')
-        Tmax = 1;
+        Tmax = getappdata(hObject.Parent,'T')
         kb = 0.5;
         d = 1;
         
-        e1 =  1 - beta + alpha + kb * u;
-        e2 = -1 + beta + alpha + kb * u;
+        %         e1 =  1 - beta + alpha + kb * u;
+        %         e2 = -1 + beta + alpha + kb * u;
+        
+        e1 =  1 - beta - alpha - kb * u;
+        e2 = -1 + beta - alpha - kb * u;
         
         fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,Tmax,tau);
-        disp('Plotting')
+%         disp('Plotting')
         plot(fh.T,fh.h1,'r')
         hold on
         plot(fh.T,fh.h2,'b')
-        xlabel('T')
-        axis([0 Tmax -2 2])
         legend('fh1','fh2')
-        difference = fh.h1-fh.h2;
-        solution = find(abs(difference)<0.001)/500
+        abs_fh = abs(fh.h1)+abs(fh.h2);
+%         solution = find(abs_fh<0.001)/500
+        plot(fh.T,abs_fh,'g')
+        axis([0 Tmax -2 2])
+        xlabel('T')
         hold off
+        
+        % Analytical solution...
+        a = 2*e1;
+        b = 2*e1*e1 + e1 - e2 + 1;
+        c = e1*(1 - e2) + 1;
+        x1 = (-b + sqrt(b^2 - 4*a*c)) / (2*a);
+        x2 = (-b - sqrt(b^2 - 4*a*c)) / (2*a);
+        
+        T1 = log(x1)/A
+        T2 = log(x2)/A
+        
+        tau1 = log((x1*(e1+e2)+e1*e2)/(2*(e1*x1+1)))/A
+        tau2 = log((x2*(e1+e2)+e1*e2)/(2*(e1*x2+1)))/A
         
         
     end
@@ -195,13 +212,13 @@ initUI(sysParam)
         fh = evalEqtn5_2_variant(sysParam.A, sysParam.B, sysParam.C, ...
             sysParam.D, sysParam.e1, sysParam.e2, sysParam.d, sysParam.T,...
             sysParam.tau);
-        plot(fh.T,fh.h1,'r')
-        hold on
-        plot(fh.T,fh.h2,'b')
-        xlabel('T')
-        legend('fh1','fh2')
-        axis([0 1 -2 2])
-        legend('fh1','fh2')
+        %         plot(fh.T,fh.h1,'r')
+        %         hold on
+        %         plot(fh.T,fh.h2,'b')
+        %         xlabel('T')
+        %         legend('fh1','fh2')
+        % %         axis([0 1 -2 2])
+        %         legend('fh1','fh2')
         hold off
     end
 
@@ -222,8 +239,7 @@ initUI(sysParam)
             
             % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) - ε1 = 0
             fh.h2(i) = -D*d + C * ((I - Phi(fh.T(i)))^-1) ...
-                * (-Phi(tau) * ...
-                G(fh.T(i) - tau)*d + G(tau)*d) - e1;
+                * (-Phi(tau) * G(fh.T(i) - tau)*d + G(tau)*d) - e1;
         end
         
     end
