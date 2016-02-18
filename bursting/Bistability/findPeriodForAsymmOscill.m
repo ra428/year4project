@@ -1,6 +1,10 @@
 
 function t = findPeriodForAsymmOscill(alpha, beta, gamma, ts, kb, u)
 % kb = -1/2 usually
+% alpha = 0.5;
+% beta = 0.27;
+% gamma = 1;
+% u = 0.5;
 A = -1/ts;
 B = kb/ts;
 C = 1;
@@ -24,7 +28,8 @@ e2 = -e2;
         
         % Unknows that we are solving for
         tau = t(1);
-        T = t(2);
+        T = t(2);e1 = -e1;
+e2 = -e2;
         
         % Simplify notation
         F = @(s) exp(A*s);          % Φ(s)
