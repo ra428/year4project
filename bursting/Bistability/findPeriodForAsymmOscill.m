@@ -5,14 +5,20 @@ A = -1/ts;
 B = kb/ts;
 C = 1;
 D = 0.5*kb*gamma;
-e1 = -1 + beta - alpha -kb*u;
-e2 = 1 - beta - alpha - kb*u;
+% e1 = -1 + beta - alpha -kb*u
+% e2 = 1 - beta - alpha - kb*u
+
+e2 = -1 + beta - alpha -kb*u
+e1 = 1 - beta - alpha - kb*u
+
  d = 1;
 
 myFun = @(x) evalEqtn5_2_variant(x,A,B,C,D,e1,e2,d);
 
 t = fsolve(myFun, [0.01, 0.2]);
 
+e1 = -e1;
+e2 = -e2;
 
     function fh = evalEqtn5_2_variant(t,A,B,C,D,e1,e2,d)
         
@@ -33,9 +39,16 @@ t = fsolve(myFun, [0.01, 0.2]);
         
         % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) - ε1 = 0
         fh(2) = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) - e1;
-        
-        
+%         
+%         % Equation 5.2 with non zero D and different ε for each side
+%         % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
+%         fh(1) = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) + e2;
+%         
+%         % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) - ε1 = 0
+%         fh(2) = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) + e1;
+
     end
+
 
 
 % Algebraic solution
