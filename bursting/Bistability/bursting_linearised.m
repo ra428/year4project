@@ -16,15 +16,16 @@ alpha = 0.5;
 beta = 0.27;
 gamma = 1;
 delta = 0.5;
-u = 0.8;
+% u = 0.8;
+u = 0.5;
 alpha_const = 0.1;
 tf = 0.0075;
 ts = 1;
-% tus = 800;
-tus = 20;
-tmax = 20;
-% ultra_slow_plant_X0 = 0;
-ultra_slow_plant_X0 = 0.61;
+tus = 800;
+% tus = 20;
+tmax = 5000;
+ultra_slow_plant_X0 = 0;
+% ultra_slow_plant_X0 = 0.61;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
 
@@ -80,15 +81,23 @@ SimOut = sim('bursting_linear','StopTime','tmax');
 % ylabel('x_f')
 % 
 figure()
+% subplot(1,2,1)
+% plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
+% hold on
+% plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
+% % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
+% xlabel('Time')
+% legend('xf','alpha','bump_input')
+% text = sprintf('\\tau_{US}=%d',tus);
+% title(text)
+% subplot(1,2,2)
 plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 hold on
+plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
 plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
-legend('xf','alpha','bump_input')
-text = sprintf('\\tau_{US}=%d',tus);
-title(text)
-
+legend('x_f','x_s','alpha')
 
 
 %% Plot varying nullcline with phase portait

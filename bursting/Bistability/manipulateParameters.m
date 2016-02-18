@@ -141,7 +141,7 @@ initUi()
         
     end
 
-%% Callback
+%% Callback functions
     function slider_callback1(hObject,eventdata)
         setappdata(hObject.Parent,'alpha',hObject.Value);
         updatePlot(hObject)

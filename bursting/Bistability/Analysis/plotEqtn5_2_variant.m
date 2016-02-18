@@ -12,7 +12,7 @@ function f = plotEqtn5_2_variant(sysParam)
 initUI(sysParam)
 
     function initUI(sysParam)
-        hfig = figure('units','normalized','outerposition',[0 0 1 1]);
+        hfig = figure('units','normalized','outerposition',[0 0 .5 .85]);
         initSliderParams(hfig, sysParam);
         initPlot(hfig, sysParam);
         
@@ -20,7 +20,7 @@ initUI(sysParam)
         sHeight = 0.03;
         sWidth = 0.1;
         sLeft = 0.015;
-        sY = 0.01;
+        sY = 0.1;
         
         sTextLeft = 0;
         sTextHeight = 0.025;
@@ -31,6 +31,7 @@ initUI(sysParam)
             'Position',[sLeft sY sWidth sHeight],...
             'Tag','slider1',...
             'Value',getappdata(hfig,'A'),...
+            'Min',-2,'Max',2,...
             'Callback',@slider_callback1);
         slider1_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
@@ -42,6 +43,7 @@ initUI(sysParam)
             'Position',[sLeft sY+sHeight sWidth sHeight],...
             'Tag','slider2',...
             'Value',getappdata(hfig,'B'),...
+            'Min',-2,'Max',2,...
             'Callback',@slider_callback2);
         slider2_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
@@ -52,6 +54,7 @@ initUI(sysParam)
             'Units','normalized',...
             'Position',[sLeft sY+2*sHeight sWidth sHeight],...
             'Tag','slider3',...
+            'Min',-2,'Max',2,...
             'Value',getappdata(hfig,'C'),...
             'Callback',@slider_callback3);
         slider3_label = uicontrol('Parent',hfig,'Style','text',...
@@ -86,6 +89,7 @@ initUI(sysParam)
             'Position',[sLeft sY+5*sHeight sWidth sHeight],...
             'Tag','slider4',...
             'Value',getappdata(hfig,'beta'),...
+                        'Min',0, 'Max',2,...
             'Callback',@slider_callback6);
         slider6_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
@@ -96,7 +100,7 @@ initUI(sysParam)
             'Units','normalized',...
             'Position',[sLeft sY+6*sHeight sWidth sHeight],...
             'Tag','slider7',...
-                        'Min',0.001, 'Max',0.5,...
+            'Min',0, 'Max',1,...
             'Value',getappdata(hfig,'u'),...
             'Callback',@slider_callback7);
         slider7_label = uicontrol('Parent',hfig,'Style','text',...
@@ -108,7 +112,7 @@ initUI(sysParam)
             'Units','normalized',...
             'Position',[sLeft sY+7*sHeight sWidth sHeight],...
             'Tag','slider8',...
-                        'Min',100,'Max',1000,...
+            'Min',0,'Max',0.5,...
             'Value',getappdata(hfig,'tau'),...
             'Callback',@slider_callback8);
         slider8_label = uicontrol('Parent',hfig,'Style','text',...
@@ -154,8 +158,8 @@ initUI(sysParam)
         updatePlot(hObject)
     end
 
-   %% Update plot
-   
+%% Update plot
+
     function updatePlot(hObject)
         A = getappdata(hObject.Parent,'A');
         B = getappdata(hObject.Parent,'B');
@@ -164,55 +168,62 @@ initUI(sysParam)
         alpha = getappdata(hObject.Parent,'alpha');
         beta = getappdata(hObject.Parent,'beta');
         u = getappdata(hObject.Parent,'u');
-        tau = getappdata(hObject.Parent,'tau');
-        T = 1700;
+        tau = getappdata(hObject.Parent,'tau')
+        Tmax = 1;
         kb = 0.5;
+        d = 1;
         
         e1 =  1 - beta + alpha + kb * u;
         e2 = -1 + beta + alpha + kb * u;
         
-        fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,T,tau);
-        plot(fh.T,fh.h1)
+        fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,Tmax,tau);
+        disp('Plotting')
+        plot(fh.T,fh.h1,'r')
         hold on
-        plot(fh.T,fh.h2)
+        plot(fh.T,fh.h2,'b')
         xlabel('T')
+        axis([0 Tmax -2 2])
         legend('fh1','fh2')
+        difference = fh.h1-fh.h2;
+        solution = find(abs(difference)<0.001)/500
+        hold off
         
         
     end
 
     function initPlot(figureHandle,sysParam)
         fh = evalEqtn5_2_variant(sysParam.A, sysParam.B, sysParam.C, ...
-            sysParam.D, sysParam.e1, sysParam.e2, sysParam.d, sysParam.T...
-            sysParam.tau)
-        plot(fh.T,fh.h1)
+            sysParam.D, sysParam.e1, sysParam.e2, sysParam.d, sysParam.T,...
+            sysParam.tau);
+        plot(fh.T,fh.h1,'r')
         hold on
-        plot(fh.T,fh.h2)
+        plot(fh.T,fh.h2,'b')
         xlabel('T')
         legend('fh1','fh2')
+        axis([0 1 -2 2])
+        legend('fh1','fh2')
+        hold off
     end
 
     function fh = evalEqtn5_2_variant(A,B,C,D,e1,e2,d,T,tau)
-        Phi = @(s) expm(A*s);
-        G = @(t) B * integral(Phi,0,t,'ArrayValue', true);
+        Phi = @(s) exp(A*s);
+        G = @(t) B * (Phi(t)-1)/A; % G = B * integral of e^Ax from 0 to t
         I = eye(size(A));
         
-        Tmax = T + 1000;
-        fh.T = linspace(0, Tmax, Tmax);
-        fh.h1 = zeros(Tmax,1);
-        fh.h2 = zeros(Tmax,1);
-        d = d;
+        arrayMax = 500;
+        fh.T = linspace(0, T, arrayMax);
+        fh.h1 = zeros(arrayMax,1);
+        fh.h2 = zeros(arrayMax,1);
         
-        for i = 1:Tmax
+        for i = 1:arrayMax
             % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
-            fh.h1(i) = D*d + C * inv(I - Phi(T(i)) ...
-                * (Phi(T(i) - tau) * ...
-                G(tau)*d - G(T(i) - tau)*d) + e2;
+            fh.h1(i) = D*d + C * ((I - Phi(fh.T(i)))^-1) ...
+                * (Phi(fh.T(i) - tau) * G(tau)*d - G(fh.T(i) - tau)*d) - e2;
             
             % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) - ε1 = 0
-            fh.h2(i) = -D*d + C * inv(I - Phi(T(i)) ...
+            fh.h2(i) = -D*d + C * ((I - Phi(fh.T(i)))^-1) ...
                 * (-Phi(tau) * ...
-                G(T(i) - tau)*d + G(tau)*d) - sys.Param.e1;
+                G(fh.T(i) - tau)*d + G(tau)*d) - e1;
         end
         
     end
@@ -228,7 +239,7 @@ initUI(sysParam)
         setappdata(figureHandle,'u',sysParam.u);
         setappdata(figureHandle,'tau',sysParam.tau);
         setappdata(figureHandle,'T',sysParam.T);
-             
+        
     end
 
 
