@@ -97,6 +97,7 @@ plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
 plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
+axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 legend('x_f','x_s','alpha')
 
 
