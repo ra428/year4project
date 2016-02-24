@@ -26,7 +26,7 @@ Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
 bineq = [0; 0; 0];
 [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 
-e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
+e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,t(2),t(1),d,d);
 
 % stable = checkStability(t,A,B,C,D,e1,e2,d)
 
@@ -101,9 +101,10 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
         Phi_1 = fun(tau);
         Phi_2 = fun(T-tau);
         
-        e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)^-1 * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
-        e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)^-1 * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
+        e(1,1) = D*d1 C*(eye(size(A,1)) - Phi)^-1 * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
+        e(2,1) = -D*d2 C*(eye(size(A,1)) - Phi)^-1 * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
         
+        e
         
     end
 

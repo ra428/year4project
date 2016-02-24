@@ -116,48 +116,22 @@ for i = 1:itermax
     e2 =  beta - alpha -kb*u;
     e1 = - beta - alpha - kb*u;
     d = 1;
+    m = (D+e2)/(D-e1);
+    n = (D-e1)*(A/(C*B));
     
-%     % My own algebraic solution for the scalar case
-%     a1 = D -e1- C*B/A;
-%     a2 = -C*B/A + e1 -D;
-%     a3 = (e1 + e2)*C*B/A;
-%     a4 = -e1 + D;
-%     a5 = -e2 -D;
-%     
-%     % Quadratic formula
-%     A1 = a1*a4;
-%     B1 = a1*a5 + a2*a4 - a3;
-%     C1 = a2*a5 -a3;
-%     %     Only one of the two solutions seem plausible
-%     x1 = (-B1 + sqrt(B1^2 - 4*A1*C1))/(2*A1);
-%     x2 = (-B1 - sqrt(B1^2 - 4*A1*C1))/(2*A1);
-%     
-%     T1(i) = log(x1)/A;
-%     tau1(i) = log(0.5*(e1+e2)*(x1 + 1)/((e1 + D)*x1 + e2 -D))/A;
-%     T2(i) = log(x2)/A;
-%     tau2(i) = log(0.5*(e1+e2)*(x2 + 1)/((e1 + D)*x2 + e2 -D))/A;
-m = (D+e2)/(D-e1);
-n = (D-e1)*(A/(C*B));
-
-A1 = m*n-1;
-B1 = n*(1-m) + 2*m;
-C1 = -m*(n+1);
-
-
-%     A1 = (2*C*B/A)*(e1+e2)+2*(D+e2)*(C*B/A + e1 -D);
-% B1 = (e1+e2)*(e1-D-C*B/A) + 4*(C*B/A)*(D-e1) + (e1+e2)*(D-e1-C*B/A);
-% C1 = 2*(D-e1)*(e1-D-C*B/A);
-% Only one of the two solutions seem plausible
-x1 = (-B1 + sqrt(B1^2 - 4*A1*C1))/(2*A1);
-x2 = (-B1 - sqrt(B1^2 - 4*A1*C1))/(2*A1);
-
-tau1(i) = log(x1)/A;
-tau2(i) = log(x2)/A;
-
-T1(i) = log((2*m*x1+1-m)/(2*m/x1 -1 +m))/A;
-T2(i) = log((2*m*x2+1-m)/(2*m/x2 -1 +m))/A;
-% T1(i) = log((e1+e2 - 2*x1*(D+e2))/(e1 + e2 + 2*(1/x1)*(D-e1)))/A;
-% T2(i) = log((e1+e2 - 2*x2*(D+e2))/(e1 + e2 + 2*(1/x2)*(D-e1)))/A;
+    A1 = m*n-1;
+    B1 = n*(1-m) + 2*m;
+    C1 = -m*(n+1);
+    
+    x1 = (-B1 + sqrt(B1^2 - 4*A1*C1))/(2*A1);
+    x2 = (-B1 - sqrt(B1^2 - 4*A1*C1))/(2*A1);
+    
+    tau1(i) = log(x1)/A;
+    tau2(i) = log(x2)/A;
+    
+    T1(i) = log((2*m*x1+1-m)/(2*m/x1 -1 +m))/A;
+    T2(i) = log((2*m*x2+1-m)/(2*m/x2 -1 +m))/A;
+    
 end
 
 T1(imag(T1)~=0) = 0;

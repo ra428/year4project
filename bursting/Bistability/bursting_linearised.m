@@ -21,8 +21,9 @@ u = 0.5;
 alpha_const = 0.1;
 tf = 0.0075;
 ts = 1;
+% ts=10;
 tus = 800;
-% tus = 20;
+% tus = 50;
 tmax = 5000;
 ultra_slow_plant_X0 = 0;
 % ultra_slow_plant_X0 = 0.61;
@@ -91,14 +92,21 @@ figure()
 % text = sprintf('\\tau_{US}=%d',tus);
 % title(text)
 % subplot(1,2,2)
+
+% moving average;
+w = 1000;
+k = ones(1,w)/w;
+filtered_xf = conv(SimOut.get('xf').Data,k,'same');
+
 plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 hold on
 plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
 plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
+plot(SimOut.get('xf').Time, filtered_xf,'c')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
-legend('x_f','x_s','alpha')
+legend('x_f','x_s','alpha','x_f avg')
 
 
 %% Plot varying nullcline with phase portait

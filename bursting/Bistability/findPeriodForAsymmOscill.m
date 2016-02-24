@@ -75,6 +75,23 @@ t = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 % %         
         c = abs(fh1) + abs(fh2);
     end
+%%
+m = (e2+D)/(D-e1);
+n = (D-e1)*(A/(B*C));
+
+A1 = m*n-1;
+B1 = n*(1-m) +2*m;
+C1 = -m*(n+1);
+
+x1 = (-B1 + sqrt(B1^2 - 4*A1*C1))/(2*A1);
+x2 = (-B1 - sqrt(B1^2 - 4*A1*C1))/(2*A1);
+
+tau1 = log(x1)/A
+tau2 = log(x2)/A
+
+T1 = log((2*m*x1 + 1 - m)/(2*m/x1 -1 + m))/A
+T2 = log((2*m*x2 + 1 - m)/(2*m/x2 -1 + m))/A
+
 
 % %% New algebraic solution
 % A1 = (2*C*B/A)*(e1+e2)+2*(D+e2)*(C*B/A + e1 -D);
