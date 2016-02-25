@@ -12,20 +12,32 @@ y = simRelay(e1, e2, d1, d2, x0,y0,x)
         
     end
 
-    function 
-
-
-
-
-    function y = simRelay(e1, e2, d1, d2, x0,y0,x)
-        % Relay with hysteresis limits (e1<e2)
-        % and with output (d1>d2)
-        % Needs to check past state (x0, y0)
-        if or(x > e2,  and(y0 == d1,x0 >e1))
-            y = d1;
-        else
-            y = d2;
+    function
+        
+        function y = bump(u)
+            % Bump for delta = 0.5;
+            if (u < -2)
+                y = -1;
+            elseif (u > 2)
+                y = -1;
+            elseif and( u>=-2,u < 0)
+                y = 0.5*u;
+            else
+                y = -0.5*u;
+            end
         end
+        
+        
+        
+        function y = simRelay(e1, e2, d1, d2, x0,y0,x)
+            % Relay with hysteresis limits (e1<e2)
+            % and with output (d1>d2)
+            % Needs to check past state (x0, y0)
+            if or(x > e2,  and(y0 == d1,x0 >e1))
+                y = d1;
+            else
+                y = d2;
+            end
+        end
+        
     end
-
-end

@@ -106,49 +106,49 @@ xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 legend('x_f','x_s','alpha','x_f avg')
 
-% Plot hystereisis
-figure()
-subplot(1,2,1)
-plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'xb')
-xlabel('x_s')
-ylabel('x_f')
-subplot(1,2,2)
-plot(SimOut.get('ultra_slow').Data,filtered_xf,'r')
-xlabel('x_{us}')
-ylabel('Filtered x_f')
+% % Plot hystereisis
+% figure()
+% subplot(1,2,1)
+% plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'xb')
+% xlabel('x_s')
+% ylabel('x_f')
+% subplot(1,2,2)
+% plot(SimOut.get('ultra_slow').Data,filtered_xf,'r')
+% xlabel('x_{us}')
+% ylabel('Filtered x_f')
 
 
 %% Plot varying nullcline with phase portait
-% Plot varying nullcline and history
-% disp('Starting plotting')
-% figure(3)
-% speed = 1000;
-% delay = 0.000001;
-% for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
-%     figure(3)
-%     subplot(1,2,1);
-%     h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('ultra_slow').Data(i),delta,tf),[-4,4]);
-%     set(h1,'Color','b');
-%     hold on
-%     h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
-%     plot(SimOut.get('xs').Data(i),SimOut.get('xf').Data(i),'or')
-%     text = sprintf('\\alpha = %f', SimOut.get('ultra_slow').Data(i));
-%     legend(text)
-%     title('Phase Portrait')
-%     xlabel('xs')
-%     ylabel('xf')
-%     hold off
-%     subplot(1,2,2);
-%     h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
-%     set(h3,'Color','b');
-%     hold on
-%     plot(SimOut.get('bump_input').Data(i),piece_wise_bump2(SimOut.get('bump_input').Data(i)),'o')
-%     xlabel('Input')
-%     ylabel('Output')
-%     title('Behaviour of bump')
-%     hold off
-%     pause(delay)
-% end
+% % Plot varying nullcline and history
+disp('Starting plotting')
+figure(3)
+speed = 1000;
+delay = 0.000001;
+for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
+    figure(3)
+    subplot(1,2,1);
+    h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('ultra_slow').Data(i),delta,tf),[-4,4]);
+    set(h1,'Color','b');
+    hold on
+    h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+    plot(SimOut.get('xs').Data(i),SimOut.get('xf').Data(i),'or')
+    text = sprintf('\\alpha = %f', SimOut.get('ultra_slow').Data(i));
+    legend(text)
+    title('Phase Portrait')
+    xlabel('xs')
+    ylabel('xf')
+    hold off
+    subplot(1,2,2);
+    h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
+    set(h3,'Color','b');
+    hold on
+    plot(SimOut.get('bump_input').Data(i),piece_wise_bump2(SimOut.get('bump_input').Data(i)),'o')
+    xlabel('Input')
+    ylabel('Output')
+    title('Behaviour of bump')
+    hold off
+    pause(delay)
+end
 
 %% Plot varying nullcline with phase portait
 % Plot varying nullcline and history

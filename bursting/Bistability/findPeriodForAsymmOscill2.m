@@ -19,22 +19,23 @@ D = 0.5*kb*gamma;
 
 
 % Relay
-% e2 = beta - alpha - kb*u;   % Right side
-% e1 = - beta - alpha - kb*u; % Left side
+disp('Predicted hystereis')
+e2 = beta - alpha % Right side
+e1 = - beta - alpha % Left side
 d = 1;
 
-e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d);
-e2 = e(1) % Right side
-e1 = e(2) % Left side
+e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
+% e2 = .8 % Right side
+% e1 = -.2 % Left side
 
 % myFun = @(x) evalEqtn5_2_variant(x,A,B,C,D,e1,e2,d);
-myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
-myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
+myScalarFun = @(x) costFunction(x,A,B,C,D,e(2),e(1),d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(2),e(1),d);
 
 % Matlab's nonlinear solver to find minimum of a cost function
 % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
 % bineq = [0; 0; 0];
-% [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
+% % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 [t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
 
 
@@ -129,14 +130,16 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
         % C = 1;
         
         fun = @(s) expm(A*s);
-        Gamma_1 = integral(fun,0,tau, 'ArrayValue', true) * B;
-        Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true) * B;
+%         Gamma_1 = integral(fun,0,tau, 'ArrayValue', true) * B;
+%         Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true) * B;
+        Gamma_1 = B * A\(fun(tau)-1);
+        Gamma_2 = B * A\(fun(T-tau));
         Phi = fun(T);
         Phi_1 = fun(tau);
         Phi_2 = fun(T-tau);
         
-        e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)^-1 * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
-        e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)^-1 * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
+        e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
+        e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
         
         
     end
