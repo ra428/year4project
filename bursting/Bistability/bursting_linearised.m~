@@ -30,6 +30,7 @@ ultra_slow_plant_X0 = 0;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
 
+
 %% Simulink
 load_system('bursting_linear')
 set_param('bursting_linear/Constant1','Value','u')
@@ -40,6 +41,7 @@ set_param('bursting_linear/State-Space2','A','-1/tus','B','-1/tus','C','1','D','
 set_param('bursting_linear/Gain','Gain','beta')
 set_param('bursting_linear/Gain1','Gain','gamma/2')
 SimOut = sim('bursting_linear','StopTime','tmax');
+
 
 %% Plot
 % cc = hsv(15);
@@ -106,16 +108,12 @@ xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 legend('x_f','x_s','alpha','x_f avg')
 
-% Plot hystereisis
 figure()
 subplot(1,2,1)
-plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'xb')
+plot()
 xlabel('x_s')
-ylabel('x_f')
-subplot(1,2,2)
-plot(SimOut.get('ultra_slow').Data,filtered_xf,'r')
-xlabel('x_{us}')
-ylabel('Filtered x_f')
+ylable('x_f')
+subplot()
 
 
 %% Plot varying nullcline with phase portait

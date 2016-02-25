@@ -1,4 +1,4 @@
-function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u)
+function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau, T)
 % Use Astroms Eqtn 5.2 to get T and τ for a relay feedback oscillation
 % Typical values for the input arguemts are
 % alpha = 0.5;  % The ultra-slow plant output, assumed to be constant
@@ -7,32 +7,45 @@ function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u)
 % ts = 1;       % Slow plant time constant
 % kb = -0.5     % Slope of the bump when spiking
 % u = 0.5;      % External input into the system
+% tau = 0.133;
+% T = 0.2;
+
 
 A = -1/ts;
 B = kb/ts;
 C = 1;
 D = 0.5*kb*gamma;
 
+
+
 % Relay
-e2 = beta - alpha -kb*u;
-e1 = - beta - alpha - kb*u;
+% e2 = beta - alpha - kb*u;   % Right side
+% e1 = - beta - alpha - kb*u; % Left side
 d = 1;
+
+e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d);
+e2 = e(1) % Right side
+e1 = e(2) % Left side
 
 % myFun = @(x) evalEqtn5_2_variant(x,A,B,C,D,e1,e2,d);
 myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 
 % Matlab's nonlinear solver to find minimum of a cost function
-Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
-bineq = [0; 0; 0];
-[t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
+% Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
+% bineq = [0; 0; 0];
+% [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
+[t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
 
-e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
 
 % stable = checkStability(t,A,B,C,D,e1,e2,d)
 
 % % Display final solution
 % disp('Cost of the solution')
 % c = costFunction(t,A,B,C,D,e1,e2,d)
+
+% Algebraic solution
+% t_alg = algebraicSolution(A,B,C,D,e1,e2)
 
     function c = costFunction(t,A,B,C,D,e1,e2,d)
         
@@ -45,6 +58,7 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
         G = @(x) B * (F(x)-1)/A;    % Γ(s)
         I = eye(size(A));
         
+        
         % Equation 5.2 with non zero D and different ε for each side
         % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
         fh1 = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) - e2;
@@ -52,16 +66,36 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
         % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) + ε1 = 0
         fh2 = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) - e1;
         
-        % Original
-        %         % Equation 5.2 with non zero D and different ε for each side
-        %         % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
-        %         fh1 = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) + e2;
-        %
-        %         % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) + ε1 = 0
-        %         fh2 = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) + e1;
-        
         % The cost function is at a minimum when fh1 = fh2 = 0
         c = abs(fh1) + abs(fh2);
+    end
+
+
+    function [c,ceq] = nonLinearConstraints(t,A,B,C,D,e1,e2,d)
+        Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
+        c = Aineq*t;
+        
+        % Unknows that we are solving for
+        tau = t(1);
+        T = t(2);
+        
+        % Simplify notation
+        F = @(s) exp(A*s);          % Φ(s)
+        G = @(x) B * (F(x)-1)/A;    % Γ(s)
+        I = eye(size(A));
+        
+        
+        % Equation 5.2 with non zero D and different ε for each side
+        % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
+        fh1 = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) - e2;
+        
+        % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) + ε1 = 0
+        fh2 = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) - e1;
+        
+        % The cost function is at a minimum when fh1 = fh2 = 0
+        ceq = abs(fh1) + abs(fh2);
+        
+        
     end
 
 
@@ -104,6 +138,27 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,0.2,0.133,d,d)
         e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)^-1 * (Phi_2*Gamma_1*d1 - Gamma_2*d2);
         e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)^-1 * (-Phi_1*Gamma_2*d2 + Gamma_1*d1);
         
+        
+    end
+
+    function t_alg = algebraicSolution(A,B,C,D,e1,e2)
+        m = (e2+D)/(D-e1);
+        n = (D-e1)*(A/(B*C));
+        
+        A1 = m*n-1;
+        B1 = n*(1-m) +2*m;
+        C1 = -m*(n+1);
+        
+        x1 = (-B1 + sqrt(B1^2 - 4*A1*C1))/(2*A1);
+        x2 = (-B1 - sqrt(B1^2 - 4*A1*C1))/(2*A1);
+        
+        tau1 = log(x1)/A;
+        tau2 = log(x2)/A;
+        
+        T1 = log((2*m*x1 + 1 - m)/(2*m/x1 -1 + m))/A;
+        T2 = log((2*m*x2 + 1 - m)/(2*m/x2 -1 + m))/A;
+        
+        t_alg = [tau1 T1 tau2 T2];
         
     end
 

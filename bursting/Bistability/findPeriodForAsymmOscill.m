@@ -76,6 +76,9 @@ t = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
         c = abs(fh1) + abs(fh2);
     end
 %%
+kb = 0.5;
+e2 = beta - alpha -kb*u;
+e1 = - beta - alpha - kb*u;
 m = (e2+D)/(D-e1);
 n = (D-e1)*(A/(B*C));
 

@@ -12,12 +12,13 @@ fast_nullcline_relay_piecewise = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
+kb = -0.5;
 alpha = 0.5;
 beta = 0.27;
 gamma = 1;
 delta = 0.5;
-% u = 0.8;
-u = 0.5;
+u = 0.8;
+% u = 0.5;
 alpha_const = 0.1;
 tf = 0.0075;
 ts = 1;
@@ -30,16 +31,19 @@ ultra_slow_plant_X0 = 0;
 slow_plant_X0 = -1.05;
 fast_plant_X0 = -1.05;
 
+
 %% Simulink
-load_system('bursting_linear')
-set_param('bursting_linear/Constant1','Value','u')
-set_param('bursting_linear/Constant2','Value','alpha_const')
-set_param('bursting_linear/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
-set_param('bursting_linear/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
-set_param('bursting_linear/State-Space2','A','-1/tus','B','-1/tus','C','1','D','0','X0','ultra_slow_plant_X0')
-set_param('bursting_linear/Gain','Gain','beta')
-set_param('bursting_linear/Gain1','Gain','gamma/2')
-SimOut = sim('bursting_linear','StopTime','tmax');
+load_system('fastSlowModel')
+set_param('fastSlowModel/Constant1','Value','u')
+set_param('fastSlowModel/Constant2','Value','alpha_const')
+set_param('fastSlowModel/State-Space1','A','-1/ts','B','1/ts','C','1','D','0.5*1*gamma','X0','slow_plant_X0')
+set_param('fastSlowModel/State-Space3','A','-1/ts','B','kb/ts','C','1','D','0.5*kb*gamma','X0','0')
+set_param('fastSlowModel/State-Space2','A','-1/tus','B','-1/tus','C','1','D','0','X0','ultra_slow_plant_X0')
+set_param('fastSlowModel/Relay1','OnSwitchValue','beta', 'OffSwitchValue','-beta','OnOutputValue','1','OffOutputValue','-1')
+set_param('fastSlowModel/Relay2','OnSwitchValue','beta-kb*u-alpha', 'OffSwitchValue','-beta-kb*u-alpha','OnOutputValue','1','OffOutputValue','-1')
+
+SimOut = sim('fastSlowModel','StopTime','tmax');
+
 
 %% Plot
 % cc = hsv(15);
@@ -106,7 +110,6 @@ xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 legend('x_f','x_s','alpha','x_f avg')
 
-% Plot hystereisis
 figure()
 subplot(1,2,1)
 plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'xb')
@@ -119,7 +122,6 @@ ylabel('Filtered x_f')
 
 
 %% Plot varying nullcline with phase portait
-% Plot varying nullcline and history
 % disp('Starting plotting')
 % figure(3)
 % speed = 1000;
@@ -166,10 +168,10 @@ ylabel('Filtered x_f')
 %     hold off
 %     pause(delay)
 % end
-
+% 
 % figure(3)
 % subplot(1,2,1);
-%     h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('alpha_vary').Data(i),delta,tf),[-4,4]);
+%     h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,SimOut.get('ultra_slow').Data(i),delta,tf),[-4,4]);
 %     set(h1,'Color','b');
 %     hold on
 %     h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
