@@ -90,7 +90,7 @@ initUi()
             'Units','normalized',...
             'Position',[sLeft sY+6*sHeight sWidth sHeight],...
             'Tag','slider7',...
-                        'Min',0.001, 'Max',0.5,...
+            'Min',0.001, 'Max',0.5,...
             'Value',getappdata(hfig,'tf'),...
             'Callback',@slider_callback7);
         slider7_label = uicontrol('Parent',hfig,'Style','text',...
@@ -102,7 +102,7 @@ initUi()
             'Units','normalized',...
             'Position',[sLeft sY+7*sHeight sWidth sHeight],...
             'Tag','slider8',...
-                        'Min',100,'Max',1000,...
+            'Min',100,'Max',1000,...
             'Value',getappdata(hfig,'tus'),...
             'Callback',@slider_callback8);
         slider8_label = uicontrol('Parent',hfig,'Style','text',...
@@ -114,9 +114,9 @@ initUi()
             'Units','normalized',...
             'Position',[sLeft sY+8*sHeight sWidth sHeight],...
             'Tag','slider9',...
-                        'Min',-2,'Max',2,...
+            'Min',-2,'Max',2,...
             'Value',getappdata(hfig,'alpha_const'),...
-                        'Callback',@slider_callback9);
+            'Callback',@slider_callback9);
         slider9_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
             'Position',[sTextLeft sY+8*sHeight sTextWidth sTextHeight],...
@@ -126,14 +126,14 @@ initUi()
             'Units','normalized',...
             'Position',[sLeft sY+9*sHeight sWidth sHeight],...
             'Tag','slider10',...
-                        'Min',1000,'Max',10000,...
+            'Min',1000,'Max',10000,...
             'Value',getappdata(hfig,'tmax'),...
             'Callback',@slider_callback10);
         slider10_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
             'Position',[sTextLeft sY+9*sHeight sTextWidth sTextHeight],...
             'String','T');
-                
+        
         busy_label = uicontrol('Parent',hfig,'Style','text',...
             'Units','normalized',...
             'Position',[sTextLeft sY+10*sHeight sTextWidth*7 sTextHeight],...
@@ -287,16 +287,28 @@ initUi()
 
     function initSliderParams(hfig)
         % Set parameter values
+        %         setappdata(hfig,'alpha',0.5);
+        %         setappdata(hfig,'beta',0.27);
+        %         setappdata(hfig,'gamma',1);
+        %         setappdata(hfig,'delta',0.5);
+        %         setappdata(hfig,'u',0.8);
+        %         setappdata(hfig,'tf',0.0075);
+        %         setappdata(hfig,'ts',1);
+        %         setappdata(hfig,'tus',800);
+        %         setappdata(hfig,'tmax',5000);
+        %         setappdata(hfig,'alpha_const',0.1);
+        
         setappdata(hfig,'alpha',0.5);
-        setappdata(hfig,'beta',0.27);
-        setappdata(hfig,'gamma',1);
+        setappdata(hfig,'beta',0.37);
+        setappdata(hfig,'gamma',0);
         setappdata(hfig,'delta',0.5);
         setappdata(hfig,'u',0.8);
         setappdata(hfig,'tf',0.0075);
         setappdata(hfig,'ts',1);
         setappdata(hfig,'tus',800);
-        setappdata(hfig,'tmax',5000);
-        setappdata(hfig,'alpha_const',0.1);
+        setappdata(hfig,'tmax',2000);
+        setappdata(hfig,'alpha_const',0.0);
+        
     end
 
     function y = piece_wise_bump_2(x)
@@ -313,19 +325,34 @@ initUi()
     end
 
     function initSystem(hfig)
+        %         alpha = 0.5;
+        %         beta = 0.27;
+        %         gamma = 1;
+        %         delta = 0.5;
+        %         u = 0.8;
+        %         alpha_const = 0.1;
+        %         tf = 0.0075;
+        %         ts = 1;
+        %         tus = 800;
+        %         tmax = 5000;
+        %         ultra_slow_plant_X0 = 0;
+        %         slow_plant_X0 = -1.05;
+        %         fast_plant_X0 = -1.05;
+        
+        
         alpha = 0.5;
-        beta = 0.27;
-        gamma = 1;
+        beta = 0.37;
+        gamma = 0;
         delta = 0.5;
         u = 0.8;
-        alpha_const = 0.1;
+        alpha_const = 0.0;
         tf = 0.0075;
         ts = 1;
         tus = 800;
-        tmax = 5000;
-        ultra_slow_plant_X0 = 0;
-        slow_plant_X0 = -1.05;
-        fast_plant_X0 = -1.05;
+        tmax = 2000;
+        ultra_slow_plant_X0 = 0.45;
+        slow_plant_X0 = -1.0;
+        fast_plant_X0 = -1.0;
         
         load_system('bursting_linear')
         set_param('bursting_linear/Constant1','Value',num2str(u))
