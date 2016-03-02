@@ -28,14 +28,16 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
 % e2 = .8 % Right side
 % e1 = -.2 % Left side
 
-% myFun = @(x) evalEqtn5_2_variant(x,A,B,C,D,e1,e2,d);
-myScalarFun = @(x) costFunction(x,A,B,C,D,e(2),e(1),d);
-myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(2),e(1),d);
+% myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
+% myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
 
-% Matlab's nonlinear solver to find minimum of a cost function
-% Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
-% bineq = [0; 0; 0];
-% % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
+myScalarFun = @(x) costFunction(x,A,B,C,D,e2,e1,d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e2,e1,d);
+
+% % % Matlab's nonlinear solver to find minimum of a cost function
+% % % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
+% % % bineq = [0; 0; 0];
+% % % % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 [t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
 
 
@@ -46,7 +48,7 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(2),e(1),d);
 % c = costFunction(t,A,B,C,D,e1,e2,d)
 
 % Algebraic solution
-% t_alg = algebraicSolution(A,B,C,D,e1,e2)
+% t_alg = algebraicSolution(A,B,C,D,e(2),e(1))
 
     function c = costFunction(t,A,B,C,D,e1,e2,d)
         
@@ -124,16 +126,12 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(2),e(1),d);
     end
 
     function e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d1,d2)
-        % function e = getAsymmetricRelayHysteresisForFitzNagumo(T,tau,d1,d2)
-        % A = -0.5;
-        % B = 1;
-        % C = 1;
         
         fun = @(s) expm(A*s);
 %         Gamma_1 = integral(fun,0,tau, 'ArrayValue', true) * B;
 %         Gamma_2 = integral(fun, 0, T-tau, 'ArrayValue', true) * B;
         Gamma_1 = B * A\(fun(tau)-1);
-        Gamma_2 = B * A\(fun(T-tau));
+        Gamma_2 = B * A\(fun(T-tau)-1);
         Phi = fun(T);
         Phi_1 = fun(tau);
         Phi_2 = fun(T-tau);

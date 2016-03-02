@@ -13,23 +13,33 @@ linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
 kb = -0.5;
+% alpha = 0.5;
+% beta = 0.27;
+% gamma = 1;
+% % gamma = 0;
+% delta = 0.5;
+% % u = 0.8;
+% u = 0.5;
+% % u =0;
+% alpha_const = 0.1;
+
 alpha = 0.5;
-beta = 0.27;
-gamma = 1;
+beta = 0.37;
+gamma = 0;
 delta = 0.5;
 u = 0.8;
-% u = 0.5;
-alpha_const = 0.1;
+alpha_const = 0.0;
+
 tf = 0.0075;
 ts = 1;
 % ts=10;
 tus = 800;
 % tus = 50;
-tmax = 5000;
-ultra_slow_plant_X0 = 0;
+tmax = 2000;
+ultra_slow_plant_X0 = 0.45;
 % ultra_slow_plant_X0 = 0.61;
-slow_plant_X0 = -1.05;
-fast_plant_X0 = -1.05;
+slow_plant_X0 = -1.0;
+fast_plant_X0 = -1.0;
 
 
 %% Simulink
@@ -83,7 +93,7 @@ SimOut = sim('fastSlowModel','StopTime','tmax');
 % xlabel('x_s')
 % ylabel('x_f')
 % 
-figure()
+
 % subplot(1,2,1)
 % plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 % hold on
@@ -96,10 +106,10 @@ figure()
 % subplot(1,2,2)
 
 % moving average;
-w = 1000;
+w = 50;
 k = ones(1,w)/w;
 filtered_xf = conv(SimOut.get('xf').Data,k,'same');
-
+figure(1)
 plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 hold on
 plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
@@ -110,15 +120,20 @@ xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 legend('x_f','x_s','alpha','x_f avg')
 
-figure()
+figure(2)
 subplot(1,2,1)
-plot(SimOut.get('xs').Data,SimOut.get('xf').Data,'xb')
-xlabel('x_s')
+plot(SimOut.get('bump_output').Data,SimOut.get('xf').Data,'b')
+xlabel('bump output')
 ylabel('x_f')
 subplot(1,2,2)
 plot(SimOut.get('ultra_slow').Data,filtered_xf,'r')
 xlabel('x_{us}')
 ylabel('Filtered x_f')
+
+% figure()
+% plot(SimOut.get('bump_output').Data,SimOut.get('xf').Data,'xb')
+% xlabel('x_s')
+% ylabel('x_f')
 
 
 %% Plot varying nullcline with phase portait
@@ -151,6 +166,30 @@ ylabel('Filtered x_f')
 %     hold off
 %     pause(delay)
 % end
+
+% Plothysteresis
+disp('Plotting hysteresis')
+speed = 100;
+delay = 0.000001;
+for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
+    figure(9)
+    subplot(1,2,1);
+    hold on
+    plot(SimOut.get('bump_output').Data(i),SimOut.get('xf').Data(i),'bx')
+    text = sprintf('\\alpha = %f', SimOut.get('ultra_slow').Data(i));
+    legend(text)
+    title('Fast-slow Hysteresis')
+    xlabel('Bump Output')
+    ylabel('xf')
+    subplot(1,2,2);
+    hold on
+    plot(SimOut.get('ultra_slow').Data(i),filtered_xf(i),'rx')
+    xlabel('x_{us}')
+    ylabel('Filtered x_f')
+    title('Ultra-slow Hysteresis')
+    pause(delay)
+end
+
 
 %% Plot varying nullcline with phase portait
 % Plot varying nullcline and history

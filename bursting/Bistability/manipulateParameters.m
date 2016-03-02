@@ -358,15 +358,15 @@ initUi()
     function updateSystemPlot(hObject)
         disp('Starting simulation')
         alpha = getappdata(hObject.Parent,'alpha');
-        beta = getappdata(hObject.Parent,'beta');
-        gamma = getappdata(hObject.Parent,'gamma');
-        u = getappdata(hObject.Parent,'u');
+        beta = getappdata(hObject.Parent,'beta')
+        gamma = getappdata(hObject.Parent,'gamma')
+        u = getappdata(hObject.Parent,'u')
         delta = getappdata(hObject.Parent,'delta');
         ts = getappdata(hObject.Parent,'ts');
         tf = getappdata(hObject.Parent,'tf');
         tus = getappdata(hObject.Parent,'tus');
         tmax = getappdata(hObject.Parent,'tmax');
-        alpha_const =getappdata(hObject.Parent,'alpha_const');
+        alpha_const =getappdata(hObject.Parent,'alpha_const')
         
         ultra_slow_plant_X0 = 0;
         slow_plant_X0 = -1.05;
