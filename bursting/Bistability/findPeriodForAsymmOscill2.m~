@@ -20,8 +20,8 @@ D = 0.5*kb*gamma;
 
 % Relay
 disp('Predicted hystereis')
-e2 = beta - alpha % Right side
-e1 = - beta - alpha % Left side
+e2 = beta - alpha - kb*u % Right side
+e1 = - beta - alpha - kb*u% Left side
 d = 1;
 
 e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
@@ -31,15 +31,15 @@ e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
 % myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
 % myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
 
-myScalarFun = @(x) costFunction(x,A,B,C,D,e2,e1,d);
-myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e2,e1,d);
+myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 
 % % % Matlab's nonlinear solver to find minimum of a cost function
 % % % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
 % % % bineq = [0; 0; 0];
 % % % % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 [t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
-
+t
 
 % stable = checkStability(t,A,B,C,D,e1,e2,d)
 
@@ -95,7 +95,7 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e2,e1,d);
         % - Dd + C(I-Φ)^-1 (-Φ1Γ2d + Γ1d) + ε1 = 0
         fh2 = -D*d + C * ((I - F(T))^-1)* (-F(tau) * G(T- tau)*d + G(tau)*d) - e1;
         
-        c = [c;-fh]
+        c = [c;-fh1;-fh2];
         
         % The cost function is at a minimum when fh1 = fh2 = 0
 %         ceq = abs(fh1) + abs(fh2);

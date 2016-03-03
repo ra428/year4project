@@ -1,4 +1,4 @@
-function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau, T)
+function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u)
 % Use Astroms Eqtn 5.2 to get T and τ for a relay feedback oscillation
 % Typical values for the input arguemts are
 % alpha = 0.5;  % The ultra-slow plant output, assumed to be constant
@@ -20,19 +20,19 @@ D = 0.5*kb*gamma;
 
 % Relay
 disp('Predicted hystereis')
-e2 = beta - alpha % Right side
-e1 = - beta - alpha % Left side
+e2 = beta - alpha - kb*u % Right side
+e1 = - beta - alpha - kb*u% Left side
 d = 1;
 
-e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
+% e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
 % e2 = .8 % Right side
 % e1 = -.2 % Left side
 
-myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
-myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
+% myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
+% myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
 
-% myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
-% myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
+myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 
 % % % Matlab's nonlinear solver to find minimum of a cost function
 % % % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
@@ -41,14 +41,14 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
 [t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
 t
 
-% stable = checkStability(t,A,B,C,D,e1,e2,d)
+stable = checkStability(t,A,B,C,D,e1,e2,d)
 
 % % Display final solution
 % disp('Cost of the solution')
 % c = costFunction(t,A,B,C,D,e1,e2,d)
 
 % Algebraic solution
-% t_alg = algebraicSolution(A,B,C,D,e(2),e(1))
+t_alg = algebraicSolution(A,B,C,D,e2,e1)
 
     function c = costFunction(t,A,B,C,D,e1,e2,d)
         
@@ -60,8 +60,7 @@ t
         F = @(s) exp(A*s);          % Φ(s)
         G = @(x) B * (F(x)-1)/A;    % Γ(s)
         I = eye(size(A));
-        
-        
+     
         % Equation 5.2 with non zero D and different ε for each side
         % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
         fh1 = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) - e2;
@@ -72,7 +71,6 @@ t
         % The cost function is at a minimum when fh1 = fh2 = 0
         c = abs(fh1) + abs(fh2);
     end
-
 
     function [c,ceq] = nonLinearConstraints(t,A,B,C,D,e1,e2,d)
         Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
@@ -86,8 +84,7 @@ t
         F = @(s) exp(A*s);          % Φ(s)
         G = @(x) B * (F(x)-1)/A;    % Γ(s)
         I = eye(size(A));
-        
-        
+     
         % Equation 5.2 with non zero D and different ε for each side
         % Dd + C(I-Φ)^-1 (Φ2Γ1d - Γ2d) + ε2 = 0
         fh1 = D*d + C*((I - F(T))^-1)*(F(T - tau) * G(tau)*d - G(T - tau)*d) - e2;
@@ -103,7 +100,6 @@ t
         
         
     end
-
 
     function stable = checkStability(t,A,B,C,D,e1,e2,d)
         tau = t(1);
@@ -141,8 +137,7 @@ t
         
         e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
         e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
-        
-        
+  
     end
 
     function t_alg = algebraicSolution(A,B,C,D,e1,e2)
@@ -165,7 +160,6 @@ t
         t_alg = [tau1 T1 tau2 T2];
         
     end
-
 
 end
 

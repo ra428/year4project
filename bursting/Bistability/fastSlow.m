@@ -29,7 +29,6 @@ gamma = 0;
 delta = 0.5;
 u = 0.8;
 alpha_const = 0.0;
-
 tf = 0.0075;
 ts = 1;
 % ts=10;
