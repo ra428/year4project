@@ -161,7 +161,7 @@ ylabel('Filtered x_f')
 %     h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
 %     set(h3,'Color','b');
 %     hold on
-%     plot(SimOut.get('bump_input').Data(i),piece_wise_bump2(SimOut.get('bump_input').Data(i)),'o')
+%     plot(SimOut.get('xs').Data(i)+u,piece_wise_bump2(SimOut.get('xs').Data(i)+u),'o')
 %     xlabel('Input')
 %     ylabel('Output')
 %     title('Behaviour of bump')

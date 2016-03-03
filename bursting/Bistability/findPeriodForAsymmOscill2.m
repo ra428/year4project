@@ -1,4 +1,4 @@
-function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau, T)
+function [t,t_alg] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau, T)
 % Use Astroms Eqtn 5.2 to get T and τ for a relay feedback oscillation
 % Typical values for the input arguemts are
 % alpha = 0.5;  % The ultra-slow plant output, assumed to be constant
@@ -10,35 +10,32 @@ function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau
 % tau = 0.133;
 % T = 0.2;
 
-
 A = -1/ts;
 B = kb/ts;
 C = 1;
 D = 0.5*kb*gamma;
 
-
-
 % Relay
 disp('Predicted hystereis')
-e2 = beta - alpha % Right side
-e1 = - beta - alpha % Left side
+e2 = beta - alpha -kb*u% Right side
+e1 = - beta - alpha -kb*u % Left side
 d = 1;
 
-e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
+% e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
 % e2 = .8 % Right side
 % e1 = -.2 % Left side
 
-myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
-myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
+% myScalarFun = @(x) costFunction(x,A,B,C,D,e(1),e(2),d);
+% myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e(1),e(2),d);
 
-% myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
-% myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
+myScalarFun = @(x) costFunction(x,A,B,C,D,e1,e2,d);
+myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 
 % % % Matlab's nonlinear solver to find minimum of a cost function
 % % % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
 % % % bineq = [0; 0; 0];
 % % % % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
-[t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
+[t,fval,eflag,output]= fmincon(myScalarFun,[1;5],[],[],[],[],[],[],myConstraints);
 t
 
 % stable = checkStability(t,A,B,C,D,e1,e2,d)
@@ -48,7 +45,7 @@ t
 % c = costFunction(t,A,B,C,D,e1,e2,d)
 
 % Algebraic solution
-% t_alg = algebraicSolution(A,B,C,D,e(2),e(1))
+t_alg = algebraicSolution(A,B,C,D,e2,e1)
 
     function c = costFunction(t,A,B,C,D,e1,e2,d)
         
@@ -139,8 +136,8 @@ t
         Phi_1 = fun(tau);
         Phi_2 = fun(T-tau);
         
-        e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
-        e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
+        e(2,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
+        e(1,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
         
         
     end
