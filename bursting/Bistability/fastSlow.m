@@ -120,7 +120,8 @@ axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 % legend('x_f','x_s','alpha','bump out','x_f avg')
 legend('x_f','alpha','bump out','x_f avg')
 
-%Hystereisis
+%Hystereisis        
+        
 figure(2)
 subplot(1,2,1)
 plot(SimOut.get('bump_output').Data,SimOut.get('xf').Data,'b')
@@ -160,7 +161,7 @@ ylabel('Filtered x_f')
 %     h3 = ezplot(@(x) piece_wise_bump2(x), [-4 4]);
 %     set(h3,'Color','b');
 %     hold on
-%     plot(SimOut.get('bump_input').Data(i),piece_wise_bump2(SimOut.get('bump_input').Data(i)),'o')
+%     plot(SimOut.get('xs').Data(i)+u,piece_wise_bump2(SimOut.get('xs').Data(i)+u),'o')
 %     xlabel('Input')
 %     ylabel('Output')
 %     title('Behaviour of bump')

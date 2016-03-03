@@ -1,4 +1,4 @@
-function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u)
+function [t,t_alg] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u, tau, T)
 % Use Astroms Eqtn 5.2 to get T and τ for a relay feedback oscillation
 % Typical values for the input arguemts are
 % alpha = 0.5;  % The ultra-slow plant output, assumed to be constant
@@ -10,18 +10,19 @@ function [t,fval] = findPeriodForAsymmOscill2(alpha, beta, gamma, ts, kb, u)
 % tau = 0.133;
 % T = 0.2;
 
-
 A = -1/ts;
 B = kb/ts;
 C = 1;
 D = 0.5*kb*gamma;
 
-
-
 % Relay
 disp('Predicted hystereis')
+
 e2 = beta - alpha - kb*u % Right side
 e1 = - beta - alpha - kb*u% Left side
+
+e2 = beta - alpha -kb*u% Right side
+e1 = - beta - alpha -kb*u % Left side
 d = 1;
 
 % e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
@@ -38,8 +39,7 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 % % % Aineq = [-1 0; 0 -1; 1 -1]; % Contrain to positive solutions
 % % % bineq = [0; 0; 0];
 % % % % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
-[t,fval,eflag,output]= fmincon(myScalarFun,[0.1;0.2],[],[],[],[],[],[],myConstraints);
-t
+[t,fval,eflag,output]= fmincon(myScalarFun,[1;5],[],[],[],[],[],[],myConstraints);
 
 stable = checkStability(t,A,B,C,D,e1,e2,d)
 
@@ -48,7 +48,7 @@ stable = checkStability(t,A,B,C,D,e1,e2,d)
 % c = costFunction(t,A,B,C,D,e1,e2,d)
 
 % Algebraic solution
-t_alg = algebraicSolution(A,B,C,D,e2,e1)
+t_alg = algebraicSolution(A,B,C,D,e2,e1);
 
     function c = costFunction(t,A,B,C,D,e1,e2,d)
         
@@ -135,9 +135,10 @@ t_alg = algebraicSolution(A,B,C,D,e2,e1)
         Phi_1 = fun(tau);
         Phi_2 = fun(T-tau);
         
-        e(1,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
-        e(2,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
-  
+
+        e(2,1) = D*d1 + C*(eye(size(A,1)) - Phi)\(Phi_2*Gamma_1*d1 - Gamma_2*d2);
+        e(1,1) = -D*d2 + C*(eye(size(A,1)) - Phi)\(-Phi_1*Gamma_2*d2 + Gamma_1*d1);
+
     end
 
     function t_alg = algebraicSolution(A,B,C,D,e1,e2)
