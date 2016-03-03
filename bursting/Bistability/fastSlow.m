@@ -23,7 +23,7 @@ linear_plant = @(xs,xf,ts) (xf-xs*ts);
 % % u =0;
 % alpha_const = 0.1;
 kb = -0.5;
-alpha = 0.5;
+alpha = 0.45;
 beta = 0.37;
 gamma = 0;
 delta = 0.5;
@@ -46,10 +46,10 @@ load_system('fastSlowModel')
 set_param('fastSlowModel/Constant1','Value','u')
 set_param('fastSlowModel/Constant2','Value','alpha_const')
 set_param('fastSlowModel/State-Space1','A','-1/ts','B','1/ts','C','1','D','0.5*1*gamma','X0','slow_plant_X0')
-set_param('fastSlowModel/State-Space3','A','-1/ts','B','kb/ts','C','1','D','0.5*kb*gamma','X0','0')
+% set_param('fastSlowModel/State-Space3','A','-1/ts','B','kb/ts','C','1','D','0.5*kb*gamma','X0','0')
 set_param('fastSlowModel/State-Space2','A','-1/tus','B','-1/tus','C','1','D','0','X0','ultra_slow_plant_X0')
 set_param('fastSlowModel/Relay1','OnSwitchValue','beta', 'OffSwitchValue','-beta','OnOutputValue','1','OffOutputValue','-1')
-set_param('fastSlowModel/Relay2','OnSwitchValue','beta-kb*u-alpha', 'OffSwitchValue','-beta-kb*u-alpha','OnOutputValue','1','OffOutputValue','-1')
+% set_param('fastSlowModel/Relay2','OnSwitchValue','beta-kb*u-alpha', 'OffSwitchValue','-beta-kb*u-alpha','OnOutputValue','1','OffOutputValue','-1')
 
 SimOut = sim('fastSlowModel','StopTime','tmax');
 
@@ -113,7 +113,7 @@ hold on
 % plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
 plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
 plot(SimOut.get('bump_output').Time,SimOut.get('bump_output').Data,'m')
-plot(SimOut.get('xf').Time, filtered_xf,'c')
+% plot(SimOut.get('xf').Time, filtered_xf,'c')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])

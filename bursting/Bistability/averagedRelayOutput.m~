@@ -1,37 +1,19 @@
 % Parameters
 % kb = -0.5;
-% % kb = -1;
-% % alpha = 0.5;
+kb = -1;
+% alpha = 0.5;
 % beta = 0.37;
-% % beta = 0.5;
-% gamma = 0;
-% delta = 0.5;
-% u = 0.8;
-% % u = 0.7;
-% alpha_const = 0.0;
-% tf = 0.0075;
-% ts = 1;
-% tus = 800;
-% tmax = 2000;
-% ultra_slow_plant_X0 = 0.45;
-% slow_plant_X0 = -1.0;
-% fast_plant_X0 = -1.0;
-
-kb = -0.5;
-alpha = 0.45;
-beta = 0.37;
+beta = 0.5;
 gamma = 0;
 delta = 0.5;
-u = 0.8;
+% u = 0.8;
+u = 0.7;
 alpha_const = 0.0;
 tf = 0.0075;
 ts = 1;
-% ts=10;
 tus = 800;
-% tus = 50;
 tmax = 2000;
 ultra_slow_plant_X0 = 0.45;
-% ultra_slow_plant_X0 = 0.61;
 slow_plant_X0 = -1.0;
 fast_plant_X0 = -1.0;
 
@@ -47,7 +29,7 @@ for i = 1:iterMax
 end
 
 figure()
-axis([alphaMin, alphaMax, 0, 8])
+axis[alphaMin, alphaMax, 0, ]
 plot(alphaArray,t(1,:),'b-')
 hold on
 plot(alphaArray,t(2,:),'r-')
@@ -55,7 +37,5 @@ plot(alphaArray,averagedRelay(:),'g-')
 legend('\tau','T','averagedRelay')
 xlabel('\alpha')
 ylabel('Time')
-
-axis([alphaMin, alphaMax, 0, 8])
 
 

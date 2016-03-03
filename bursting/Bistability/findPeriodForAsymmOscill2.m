@@ -18,11 +18,10 @@ D = 0.5*kb*gamma;
 % Relay
 disp('Predicted hystereis')
 
-e2 = beta - alpha - kb*u % Right side
-e1 = - beta - alpha - kb*u% Left side
+e2 = beta - alpha - kb*u; % Right side
+e1 = - beta - alpha - kb*u;% Left side
 
-e2 = beta - alpha -kb*u% Right side
-e1 = - beta - alpha -kb*u % Left side
+
 d = 1;
 
 % e = getAsymmetricRelayHysteresisForFitzNagumo(A,B,C,D,T,tau,d,d)
@@ -41,7 +40,7 @@ myConstraints = @(x) nonLinearConstraints(x,A,B,C,D,e1,e2,d);
 % % % % [t,fval,eflag,output] = fmincon(myScalarFun, [0.1,0.2], Aineq, bineq,[],[],[0,0],[1,1] );
 [t,fval,eflag,output]= fmincon(myScalarFun,[1;5],[],[],[],[],[],[],myConstraints);
 
-stable = checkStability(t,A,B,C,D,e1,e2,d)
+% stable = checkStability(t,A,B,C,D,e1,e2,d)
 
 % % Display final solution
 % disp('Cost of the solution')
