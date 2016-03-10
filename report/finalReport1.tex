@@ -1,0 +1,121 @@
+\documentclass[a4paper, 12pt]{article}
+%\usepackage[textwidth=16cm,textheight=24cm]{geometry}
+\usepackage[a4paper,  margin=2cm]{geometry}
+\usepackage{amsmath,amssymb,gensymb}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage {wrapfig} %text to wrap around a figure
+\usepackage[font=small]{caption}
+\usepackage[font = small, margin = 1cm]{subcaption}
+%\usepackage{caption}
+% figures
+\usepackage[titletoc]{appendix}
+%\usepackage[toc,page]{appendix}
+\usepackage{booktabs} %tables?
+\usepackage{cleveref} %clever referecing use \cref{}
+\crefname{appsec}{Appendix}{Appendices}
+\usepackage{floatrow}
+\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\usepackage{listings} % typesetting code
+\usepackage{multirow} %merge rows
+\usepackage{array} % to left align bullets
+\usepackage{enumitem} %
+\usepackage{placeins}%to use \FloatBarrier command to prevent floats appearing beyond a certain point
+\crefname{appsec}{Appendix}{Appendices}
+\usepackage{multicol} % equations  side by side
+\usepackage{hyperref} % hyperlinks
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\usepackage{pgfplots} % draw algebraic graphs
+\usepackage[T1]{fontenc}
+\usepackage{stix}
+\usepackage{multicol}
+
+%\newcommand{\HRule}{\rule{\linewidth}{0.1mm}} 
+
+%\graphicspath{{C:/Users/RAK/Documents/IIB/4M20_/Report/pics/}}https://preview.overleaf.com/public/qdbmzhxkmxwb/images/606894b7399bf4cabf3b6db073a52e5bef413281.jpeg
+\DeclareGraphicsExtensions{.png,.jpg,.PNG,.jpeg}
+
+\begin{document}
+
+\begin{titlepage}
+ \vspace*{\fill}
+	\begin{center}
+		{\Large Fourth Year Project Report} \vspace{0.25cm}
+		\rule{\textwidth}{.1pt} \\[0.25cm]
+		{\Huge Analysis and Design of Relay Feedback Systems }\\%[0.5cm]
+		\vspace{0.25cm} 
+		\rule{\textwidth}{.1pt} \\[0.5cm]
+		\Large{
+	Rajiv Kurien\\Queens' College\\2015-2016
+		}
+	\end{center}
+ \vspace*{\fill}
+\end{titlepage}
+\section*{Technical Abstract}
+\newpage
+\tableofcontents
+\newpage
+\section{Introduction}
+Several models of biological oscillations display logic. Gene regulatory models frequently have switches which model a gene turning on or off. Several neuronal models are excitatory, displaying oscillations when a threshold is exceeded. Models displaying logic are nonlinear, and can be difficult to analyse. They have several parameters whose effect can be difficult to extract. In light of this, this fourth year project explores simplifying models into a very particular type of model -- the relay feedback system. The relay feedback system is a classical field in control, and has analytical solutions for finding when oscillations exist in the system, and what their frequency is. This framework of analysing models should be able to extract the effect of different parameters on the behaviour. 
+\newline
+The first section introduces relay feedback systems. Then two important biological models of oscillations --- the Goodwin Oscillator and the FitzHugh-Nagumo model for action potentials are introduced and approximated using a relay feedback systems. Finally, the three-time scale bursting attractor presented in \cite{franci} is introduced and approximated using a (two-time scale) nested relay feedback system.
+\newline 
+Transforming nonlinear models into this restricted framework provides a step towards better understanding complex models.
+
+
+%\begin{itemize}
+%\item Nonlinearities in biological models (sigmoid)
+%\item Relay feedback systems
+%item Approximating models using relays
+%\item Nested relay feedback system
+%\end{itemize}
+\section{Relay Feedback}
+
+
+\section{Sustained oscillations}
+Oscillations can be understood as adaptation around a hysteresis. 
+
+\subsection{Goodwin Oscillator model}
+\subsection{FitzHugh-Nagumo model}
+\section{Nested oscillations}
+In this section, the application of \cite{astrom1995} is extended to analysing oscillations in the bursting circuit from \cite{franci}. The bursting circuit's non-linearities are approximated using simpler nonlinear functions and then using decomposed into two nested relay feedback systems using separation of time scales of the two different feedback loops.
+\subsection{Bursting in a circuit organised by the winged cusp}
+The bursting circuit presented in \cite{franci} is shown in Figure \ref{bursting_original}. It constists of a sigmoidal nonlinearity with a fast and an ultra-slow feedback. It also has a slow feedback that is modulated by a `bump' nonlinearity. The behaviour of this circuit can be understood by observing phase portait. The nullcline for the fast variable, the voltage, has a shape known as the mirrored hysteresis \cite{franci2}. This nullcline for the slow variable, the current, is straight line. For a particular set of model parametrs, the nullclines will intersect in three places. The intersection to the left of the winged-cusp is a stable equilibrium, the middle one a saddle point and the right side intersection is an unstable equilibrium. When the system starts on either side of the stable manifold of the saddle point, it is attracted to the stable equilibrium or the limit cycle. This co-existence of rest and spiking (limit cycling) is at the basis of bursting \cite{franci}. 
+\newline
+The circuit achieves bursting by using the ultra-slow variable to modulate the winged cusp. This ultra-slow variable slowly changes the 
+
+\subsection{[Model that is approximated using relay feedback]}
+
+
+\section{Conclusions}
+
+\begin{thebibliography}{9}
+
+\bibitem{goldbeter} A.Goldbeter, (1995) \emph{A model for circadian oscillations in the Drosophila period protein (PER)}. Proc. R. Soc. Lond. B. Volume 261, Pages 319-324. 
+
+\bibitem{hang} C.C.Hang, K.J.\r{A}str\"{o}m, Q.G.Wang, (2002) \emph{Relay feedback auto-tuning of process controllers --- a tutorial review.} Journal of Process Control, Volume 12, Pages 143-162. 
+
+\bibitem{astrom1995}
+K.J.\r{A}str\"{o}m , (1995) \emph{Oscillations in systems with relay feedback}. IMA Vol. Math. Appl. : Adap. Control, Filtering, Signal Processing, Volume 74, Pages 1-25. 
+
+\bibitem{keener}
+J.Keener and J.Sneyd, \emph{Mathematical Physiology}. Springer-Verlag New York. Volume 8/I. Second Edition. ISBN 978-0-387-75846-6. 
+
+\bibitem{goodwin}G.C.Goodwin, S.F.Graebe, M.E.Salgado, (2000). \emph{Control System Design}. Prentice Hall, ISBN 978-0-13-958653-8.
+
+\bibitem{fall}
+C.P.Fall, E.S.Marland, J.M.Wagner, J.J.Tyson, \emph{Computational Cell Biology}. Springer. Volume 20. ISBN 0-387-95369-8. 
+
+\bibitem{franci}
+A.Franci and R.Sepulchre, (2014). \emph{Realization of nonlinear behaviours from organizing centers.} Proc. 53st. IEEE Conf. Decision Contr., Pages 56-61.
+
+\bibitem{franci2}
+A.Franci, G.Drion and R.Sepulchre, (2014). \emph{Modeling the modulation of neuronal bursting: a singularity theory approach.} SIAM Journal of Applied Dynamical Systems, Volume 13, Pages 798-829. 
+
+\end{thebibliography}
+
+
+
+
+\end{document}
