@@ -136,8 +136,8 @@ init_ui()
         tf = 0.0075;
 %         ts = 1;
         
-%         h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
-        h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
+        h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
+%         h1 = ezplot(@(x,y)fast_nullcline_relay_piecewise(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
         set(h1,'Color','b');
         hold on
         h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
