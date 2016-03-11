@@ -9,64 +9,48 @@ fast_nullcline_relay = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
-% % m = 0.65;
-% % alpha = 0.25;
-% % beta = .5;
-% % gamma = 1;
-% % delta = 0.5;
-% % u = 0.5 ;
-% % tf = 0.0075;
-% % ts = 1;
-% % t_max = 10000;
-% % alpha_max = 1;
-% % alpha_period = t_max;
-% % alpha_width = 1; % %of period
-% % alpha_delay1 = 4000;
-% % alpha_delay2 = 7000;
-% % slow_plant_X0 = -2;
-% % fast_plant_X0 = -1;
-
-m = 0.65;
-alpha = 0.5;
-beta = 0.45;
+alpha = 0.25;
+beta = 0.5;
 gamma = 1;
 delta = 0.5;
-u = 0.8 ;
+u = 0.7 ;
 tf = 0.0075;
 ts = 1;
-tmax = 3500;
-alpha_max = 1.75;
+tus = 500;
+tmax = 1400;
+alpha_const = 0.1;
+slow_plant_X0 = -1;
+fast_plant_X0 = -1;
+ultra_slow_plant_X0 = 0;
+
+alpha_max =.5;
 alpha_period = tmax;
-alpha_width = 1; % %of period
-alpha_delay1 = 200;
-alpha_delay2 = 300;
-slow_plant_X0 = -1.05;
-fast_plant_X0 = -1.05;
+alpha_width = .1; % %of period
+alpha_delay1 = 300;
+alpha_delay2 = 200;
+
+
 
 %% Simulink
-disp('Starting Simulation')
-load_system('rest_spike_bistability_original')
-%set_param('rest_spike_bistability_original', 'StopTime', 't_max')
-set_param('rest_spike_bistability_original/Constant1','Value','u')
-set_param('rest_spike_bistability_original/Constant2','Value','alpha')
-set_param('rest_spike_bistability_original/Bump','Expr','tanh(u+delta) -  tanh(u-delta) - 2*tanh(delta)')
-set_param('rest_spike_bistability_original/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
-set_param('rest_spike_bistability_original/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
-set_param('rest_spike_bistability_original/Gain','Gain','1+beta')
-set_param('rest_spike_bistability_original/Gain1','Gain','gamma/2')
-set_param('rest_spike_bistability_original/Pulse Generator','Amplitude','alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay1')
-set_param('rest_spike_bistability_original/Pulse Generator1','Amplitude','-1*alpha_max','Period','alpha_period','PulseWidth','alpha_width','PhaseDelay','alpha_delay2')
-SimOut = sim('rest_spike_bistability_original','StopTime','10000');
+load_system('original')
+set_param('original/Constant1','Value','u')
+set_param('original/Constant2','Value','alpha_const')
+set_param('original/State-Space','A','-1/tf','B','1/tf','C','1','D','0','X0','fast_plant_X0')
+set_param('original/State-Space1','A','-1/ts','B','1/ts','C','1','D','0','X0','slow_plant_X0')
+set_param('original/State-Space2','A','-1/tus','B','1/tus','C','1','D','0','X0','ultra_slow_plant_X0')
+set_param('original/Gain','Gain','beta+1')
+set_param('original/Gain1','Gain','gamma/2')
+SimOut = sim('original','StopTime','tmax');
 
 %% Plot nullclines
 cc = hsv(15);
 % Plot winged cusp
- h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-4,4]);
- set(h1,'Color','b');
+h1 = ezplot(@(x,y)fast_nullcline(x,y,u,gamma,beta,alpha,delta,tf),[-3,3]);
+set(h1,'Color','b');
 hold on
 
 % Plot linear plant
-h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-4,4]);
+h2 = ezplot(@(x,y)linear_plant(x,y,ts),[-3,3]);
 
 [x,y] = meshgrid(-2:.1:1,-1.5:.1:1.5);
 grid on
@@ -100,7 +84,7 @@ ylabel('x_f')
 % end
 
 %% Plot varying nullcline with phase portait
-% Plot varying nullcline and history
+% % Plot varying nullcline and history
 % disp('Starting plotting')
 % figure(4)
 % speed = 200;
