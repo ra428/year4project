@@ -35,6 +35,11 @@ ultra_slow_plant_X0 = 0.45;
 slow_plant_X0 = -1.0;
 fast_plant_X0 = -1.0;
 
+% <<<<<<< HEAD
+% =======
+% % alphaMin = 0.4;
+% % alphaMax = 0.47;
+% >>>>>>> 55341b22f5267b1b1a2725c90498be2e9150f8ce
 alphaMin = 0.2;
 alphaMax = 0.8;
 iterMax = 100;
