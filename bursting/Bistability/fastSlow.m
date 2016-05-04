@@ -112,13 +112,14 @@ plot(SimOut.get('xf').Time, SimOut.get('xf').Data,'b')
 hold on
 % plot(SimOut.get('xs').Time, SimOut.get('xs').Data,'g')
 plot(SimOut.get('ultra_slow').Time, SimOut.get('ultra_slow').Data,'r')
-plot(SimOut.get('bump_output').Time,SimOut.get('bump_output').Data,'m')
-% plot(SimOut.get('xf').Time, filtered_xf,'c')
+% plot(SimOut.get('bump_output').Time,SimOut.get('bump_output').Data,'m')
+plot(SimOut.get('xf').Time, filtered_xf,'c')
 % plot(SimOut.get('bump_input').Time, SimOut.get('bump_input').Data,'g')
 xlabel('Time')
 axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 % legend('x_f','x_s','alpha','bump out','x_f avg')
-legend('x_f','alpha','bump out','x_f avg')
+% legend('x_f','alpha','bump out','x_f avg')
+legend('x_f','alpha','x_f avg')
 
 %Hystereisis        
         
@@ -139,10 +140,10 @@ ylabel('Filtered x_f')
 
 
 %% Plot varying nullcline with phase portait
-% disp('Starting plotting')
-% figure(3)
-% speed = 1000;
-% delay = 0.000001;
+disp('Starting plotting')
+figure(3)
+speed = 10;
+delay = 0.000001;
 % for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
 %     figure(3)
 %     subplot(1,2,1);
@@ -170,51 +171,51 @@ ylabel('Filtered x_f')
 % end
 
 %% Plothysteresis
-disp('Plotting hysteresis')
-% % speed = 50;
-% % delay = 0.000001;
-% % for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
-% %     figure(9)
-% %     subplot(1,2,1);
-% %     hold on
-% %     plot(SimOut.get('bump_output').Data(i),SimOut.get('xf').Data(i),'x')
-% %     text = sprintf('\\alpha = %f', SimOut.get('ultra_slow').Data(i));
-% %     legend(text)
-% %     title('Fast-slow Hysteresis')
-% %     xlabel('Bump Output')
-% %     ylabel('xf')
-% %     subplot(1,2,2);
-% %     hold on
-% %     plot(SimOut.get('ultra_slow').Data(i),filtered_xf(i),'x')
-% %     xlabel('x_{us}')
-% %     ylabel('Filtered x_f')
-% %     title('Ultra-slow Hysteresis')
-% %     pause(delay)
-% % end
-f1 = figure('units','normalized','outerposition',[0 0 0.3 0.5]);
-h = plot(NaN,NaN); %// initiallize plot. Get a handle to graphic object
-axis([-1 0.2 -1.2 1.2]); %// freeze axes
-xlabel('bump output')
-ylabel('xf')
-%// to their final size, to prevent Matlab from rescaling them dynamically 
-for ii = 1:length(SimOut.get('bump_output').Data)/8
-    pause(0.0001)
-    set(h, 'XData', SimOut.get('bump_output').Data(1:ii), 'YData', SimOut.get('xf').Data(1:ii));
-    drawnow %// you can probably remove this line, as pause already calls drawnow
-
-end
-f2 = figure('units','normalized','outerposition',[0.3 0 0.3 0.5]);
-h2 = plot(NaN,NaN); %// initiallize plot. Get a handle to graphic object
-axis([0.35 0.5 -1.2 0.6]); %// freeze axes
-%// to their final size, to prevent Matlab from rescaling them dynamically 
-xlabel('ultra slow')
-ylabel('filtered xf')
-for ii = 1:length(SimOut.get('ultra_slow').Data)/8
-    pause(0.0001)
-    set(h2, 'XData', SimOut.get('ultra_slow').Data(1:ii), 'YData', filtered_xf(1:ii));
-    drawnow %// you can probably remove this line, as pause already calls drawnow
-
-end
+% disp('Plotting hysteresis')
+% speed = 50;
+% delay = 0.000001;
+% for i = 1:speed:numel(SimOut.get('ultra_slow').Time)
+%     figure(9)
+%     subplot(1,2,1);
+%     hold on
+%     plot(SimOut.get('bump_output').Data(i),SimOut.get('xf').Data(i),'x')
+%     text = sprintf('\\alpha = %f', SimOut.get('ultra_slow').Data(i));
+%     legend(text)
+%     title('Fast-slow Hysteresis')
+%     xlabel('Bump Output')
+%     ylabel('xf')
+% % %     subplot(1,2,2);
+% % %     hold on
+% % %     plot(SimOut.get('ultra_slow').Data(i),filtered_xf(i),'x')
+% % %     xlabel('x_{us}')
+% % %     ylabel('Filtered x_f')
+% % %     title('Ultra-slow Hysteresis')
+% % %     pause(delay)
+% end
+% f1 = figure('units','normalized','outerposition',[0 0 0.3 0.5]);
+% h = plot(NaN,NaN); %// initiallize plot. Get a handle to graphic object
+% axis([-1 0.2 -1.2 1.2]); %// freeze axes
+% xlabel('bump output')
+% ylabel('xf')
+% %// to their final size, to prevent Matlab from rescaling them dynamically 
+% for ii = 1:length(SimOut.get('bump_output').Data)/8
+%     pause(0.0001)
+%     set(h, 'XData', SimOut.get('bump_output').Data(1:ii), 'YData', SimOut.get('xf').Data(1:ii));
+%     drawnow %// you can probably remove this line, as pause already calls drawnow
+% 
+% end
+% f2 = figure('units','normalized','outerposition',[0.3 0 0.3 0.5]);
+% h2 = plot(NaN,NaN); %// initiallize plot. Get a handle to graphic object
+% axis([0.35 0.5 -1.2 0.6]); %// freeze axes
+% %// to their final size, to prevent Matlab from rescaling them dynamically 
+% xlabel('ultra slow')
+% ylabel('filtered xf')
+% for ii = 1:length(SimOut.get('ultra_slow').Data)/8
+%     pause(0.0001)
+%     set(h2, 'XData', SimOut.get('ultra_slow').Data(1:ii), 'YData', filtered_xf(1:ii));
+%     drawnow %// you can probably remove this line, as pause already calls drawnow
+% 
+% end
 
 %% Plot varying nullcline with phase portait
 % Plot varying nullcline and history
