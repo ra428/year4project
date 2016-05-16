@@ -1,0 +1,22 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Theory}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Symmetric oscillations}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Asymmetric oscillations}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Relay feedback models of fundamental biological limit cycles}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Goodwin oscillator model}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{FitzHugh-Nagumo model}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Introduction}{subsection.3.2}% 8
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Converting to relay feedback model}{subsection.3.2}% 9
+\BOOKMARK [1][-]{section.4}{Relay feedback model of nested oscillations}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Bursting}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Three-time scale bursting attractor}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.1}{The adaptation parameter for the ultra-slow negative feedback loop }{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.2}{The positve feedback in fast inner loop}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.3}{The bump nonlinearity}{subsection.4.2}% 15
+\BOOKMARK [2][-]{subsection.4.3}{Using piece-wise linear non-linearities}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Separation of time scales to separate into relay feedback systems}{section.4}% 17
+\BOOKMARK [2][-]{subsection.4.5}{Hindmarsh-Rose model}{section.4}% 18
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 19
+\BOOKMARK [1][-]{Appendix.a.A}{Appendix Local stability relay model of Goodwin oscillator}{}% 20
+\BOOKMARK [1][-]{Appendix.a.B}{Appendix FitzHugh-Nagumo to standard relay feedback}{}% 21
+\BOOKMARK [1][-]{Appendix.a.C}{Appendix Three time scale burster}{}% 22

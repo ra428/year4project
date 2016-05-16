@@ -41,7 +41,7 @@ stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
 set_param('fitz_relay', 'StopTime', 'tmax')
 set_param('fitz_relay/Relay','OffOutputValue','d1','OnOutputValue','-d2','OffSwitchValue','epsilon_1', 'OnSwitchValue','epsilon_2' )
 set_param('fitz_relay/State-Space','A','A','B','B','C','C','D','D','X0','X0')
-simulate_fitz = sim('fitz_relay'); 
+% simulate_fitz = sim('fitz_relay'); 
 
 %% Recover actual results
 actual_voltage = relay_output.data+alpha*current.data + beta1;
@@ -54,22 +54,22 @@ hold on
 plot(t,v(:,1))
 hold on
 
-plot(relay_output.time,actual_voltage )
+% plot(relay_output.time,actual_voltage )
 %plot(simout.time,relay_output.data(:,1))
-xlabel('Time')
-ylabel('Voltage')
-grid on
+% xlabel('Time')
+% ylabel('Voltage')
+% grid on
 % legend('FitzHugh-Nagumo','Relay feedback')
 
 
-% limit cycle
-% figure(2)
-% plot(v(:,2),v(:,1))
-% hold on
-% v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
-% alpha_cubic = 0.1; I_app = 0.5;
-% f = (-v2.^3 + (1+alpha_cubic).*v2.^2 - alpha_cubic.*v2)+I_app;
-% plot(f,v2,'--')
+limit cycle
+figure(2)
+plot(v(:,2),v(:,1))
+hold on
+v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
+alpha_cubic = 0.1; I_app = 0.5;
+f = (-v2.^3 + (1+alpha_cubic).*v2.^2 - alpha_cubic.*v2)+I_app;
+plot(f,v2,'--')
 % plot(current.data(:,1),(relay_output.data(:,1) + alpha*(current.data(:,1))))
 % xlabel('Current')
 % ylabel('Voltage')
@@ -77,15 +77,15 @@ grid on
 
 
 % limit cycle
-figure(2)
-plot(v(:,2),v(:,1))
-hold on
-v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
-alpha_cubic = 0.1; 
-f = (-v2.^3 + (1+alpha_cubic).*v2.^2 - alpha_cubic.*v2)+I_app;
+% figure(2)
+% plot(v(:,2),v(:,1))
+% hold on
+% v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
+% alpha_cubic = 0.1; 
+% f = (-v2.^3 + (1+alpha_cubic).*v2.^2 - alpha_cubic.*v2)+I_app;
 
-plot(f,v2,'--')
-plot(actual_current,actual_voltage)
+% plot(f,v2,'--')
+% plot(actual_current,actual_voltage)
 
 xlabel('Current')
 ylabel('Voltage')
