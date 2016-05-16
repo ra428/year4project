@@ -89,9 +89,9 @@ for i = 1:N
     hold on
     z = alphaArray(i);
     H1 = ezplot(@(x,y) cubicNullcline2(y,x,z),[-20,5]);
-    set(H1,'LineColor','b')
+    set(H1,'LineColor','b','LineWidth',1.5)
     H2 = ezplot(@(x,y) quadraticNullcline(y,x),[-20,5]);
-    set(H2,'LineColor','g')
+    set(H2,'LineColor','g','LineWidth',1.5)
     l3 = legend('$\dot{x}_f = 0$','$\dot{x}_s = 0$');
     set(l3,'Interpreter','latex','FontSize',15)
     xlabel('xs')
@@ -108,7 +108,7 @@ h{2} = plot(-0.9075,0.6165,'or');
 h{3} = plot(-4,-1,'xr');
 h{4} = plot(-12.052,-1.6153,'or');
 for i = 1:4
-    set(h{i}, 'MarkerSize',9);
+    set(h{i}, 'MarkerSize',9,'LineWidth',1.5);
 end
 set(h{4},'MarkerEdgeColor','r','MarkerFaceColor','r');
 
