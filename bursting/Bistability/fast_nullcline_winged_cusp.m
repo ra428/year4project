@@ -19,7 +19,10 @@ linear_plant = @(xs,xf,ts) (xf-xs*ts);
 % % ts = 1;
 % % t_max = 10000;
 % % alpha_max = 1;
-% % alpha_period = t_max;
+% % alpha_period = t_max;% [t2,y2] = ode15s(@Rinzel,[0 5000],[0;0;0]);
+% figure(2);
+% plot(t2,y2(:,1))
+
 % % alpha_width = 1; % %of period
 % % alpha_delay1 = 4000;
 % % alpha_delay2 = 7000;

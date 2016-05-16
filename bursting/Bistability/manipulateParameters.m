@@ -362,9 +362,9 @@ initUi()
         set_param('bursting_linear/State-Space2','A',num2str(-1/tus),'B',num2str(-1/tus),'C','1','D','0','X0',num2str(ultra_slow_plant_X0))
         set_param('bursting_linear/Gain','Gain',num2str(beta))
         set_param('bursting_linear/Gain1','Gain',num2str(gamma/2))
-        SimOut = sim('bursting_linear','StopTime',num2str(tmax));
+%         SimOut = sim('bursting_linear','StopTime',num2str(tmax));
         
-        initSystemPlot(SimOut);
+%         initSystemPlot(SimOut);
         
     end
 
@@ -406,10 +406,10 @@ initUi()
         set_param('bursting_linear/State-Space2','A',num2str(-1/tus),'B',num2str(-1/tus),'C','1','D','0','X0',num2str(ultra_slow_plant_X0))
         set_param('bursting_linear/Gain','Gain',num2str(beta))
         set_param('bursting_linear/Gain1','Gain',num2str(gamma/2))
-        SimOut = sim('bursting_linear','StopTime',num2str(tmax));
+%         SimOut = sim('bursting_linear','StopTime',num2str(tmax));
         set_param('bursting_linear', 'SimulationCommand', 'stop');
         
-        initSystemPlot(SimOut);
+%         initSystemPlot(SimOut);
     end
 
     function finishedSimulation()
