@@ -53,8 +53,7 @@ set(h2,'LineColor','g')
 %  xs_dot = quadraticNullcline(y,x);
 %  quiver(x,y,xs_dot,xf_dot)
 axis([-10,2,-2,4])
-l2 = legend('Trajectory','$\dot{x}_f = 0$','$\dot{x}_s = 0$');
-set(l2,'Interpreter','latex','FontSize',15)
+legend('Trajectory','$\dot$')
 xlabel('xs')
 ylabel('xf')
 title('Phase portrait')
