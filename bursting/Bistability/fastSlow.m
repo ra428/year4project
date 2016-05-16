@@ -11,7 +11,7 @@ fast_nullcline_relay_piecewise = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
     ((-xf + sign(piece_wise_bump2(u + xs +0.5*gamma*xf) + beta*xf+ alpha))/ef);
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
-%% Variables
+%% Variablescl
 % kb = -0.5;
 % alpha = 0.5;
 % beta = 0.27;
@@ -34,7 +34,8 @@ ts = 1;
 % ts=10;
 tus = 800;
 % tus = 50;
-tmax = 2000;
+% tmax = 2000;
+tmax = 600;
 ultra_slow_plant_X0 = 0.45;
 % ultra_slow_plant_X0 = 0.61;
 slow_plant_X0 = -1.0;
@@ -104,7 +105,7 @@ SimOut = sim('fastSlowModel','StopTime','tmax');
 % subplot(1,2,2)
 
 % moving average;
-w = 50;
+w = 15;
 k = ones(1,w)/w;
 filtered_xf = conv(SimOut.get('xf').Data,k,'same');
 figure(1)
@@ -120,6 +121,7 @@ axis([0 SimOut.get('xs').Time(end), -1.25, 1.25])
 % legend('x_f','x_s','alpha','bump out','x_f avg')
 % legend('x_f','alpha','bump out','x_f avg')
 legend('x_f','alpha','x_f avg')
+% legend('x_f','x_{us}')
 
 %Hystereisis        
         
@@ -141,7 +143,7 @@ ylabel('Filtered x_f')
 
 %% Plot varying nullcline with phase portait
 disp('Starting plotting')
-figure(3)
+% figure(3)
 speed = 10;
 delay = 0.000001;
 % for i = 1:speed:numel(SimOut.get('ultra_slow').Time)

@@ -9,20 +9,20 @@ fast_nullcline_relay = @(xs,xf,u,gamma,beta,alpha,delta,ef)...
 linear_plant = @(xs,xf,ts) (xf-xs*ts);
 
 %% Variables
-alpha = 0.25;
-beta = 0.5;
-gamma = 1;
-delta = 0.5;
-u = 0.7 ;
-tf = 0.0075;
-ts = 1;
-tus = 500;
-% tmax = 1400;
-tmax = 600;
-alpha_const = 0.1;
-slow_plant_X0 = -1;
-fast_plant_X0 = -1;
-ultra_slow_plant_X0 = -.2;
+% alpha = 0.25;
+% beta = 0.5;
+% gamma = 1;
+% delta = 0.5;
+% u = 0.7 ;
+% tf = 0.0075;
+% ts = 1;
+% tus = 500;
+% % tmax = 1400;
+tmax = 6000;
+% alpha_const = 0.1;
+% slow_plant_X0 = -1;
+% fast_plant_X0 = -1;
+% ultra_slow_plant_X0 = -.2;
 
 alpha_max =.5;
 alpha_period = tmax;
@@ -30,7 +30,21 @@ alpha_width = .1; % %of period
 alpha_delay1 = 300;
 alpha_delay2 = 200;
 
-
+kb = -0.5;
+alpha = 0.45;
+beta = 0.37;
+gamma = 0;
+delta = 0.5;
+u = 0.8;
+alpha_const = 0.0;
+tf = 0.0075;
+ts = 1;
+% ts=10;
+tus = -800;
+ultra_slow_plant_X0 = 0.45;
+% ultra_slow_plant_X0 = 0.61;
+slow_plant_X0 = -1.0;
+fast_plant_X0 = -1.0;
 
 %% Simulink
 load_system('original')
