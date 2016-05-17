@@ -26,20 +26,22 @@
 % xlabel('Voltage')
 
 %% Rinzel model
-[t2,y2] = ode15s(@Rinzel,[0 5000],[0;0;0]);
-figure(2);
+[t2,y2] = ode15s(@Rinzel,[0 9000],[0;0;0]);
+figure();
 subplot(2,1,1)
 plot(t2,y2(:,1),'b')
-l1 = legend('x_f')
+hold on
+plot(t2,y2(:,2),'g')
+l1 = legend('x_f','x_s')
 set(l1,'FontSize',12);
 % hold on
-% plot(t2,y2(:,2))
+
 subplot(2,1,2)
 plot(t2,y2(:,3),'r')
 l1=legend('x_{us}')
 set(l1,'FontSize',12);
 
-figure(3)
+figure()
 cubicNullcline2 = @(x,y) y-(1/3)*y^3-x + 0.3125;
 linearNullcline = @(x,y) y + 0.7-0.8*x;
 plot(y2(:,2),y2(:,1),'r')

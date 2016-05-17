@@ -26,6 +26,7 @@
 \usepackage{multicol} % equations  side by side
 \usepackage{hyperref} % hyperlinks
 \usepackage{tikz}
+\usetikzlibrary{shapes, arrows} % iscoceles triangle
 \usetikzlibrary{decorations.markings}
 \usepackage{pgfplots} % draw algebraic graphs
 \usepackage[T1]{fontenc}
@@ -610,10 +611,85 @@ The system's phase portrait is shown in Figure \ref{fig:linearised_phase_portrai
 \subsubsection{Separation of time scales to separate into relay feedback systems}
 By assuming that the fast variable changes instantaneously ($e_f\rightarrow0$), the innermost loop involving the fast plant $H_f$ can be replaced by a relay with hysteresis (Figure \ref{fig:bursting_step1}). 
 
+
+
 \begin{figure}
-\begin{tikzpicture}[auto, node distance=2cm,>=latex, scale = 1]
-\draw [fill = white](1,1) rectangle (10,7);
-\end{tikzpicture}
+
+\centering
+\tikzstyle{block} = [draw,  rectangle,  minimum height=3em, minimum width=6em]
+\tikzstyle{gain} = [draw, regular polygon, regular polygon sides = 3, regular polygon rotate = 90, minimum height = 2em, minimum width = 2em]
+\tikzstyle{sum} = [draw,  circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+\def\relay
+{
+	\tikz[remember picture,overlay]
+	{
+		\draw[->] (-.8,0) -- (.8,0);
+		\draw[->] (0,-0.45)--(0,0.45);
+		\draw[blue] (-0.7,-0.2)--(0.2,-0.2)--(0.2,0.2)--(.7,.2);
+		\draw[blue] (.2,.2)--(-.2,.2)--(-.2,-.2);
+	}
+}
+
+\def\piecebump
+{
+	\tikz[remember picture,overlay]
+	{
+		\draw[->] (-.8,0) -- (.8,0);
+		\draw[->] (0,-0.45)--(0,0.35);
+		\draw[blue] (-0.7,-0.3)--(-0.2,-0.3)--(0,0)--(.2,-.3)--(.7,-.3);
+			\draw[blue] (-0.7,-0.3)--(-0.2,-0.3)--(0,0)--(.2,-.3)--(.7,-.3);
+		%\draw[blue] (.2,.2)--(-.2,.2)--(-.2,-.2);
+	}
+}
+\resizebox{12cm}{!}{%
+  % The block diagram code is probably more verbose than necessary
+  \begin{tikzpicture}[auto, node distance=2cm,>=latex,scale=1]
+      % We start by placing the blocks
+      \node at (0,3) (u) {$u$};
+      %\node[input, name = I_app]{text};
+      \node [sum, right of = u](sum_outer){};
+      \node [block, right of = sum_outer] (bump){};
+            \node [] at (bump) {\piecebump};
+      \node [sum, right of = bump, node distance = 3cm] (sum_inner) {};
+      \node [block, right of = sum_inner, node distance=3cm] (relay) {};
+      \node [] at (relay) {\relay};
+      % We draw an edge between the controller and system block to 
+      % calculate the coordinate u. We need it to place the measurement block. 
+      \node [output, right of = relay, node distance = 5cm] (output) {};
+      \node [block, below of = relay] (Hus) {\large $H_{us}$};
+      \node [sum, right of = Hus, node distance = 2cm](sum_ultra_slow){};
+      \node [input, above of = sum_ultra_slow, node distance = 1cm](ultra_slow_const){$\bar{x}_{us}$};
+      \node [block, below of = Hus](Hs){\large $H_s$};
+      \node [gain, above of = sum_inner](gamma){$\frac{\gamma}{2}$};
+
+      % Once the nodes are placed, connecting them is easy. 
+
+      % inner loop
+      \draw [draw,->] (sum_outer) -- node {} (bump);
+      \draw [->] (bump) -- node {$+$} (sum_inner);
+      \draw [->] (sum_inner) -- node {} (relay);
+      \draw [->] (relay) -- node [name=xf] {} (output);
+      \draw [->] (xf) |- (sum_ultra_slow);
+      \draw [->] (sum_ultra_slow) -- (Hus);
+      \draw [->] (Hus) -| node[pos=.85] {$-$} 
+          node [near end] {} (sum_inner);
+      \draw [->] (ultra_slow_const) -- node {$\bar{x}_{us}$}(sum_ultra_slow);
+
+      % outer loop
+      \draw [->] (xf) |- (Hs);
+      \draw [->] (Hs) -| node[anchor=south,pos=0.2] {$x_s$} 
+          node[pos=0.93]{+}(sum_outer);
+      \draw [->] (u)-- node[near end]{$+$} (sum_outer);
+      \draw [->] (xf) |- (gamma);
+      \draw [->] (gamma) -| (sum_outer);
+      
+      %\draw [->]-| node[near end]{$+$}(sum_outer);
+  \end{tikzpicture}}
+
 \caption{Inner loop replaced by relay with hysteresis}
 \label{fig:bursting_step1}
 \end{figure}
