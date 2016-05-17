@@ -575,7 +575,7 @@ Now it is required to simplify this model in order to allow us to use the analyt
 \label{fig:bump_nonlinearity}
 \end{figure}
 \FloatBarrier
-\subsection{Using piece-wise linear non-linearities}
+\subsubsection{Using piece-wise linear non-linearities}
 As shown in \ref{fig:sigmoid_linear}, the saturation function is a good approximation to the sigmoidal nonlinearity. Furthermore, since the positive feedback gain is $\tilde{\beta}:=1 + \beta$, this can be replaced by a positive feedback of just $\beta$ around a relay with no hsyteresis. The is then equivalent to a relay with hysteresis limits $\pm \beta$. 
 
 \begin{figure}
@@ -607,7 +607,7 @@ The system's phase portrait is shown in Figure \ref{fig:linearised_phase_portrai
 \label{fig:linearised_phase_portrait}
 \end{figure}
 
-\subsection{Separation of time scales to separate into relay feedback systems}
+\subsubsection{Separation of time scales to separate into relay feedback systems}
 By assuming that the fast variable changes instantaneously ($e_f\rightarrow0$), the innermost loop involving the fast plant $H_f$ can be replaced by a relay with hysteresis (Figure \ref{fig:bursting_step1}). 
 
 \begin{figure}
@@ -668,13 +668,17 @@ The transforming of the three time scale burster into relay feedback models now 
 
 \FloatBarrier
 \subsection{Hindmarsh-Rose model}
-The Hindmarsh-Rose model for bursting is a slight modification of the FitzHugh-Nagumo model for action potentials. It uses a parabolic nullcline for the slow variable instead of the a straight line. The model is below:
+The method of breaking down bursting into two coupled relay feedback systems is a general approach. This section proves this by examining how a famous bursting model, the Hindmarsh-Rose model, can be described by two relay feedback systems. 
+\subsubsection{Introduction}
+The Hindmarsh-Rose model provides one of the simplest models of the more general phenomenon of oscillatory burst discharge \cite{hindmarsh}. It is a slight modification of the FitzHugh-Nagumo model for action potentials, with an extra ultra-slow variable. It uses a parabolic nullcline for the slow variable instead of the a straight line and the equations are:
 \begin{align}
 \epsilon_f\dot{x}_f &= x_s -x_{us} + f(x_f) + I \\
 \dot{x}_s &= g(x_f) - x_s\\
 \dot{x}_{us} &= \tau_{us}\left(k(x_f-\bar{x}_{us}) - x_{us}\right)
 \end{align}
-with $f(x) = 3x^2 - x^3$ and $g(x) = 1 - 5x^2$. The fast variable $x_f$ represents the voltageFor bursting, the parameters used are $\tau_{us} = 0.001, k = 4, \bar{x}_{us} = 1.6, I = 2$. The behaviour of the model can be seen in Figure \ref{fig:hRose_bursting}
+\begin{center}where  $f(x) = 3x^2 - x^3$ and $g(x) = 1 - 5x^2$. \end{center}
+
+The fast variable, $x_f$, represents the membrane potential, the slow variable, $x_s$, is the current and $x_{us}$ is the (ultra-slow) adaptation current. For bursting, the parameters used are $\tau_{us} = 0.001, k = 4, \bar{x}_{us} = 1.6, I = 2$. The behaviour of the model can be seen in Figure \ref{fig:hRose_bursting}. The $\epsilon_f$ variable has been added to control the speed at which $x_f$ adapts. 
 
 \begin{figure}[h!]
     \centering
@@ -694,7 +698,9 @@ with $f(x) = 3x^2 - x^3$ and $g(x) = 1 - 5x^2$. The fast variable $x_f$ represen
 \label{fig:hRose_bursting}
 \end{figure}
 
-In the same manner as the three-time scale bursting attractor, the ultra-slow negative feedback modulates the shape of the fast nullcline to change the equilibrium positions. This can be seen in Figure \ref{fig:hRose_changing_eqms}. 
+The Hindmarsh-Rose model has the same key features as the three-time scale bursting attractor (compare the block diagrams in Figure \ref{fig:ttsbursting_circuit} and Figure \ref{fig:hRose_block_diagram}). Both have a fast variable that is like the output of a relay with shifting hysteresis limits (see Figure \ref{fig:hRose_phase_portrait} as the ultra-slow variable adapts. The ultra-slow negative feedback modulates the shape of the fast nullcline to change the equilibrium positions (see Figure \ref{fig:hRose_changing_eqms}). The continous oscillations of the ultra-slow variable can be modelled as a relay.  
+
+The difference between this model and the three time scale bursting attractor model is that the latter places all the nonlinearities in the dynamics of$x_f$. The Hindmarsh-Rose model mirrors the nullcline of $x_s$ by using a quadratic term, while the three time scale bursting attractor model mirrors the cubic nullcline using the bump nonlinearity. 
 
 \begin{figure}[h!]
     \centering
@@ -714,12 +720,53 @@ In the same manner as the three-time scale bursting attractor, the ultra-slow ne
 \label{fig:hRose_changing_eqms}
 \end{figure}
 
+\begin{figure}[h!]
+\begin{tikzpicture}[auto, node distance=2cm,>=latex, scale = 1]
+\draw [fill = white](1,1) rectangle (10,7);
+\end{tikzpicture}
+\caption{Hindmarsh-Rose model block diagram.}
+\label{fig:hRose_block_diagram}
+\end{figure}
+
+\subsubsection{Separation of time scales to separate into relay feedback systems}
+During spiking, the average of $x_f$ is positive (see Figure \ref{fig:hRose_bursting}. Since the slow plant is a low pass filter, we can assume that it only responds to the average of $x_f$. Consequently, similar to the `bump', for the fast-slow system, the quadratic nonlinearity, $g(x_f)$, provides negative feedback, when spiking. When resting, the average $x_f$ is negative and $g(x_f)$ provides positive feedback. This allows us to linearize the $g(x_f)$, and replace it with $\tfrac{\partial g(x_f)}{\partial x_f}$. The system is now identical to the FitzHugh-Nagumo model and can be modelled as a relay feedback system (see Figure \ref{fig:hRose_FN_bloc}). However, this approximation does not fully capture the narrow channel property of the Hindmarsh-Rose model, and consquently the spiking oscillations do not follow the very well (Figure \ref{fig:hRose_linearisation_poor}). Yet, as the ultra-slow parameter slowly changed, the time periods of the oscillations did change. A relay feedback analysis of the sytem where the hysteresis limits slowly shift would give an analytical result, like in Figure \ref{fig:bursting_step2.1}. 
+
+\begin{figure}[h!]
+\begin{tikzpicture}[auto, node distance=2cm,>=latex, scale = 1]
+\draw [fill = white](1,1) rectangle (10,7);
+\end{tikzpicture}
+\caption{Hindmarsh-Rose model when spiking is approximated as the FitzHugh-Nagumo model.}
+\label{fig:hRose_FN_bloc}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{hRose_voltage}
+        \caption{In the Hindmarsh-Rose mode the voltage oscillations have a relatively large period of time in the low state compared to the high state. }
+        \label{fig:hRose_voltage}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+    %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[t]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{hRose_FN}
+        \caption{The linearised approximation of the spiking state has a different shape to the voltage-time graph. However, the most noticeable difference is the time period of oscillations. }
+        \label{fig:hRose_FN}
+    \end{subfigure}
+\caption{Comparison of the Hindmarsh-Rose model and the linearised version during spiking. The voltage-time shape is different. The time periods for each oscillation differ quite drastically.}
+\label{fig:hRose_linearisation_poor}
+\end{figure}
+
+Following the same steps as described in the three time scale bursting attractor, the relay feedback model of the ultra-slow variable can be constructed. The relay would have a variable output, controlled by the average oscillations of the fast variable. 
+
+
 \FloatBarrier
 \section{Conclusions}
 \begin{itemize}
-\item Relay feedback systems were used to simulate three particular biological models, of icnreasing complexity.
+\item Relay feedback systems were used to simulate different biological models, of increasing complexity. 
 \item This framework provides tools using which the effect of parameters can be understood.
-\item It is able to predict the existence of oscillations and their time periods.
+\item It is able to predict the existence of oscillations and their time periods. This is a step towards answering the question from \cite{rinzel}: How robust is the bursting mechanism to parameter variations in the physiological range? 
+\item However, it fails to caputure the excitatory nature of models. Relay feedback systems are not excitable systems, they are only oscillatory systems.
 \item Future work would involve perhaps modelling the next level of nested oscillations. This could perhaps be generalised to an Nth level nested oscilaltions. This would then relate back to engineering systems with multirate feedback systems. 
 \end{itemize}
 
@@ -749,6 +796,8 @@ A.Franci, G.Drion and R.Sepulchre, (2014). \emph{Modeling the modulation of neur
 
 \bibitem{hindmarsh}
 J.L.Hindmarhs and R.M.Rose, (1984). \emph{A model of neuronal bursting using three coupled first order fifferential euations}, Proc. R. Soc. Lond., Volume 221, Pages 87-102. 
+
+\bibitem{rinzel} J.Rinzel. (1986). \emph{A formal classification of bursting mechanisms in excitable systems.}, Proc. Int. Cong. Mathematicians, Berkeley, California, USA. 
 
 
 \end{thebibliography}
