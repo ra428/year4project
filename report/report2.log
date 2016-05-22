@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.14)  22 MAY 2016 17:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.14)  22 MAY 2016 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,6 +1094,9 @@ LaTeX Info: Redefining \cdots on input line 1522.
 LaTeX Info: Redefining \not on input line 2144.
 ) (./report2.aux
 
+LaTeX Warning: Label `{eq:restSpikeBistability}' multiply defined.
+
+
 LaTeX Warning: Label `fig:bursting_step2.1' multiply defined.
 
 
@@ -1326,7 +1329,7 @@ File: ts1stix.fd 2012/12/23 v1.1.0-latex STIX TS1 font definitions
 \openout5 = `report2.toc'.
 
  [2]
-</home/rajiv/IIB/year4project/report/figures/parameter_space.png, id=152, 1210.
+</home/rajiv/IIB/year4project/report/figures/parameter_space.png, id=157, 1210.
 5225pt x 648.4225pt>
 File: /home/rajiv/IIB/year4project/report/figures/parameter_space.png Graphic f
 ile (type png)
@@ -1336,7 +1339,7 @@ Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/parameter_
 space.png used on input line 76.
 (pdftex.def)             Requested size: 290.22107pt x 155.45638pt.
  [3 </home/rajiv/IIB/year4project/report/figures/parameter_space.png>]
-</home/rajiv/IIB/year4project/report/figures/simple_relay_feedback.jpg, id=174,
+</home/rajiv/IIB/year4project/report/figures/simple_relay_feedback.jpg, id=179,
  1572.87625pt x 864.22874pt>
 File: /home/rajiv/IIB/year4project/report/figures/simple_relay_feedback.jpg Gra
 phic file (type jpg)
@@ -1353,7 +1356,7 @@ LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/stix/b/n' tried instead on input line 177.
 [4] [5 </home/rajiv/IIB/year4project/report/figures/simple_relay_feedback.jpg>]
 
-</home/rajiv/IIB/year4project/report/figures/asym_relay_feedback.jpg, id=198, 8
+</home/rajiv/IIB/year4project/report/figures/asym_relay_feedback.jpg, id=203, 8
 70.25125pt x 477.785pt>
 File: /home/rajiv/IIB/year4project/report/figures/asym_relay_feedback.jpg Graph
 ic file (type jpg)
@@ -1364,7 +1367,7 @@ _feedback.jpg used on input line 225.
 (pdftex.def)             Requested size: 386.95897pt x 212.44962pt.
 
 [6 </home/rajiv/IIB/year4project/report/figures/asym_relay_feedback.jpg>]
-</home/rajiv/IIB/year4project/report/figures/goodwin_nonlinearity.jpg, id=209, 
+</home/rajiv/IIB/year4project/report/figures/goodwin_nonlinearity.jpg, id=214, 
 570.13pt x 418.56375pt>
 File: /home/rajiv/IIB/year4project/report/figures/goodwin_nonlinearity.jpg Grap
 hic file (type jpg)
@@ -1375,7 +1378,7 @@ nlinearity.jpg used on input line 248.
 (pdftex.def)             Requested size: 241.84843pt x 177.55193pt.
 
 [7 </home/rajiv/IIB/year4project/report/figures/goodwin_nonlinearity.jpg>]
-</home/rajiv/IIB/year4project/report/figures/goodwin_mathcing.jpg, id=226, 707.
+</home/rajiv/IIB/year4project/report/figures/goodwin_mathcing.jpg, id=231, 707.
 64375pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/goodwin_mathcing.jpg Graphic 
 file (type jpg)
@@ -1385,7 +1388,7 @@ Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/goodwin_ma
 thcing.jpg used on input line 301.
 (pdftex.def)             Requested size: 386.95897pt x 230.52895pt.
  [8 </home/rajiv/IIB/year4project/report/figures/goodwin_mathcing.jpg>]
-</home/rajiv/IIB/year4project/report/figures/fitz_nagumo_hysteresis.jpg, id=244
+</home/rajiv/IIB/year4project/report/figures/fitz_nagumo_hysteresis.jpg, id=249
 , 562.1pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/fitz_nagumo_hysteresis.jpg Gr
 aphic file (type jpg)
@@ -1396,7 +1399,7 @@ o_hysteresis.jpg used on input line 324.
 (pdftex.def)             Requested size: 217.66211pt x 163.24283pt.
 
 </home/rajiv/IIB/year4project/report/figures/fitz_nagumo_voltage_time.png, id=2
-45, 421.575pt x 316.18124pt>
+50, 421.575pt x 316.18124pt>
 File: /home/rajiv/IIB/year4project/report/figures/fitz_nagumo_voltage_time.png 
 Graphic file (type png)
 
@@ -1405,7 +1408,7 @@ Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fitz_nagum
 o_voltage_time.png used on input line 331.
 (pdftex.def)             Requested size: 217.66211pt x 163.24765pt.
 
-</home/rajiv/IIB/year4project/report/figures/fitz_nagumo_speed.png, id=246, 569
+</home/rajiv/IIB/year4project/report/figures/fitz_nagumo_speed.png, id=251, 569
 .12625pt x 438.13687pt>
 File: /home/rajiv/IIB/year4project/report/figures/fitz_nagumo_speed.png Graphic
  file (type png)
@@ -1416,7 +1419,7 @@ o_speed.png used on input line 342.
 (pdftex.def)             Requested size: 217.66211pt x 167.5634pt.
 
 </home/rajiv/IIB/year4project/report/figures/fitz_nagumo_speed_voltage_time.png
-, id=247, 551.05875pt x 429.10312pt>
+, id=252, 551.05875pt x 429.10312pt>
 File: /home/rajiv/IIB/year4project/report/figures/fitz_nagumo_speed_voltage_tim
 e.png Graphic file (type png)
 
@@ -1437,7 +1440,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 </home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_limit_cycle.jpg, id=2
-65, 562.1pt x 421.575pt>
+70, 562.1pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_limit_cycle.jpg 
 Graphic file (type jpg)
 
@@ -1446,7 +1449,7 @@ Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tmr_fn_rel
 ay_limit_cycle.jpg used on input line 486.
 (pdftex.def)             Requested size: 217.66211pt x 163.24283pt.
 
-</home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_voltage.jpg, id=266, 
+</home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_voltage.jpg, id=271, 
 562.1pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_voltage.jpg Grap
 hic file (type jpg)
@@ -1467,265 +1470,272 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 rajiv/IIB/year4project/report/figures/fitz_nagumo_speed_voltage_time.png>]
 [11 </home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_limit_cycle.jpg> 
 </home/rajiv/IIB/year4project/report/figures/tmr_fn_relay_voltage.jpg>]
+</home/rajiv/IIB/year4project/report/figures/feedback_interactions.png, id=297,
+ 621.32124pt x 571.13374pt>
+File: /home/rajiv/IIB/year4project/report/figures/feedback_interactions.png Gra
+phic file (type png)
+
+<use /home/rajiv/IIB/year4project/report/figures/feedback_interactions.png>
+Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/feedback_i
+nteractions.png used on input line 515.
+(pdftex.def)             Requested size: 241.84843pt x 222.31424pt.
+
+[12 </home/rajiv/IIB/year4project/report/figures/feedback_interactions.png>]
 </home/rajiv/IIB/year4project/report/figures/winged_cusp_phase_portrait.png, id
-=295, 633.36626pt x 520.94624pt>
+=317, 633.36626pt x 520.94624pt>
 File: /home/rajiv/IIB/year4project/report/figures/winged_cusp_phase_portrait.pn
 g Graphic file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/winged_cusp_phase_portrait.png
 >
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/winged_cus
-p_phase_portrait.png used on input line 542.
+p_phase_portrait.png used on input line 544.
 (pdftex.def)             Requested size: 241.84843pt x 198.91551pt.
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-</home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png, id=298, 52
+</home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png, id=320, 52
 3.9575pt x 266.9975pt>
 File: /home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png Graphi
 c file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/franci_3d_
-bursting.png used on input line 548.
+bursting.png used on input line 550.
 (pdftex.def)             Requested size: 338.58632pt x 172.54001pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-</home/rajiv/IIB/year4project/report/figures/tts_circuit.png, id=305, 963.6pt x
+</home/rajiv/IIB/year4project/report/figures/tts_circuit.png, id=327, 963.6pt x
  607.26875pt>
 File: /home/rajiv/IIB/year4project/report/figures/tts_circuit.png Graphic file 
 (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_circuit.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_circui
-t.png used on input line 556.
-(pdftex.def)             Requested size: 241.84843pt x 152.40985pt.
+t.png used on input line 558.
+(pdftex.def)             Requested size: 338.58632pt x 213.37193pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-</home/rajiv/IIB/year4project/report/figures/original_bursting.jpg, id=308, 807
+</home/rajiv/IIB/year4project/report/figures/original_bursting.jpg, id=330, 807
 .015pt x 432.61626pt>
 File: /home/rajiv/IIB/year4project/report/figures/original_bursting.jpg Graphic
  file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/original_bursting.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/original_b
-ursting.jpg used on input line 562.
-(pdftex.def)             Requested size: 386.95897pt x 207.43561pt.
+ursting.jpg used on input line 564.
+(pdftex.def)             Requested size: 241.84843pt x 129.64725pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[12]
-</home/rajiv/IIB/year4project/report/figures/restSpikeBistableAlpha.jpg, id=326
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+</home/rajiv/IIB/year4project/report/figures/bump.jpg, id=333, 562.1pt x 421.57
+5pt>
+File: /home/rajiv/IIB/year4project/report/figures/bump.jpg Graphic file (type j
+pg)
+ <use /home/rajiv/IIB/year4project/report/figures/bump.jpg>
+Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/bump.jpg u
+sed on input line 644.
+(pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13 </home/rajiv/IIB/year4project/report/figures/winged_cusp_phase_portrait.png
+>] [14 </home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png> </h
+ome/rajiv/IIB/year4project/report/figures/tts_circuit.png> </home/rajiv/IIB/yea
+r4project/report/figures/original_bursting.jpg>]
+</home/rajiv/IIB/year4project/report/figures/restSpikeBistableAlpha.jpg, id=355
 , 1554.80875pt x 435.6275pt>
 File: /home/rajiv/IIB/year4project/report/figures/restSpikeBistableAlpha.jpg Gr
 aphic file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/restSpikeBistableAlpha.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/restSpikeB
-istableAlpha.jpg used on input line 574.
+istableAlpha.jpg used on input line 653.
 (pdftex.def)             Requested size: 435.32422pt x 121.96822pt.
 
-[13 </home/rajiv/IIB/year4project/report/figures/winged_cusp_phase_portrait.png
-> </home/rajiv/IIB/year4project/report/figures/franci_3d_bursting.png>]
-[14 </home/rajiv/IIB/year4project/report/figures/tts_circuit.png> </home/rajiv/
-IIB/year4project/report/figures/original_bursting.jpg> </home/rajiv/IIB/year4pr
-oject/report/figures/restSpikeBistableAlpha.jpg>]
-</home/rajiv/IIB/year4project/report/figures/bump.jpg, id=340, 562.1pt x 421.57
-5pt>
-File: /home/rajiv/IIB/year4project/report/figures/bump.jpg Graphic file (type j
-pg)
- <use /home/rajiv/IIB/year4project/report/figures/bump.jpg>
-Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/bump.jpg u
-sed on input line 659.
-(pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
- [15
 
-]
-</home/rajiv/IIB/year4project/report/figures/tanh_and_saturation.jpg, id=348, 5
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[15 </home/rajiv/IIB/year4project/report/figures/bump.jpg>]
+</home/rajiv/IIB/year4project/report/figures/tanh_and_saturation.jpg, id=367, 5
 62.1pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/tanh_and_saturation.jpg Graph
 ic file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/tanh_and_saturation.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tanh_and_s
-aturation.jpg used on input line 668.
-(pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
+aturation.jpg used on input line 674.
+(pdftex.def)             Requested size: 241.84843pt x 181.38306pt.
 
-</home/rajiv/IIB/year4project/report/figures/bump_piece_bump.jpg, id=350, 562.1
+</home/rajiv/IIB/year4project/report/figures/bump_piece_bump.jpg, id=368, 562.1
 pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/bump_piece_bump.jpg Graphic f
 ile (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/bump_piece_bump.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/bump_piece
-_bump.jpg used on input line 683.
-(pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
+_bump.jpg used on input line 680.
+(pdftex.def)             Requested size: 241.84843pt x 181.38306pt.
 
 </home/rajiv/IIB/year4project/report/figures/linearised_phase_portrait.jpg, id=
-352, 570.13pt x 418.56375pt>
+370, 570.13pt x 418.56375pt>
 File: /home/rajiv/IIB/year4project/report/figures/linearised_phase_portrait.jpg
  Graphic file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/linearised_phase_portrait.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/linearised
-_phase_portrait.jpg used on input line 691.
-(pdftex.def)             Requested size: 290.22107pt x 213.06232pt.
-
-</home/rajiv/IIB/year4project/report/figures/slow_fast.png, id=356, 474.77374pt
+_phase_portrait.jpg used on input line 697.
+(pdftex.def)             Requested size: 241.84843pt x 177.55193pt.
+[16 </home/rajiv/IIB/year4project/report/figures/restSpikeBistableAlpha.jpg>]
+[17 </home/rajiv/IIB/year4project/report/figures/tanh_and_saturation.jpg> </hom
+e/rajiv/IIB/year4project/report/figures/bump_piece_bump.jpg> </home/rajiv/IIB/y
+ear4project/report/figures/linearised_phase_portrait.jpg>]
+</home/rajiv/IIB/year4project/report/figures/slow_fast.png, id=394, 474.77374pt
  x 406.51875pt>
 File: /home/rajiv/IIB/year4project/report/figures/slow_fast.png Graphic file (t
 ype png)
 
 <use /home/rajiv/IIB/year4project/report/figures/slow_fast.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/slow_fast.
-png used on input line 792.
+png used on input line 808.
 (pdftex.def)             Requested size: 241.84843pt x 207.0799pt.
- [16 </home/rajiv/IIB/year4project/report/figures/bump.jpg>] [17 </home/rajiv/I
-IB/year4project/report/figures/tanh_and_saturation.jpg> </home/rajiv/IIB/year4p
-roject/report/figures/bump_piece_bump.jpg>] [18 </home/rajiv/IIB/year4project/r
-eport/figures/linearised_phase_portrait.jpg>] [19 </home/rajiv/IIB/year4project
-/report/figures/slow_fast.png>]
-</home/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg, id=388, 562.1p
+
+</home/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg, id=395, 562.1p
 t x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg Graphic fi
 le (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/averagedRe
-lay3.jpg used on input line 888.
+lay3.jpg used on input line 904.
 (pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
 
-</home/rajiv/IIB/year4project/report/figures/fastSlowaverg.jpg, id=392, 562.1pt
+</home/rajiv/IIB/year4project/report/figures/fastSlowaverg.jpg, id=396, 562.1pt
  x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/fastSlowaverg.jpg Graphic fil
 e (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/fastSlowaverg.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fastSlowav
-erg.jpg used on input line 896.
+erg.jpg used on input line 911.
 (pdftex.def)             Requested size: 290.22107pt x 217.66354pt.
 
-</home/rajiv/IIB/year4project/report/figures/shiftinghysteresis.jpg, id=393, 57
+</home/rajiv/IIB/year4project/report/figures/shiftinghysteresis.jpg, id=397, 57
 0.13pt x 418.56375pt>
 File: /home/rajiv/IIB/year4project/report/figures/shiftinghysteresis.jpg Graphi
 c file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/shiftinghysteresis.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/shiftinghy
-steresis.jpg used on input line 902.
+steresis.jpg used on input line 917.
 (pdftex.def)             Requested size: 290.22107pt x 213.06232pt.
 
-[20 </home/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg> </home/raj
-iv/IIB/year4project/report/figures/fastSlowaverg.jpg>] [21 </home/rajiv/IIB/yea
-r4project/report/figures/shiftinghysteresis.jpg>]
-</home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg, id=407, 
+[18] [19 </home/rajiv/IIB/year4project/report/figures/slow_fast.png>] [20 </hom
+e/rajiv/IIB/year4project/report/figures/averagedRelay3.jpg> </home/rajiv/IIB/ye
+ar4project/report/figures/fastSlowaverg.jpg>] [21 </home/rajiv/IIB/year4project
+/report/figures/shiftinghysteresis.jpg>]
+</home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg, id=426, 
 562.1pt x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg Grap
 hic file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/hRose_phas
-e_portrait.jpg used on input line 1011.
+e_portrait.jpg used on input line 1025.
 (pdftex.def)             Requested size: 232.17242pt x 174.12697pt.
 
-</home/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg, id=408, 562.1p
+</home/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg, id=427, 562.1p
 t x 421.575pt>
 File: /home/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg Graphic fi
 le (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/hRose_burs
-ting.jpg used on input line 1018.
+ting.jpg used on input line 1032.
 (pdftex.def)             Requested size: 232.17242pt x 174.12697pt.
 
-Underfull \hbox (badness 1990) in paragraph at lines 1019--1019
+Underfull \hbox (badness 1990) in paragraph at lines 1033--1033
 []\T1/stix/m/n/10.95 (b) |Volt-age os-cil-la-tions against time.
  []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-</home/rajiv/IIB/year4project/report/figures/hRose_eqms1.jpg, id=413, 511.9125p
+</home/rajiv/IIB/year4project/report/figures/hRose_eqms1.jpg, id=428, 511.9125p
 t x 861.2175pt>
 File: /home/rajiv/IIB/year4project/report/figures/hRose_eqms1.jpg Graphic file 
 (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/hRose_eqms1.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/hRose_eqms
-1.jpg used on input line 1033.
+1.jpg used on input line 1045.
 (pdftex.def)             Requested size: 232.17242pt x 390.59303pt.
 
-</home/rajiv/IIB/year4project/report/figures/hRose_eqms2.jpg, id=414, 522.95375
+</home/rajiv/IIB/year4project/report/figures/hRose_eqms2.jpg, id=429, 522.95375
 pt x 861.2175pt>
 File: /home/rajiv/IIB/year4project/report/figures/hRose_eqms2.jpg Graphic file 
 (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/hRose_eqms2.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/hRose_eqms
-2.jpg used on input line 1040.
+2.jpg used on input line 1052.
 (pdftex.def)             Requested size: 232.17242pt x 382.35356pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+ [22 </home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg> </h
+ome/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[22] [23 </home/rajiv/IIB/year4project/report/figures/hRose_phase_portrait.jpg>
- </home/rajiv/IIB/year4project/report/figures/hRose_bursting.jpg>] [24 </home/r
-ajiv/IIB/year4project/report/figures/hRose_eqms1.jpg> </home/rajiv/IIB/year4pro
-ject/report/figures/hRose_eqms2.jpg>] [25] [26
+[23] [24 </home/rajiv/IIB/year4project/report/figures/hRose_eqms1.jpg> </home/r
+ajiv/IIB/year4project/report/figures/hRose_eqms2.jpg>] [25] [26
 
 ] [27]
 LaTeX Font Info:    Font shape `T1/stix/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/stix/b/n' tried instead on input line 1177.
+(Font)              Font shape `T1/stix/b/n' tried instead on input line 1187.
 
 
 LaTeX Warning: Reference `eq:goodwin_relay_state_space' on page 28 undefined on
- input line 1202.
+ input line 1212.
 
 [28]
 Missing character: There is no ; in font nullfont!
  [29] [30]
 
-LaTeX Warning: Reference `eq:2_3' on page 31 undefined on input line 1558.
+LaTeX Warning: Reference `eq:2_3' on page 31 undefined on input line 1568.
 
 
 LaTeX Warning: Reference `fig:ttsbursting_bistable_range' on page 31 undefined 
-on input line 1562.
+on input line 1572.
 
 
-</home/rajiv/IIB/year4project/report/figures/tts_bistable_range.png, id=488, 12
+</home/rajiv/IIB/year4project/report/figures/tts_bistable_range.png, id=504, 12
 06.5075pt x 431.6125pt>
 File: /home/rajiv/IIB/year4project/report/figures/tts_bistable_range.png Graphi
 c file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_bistable_range.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_bistab
-le_range.png used on input line 1565.
+le_range.png used on input line 1575.
 (pdftex.def)             Requested size: 290.22107pt x 103.81961pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [31] [32 </home/rajiv/IIB/year4project/report/figures/tts_bistable_range.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1627.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1637.
 
 [33]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1627.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1637.
  (./report2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1627.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1627.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1637.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1637.
 
 
 
@@ -1734,36 +1744,36 @@ Package rerunfilecheck Warning: File `report2.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `report2.out':
-(rerunfilecheck)             Before: D29BEE3E95EB473796CBCB11C859AAA7;2040
-(rerunfilecheck)             After:  E1522BA4AB96ED3972DADA93B8A60ACE;2092.
+(rerunfilecheck)             Before: 62055041A1D1766329A0B853A31DA8F5;2067
+(rerunfilecheck)             After:  08918BB4F4529A607026112B45D112A6;2066.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1627.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1637.
  ) 
 Here is how much of TeX's memory you used:
- 32660 strings out of 494985
- 704745 string characters out of 6180355
- 882904 words of memory out of 5000000
+ 32663 strings out of 494985
+ 705047 string characters out of 6180355
+ 887437 words of memory out of 5000000
  35095 multiletter control sequences out of 15000+600000
  107913 words of font info for 165 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  68i,21n,90p,1226b,2310s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/stix-ts1.enc}{/usr/share/texmf/fonts/enc
-/dvips/lm/stix-t1.enc}</usr/share/texmf/fonts/type1/public/lm/STIXGeneral-Bold.
-pfb></usr/share/texmf/fonts/type1/public/lm/STIXGeneral-Italic.pfb></usr/share/
-texmf/fonts/type1/public/lm/STIXGeneral-Regular.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/stix-mathcal.pfb></usr/share/texmf/fonts/type1/public/lm/stix-math
-ex.pfb></usr/share/texmf/fonts/type1/public/lm/stix-mathit.pfb></usr/share/texm
-f/fonts/type1/public/lm/stix-mathrm.pfb></usr/share/texmf/fonts/type1/public/lm
-/stix-mathscr.pfb></usr/share/texmf/fonts/type1/public/lm/stix-mathsf.pfb>
-Output written on report2.pdf (34 pages, 1442846 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/stix-t1.enc}</usr/share/texmf/fonts/type
+1/public/lm/STIXGeneral-Bold.pfb></usr/share/texmf/fonts/type1/public/lm/STIXGe
+neral-Italic.pfb></usr/share/texmf/fonts/type1/public/lm/STIXGeneral-Regular.pf
+b></usr/share/texmf/fonts/type1/public/lm/stix-mathcal.pfb></usr/share/texmf/fo
+nts/type1/public/lm/stix-mathex.pfb></usr/share/texmf/fonts/type1/public/lm/sti
+x-mathit.pfb></usr/share/texmf/fonts/type1/public/lm/stix-mathrm.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/stix-mathscr.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/stix-mathsf.pfb>
+Output written on report2.pdf (34 pages, 1486361 bytes).
 PDF statistics:
- 594 PDF objects out of 1000 (max. 8388607)
- 503 compressed objects within 6 object streams
- 172 named destinations out of 1000 (max. 500000)
- 358 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 608 PDF objects out of 1000 (max. 8388607)
+ 514 compressed objects within 6 object streams
+ 174 named destinations out of 1000 (max. 500000)
+ 371 words of extra memory for PDF output out of 10000 (max. 10000000)
 
