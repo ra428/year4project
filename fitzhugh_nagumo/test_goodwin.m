@@ -5,9 +5,12 @@ clear all
 global p
 global b
 
-p = 99999999;               % Exponent
+% p = 99999999;               % Exponent
 % p = 990;
-b = .99;                   % Related to rate of production/consumption
+% b = .99;                   % Related to rate of production/consumption
+
+p = 100;
+b = .8;
 
 %% Find b small enough to cause oscillations
 % z = 1;
@@ -23,7 +26,8 @@ B = [1; 0 ; 0];C = [0 0 1];D = 0;
 d1 = 1; d2 = 0;
 T = 5.93; tau = 0.19;
 [a1 a2]= getInitialConditionsAsymmRelay(A,B,C,d2,d1,T,tau);
-X0 = -a1;
+% X0 = -a1;
+X0 = [1;1;1];
 
 %% ODE solver
 tmax = 100;
