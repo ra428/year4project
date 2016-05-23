@@ -43,34 +43,38 @@
 \begin{titlepage}
  \vspace*{\fill}
 	\begin{center}
+    	\begin{figure}
+			\includegraphics[width = 65mm]{Engineering}
+		\end{figure}
 		{\Large Fourth Year Project Report} \vspace{0.25cm}
 		\rule{\textwidth}{.1pt} \\[0.25cm]
 		{\Huge Relay Feedback Models of Biologial Oscillators}\\%[0.5cm]
-		\vspace{0.25cm} 
 		\rule{\textwidth}{.1pt} \\[0.5cm]
 		\Large{
-	Rajiv Kurien\\Queens' College\\2015-2016
+	Rajiv Kurien\\Queens' College\\2015-2016 \\ \vspace{2cm} Supervisor: Prof.R.Sepulchre
 		}
 	\end{center}
- \vspace*{\fill}
+     \vspace*{\fill}
+ I hereby declare, that except where specifically indicated, the work submitted herein is my own original work. 
+ \newline Signed \hrulefill  \hspace{2cm} Date: 24 May 2016 \hspace{1cm}
 \end{titlepage}
 \section*{Technical Abstract}
 
-\hspace{0.5cm} Biological behaviours are complex, rich and varied. Oscillations in biology are diverse and models replicating them are often high dimensional and nonlinear. These models quickly get difficult to analyse and do not have a generalised theory (except two dimensional systems) to predict existence of oscillations, stability and time periods. However, the theory of relay feedback systems, a very particular type of nonlinear feedback, used classically in automatic control, has analytical solutions to these questions. 
+\hspace{0.5cm} Biological behaviours are complex, rich and varied. Oscillations in biology are diverse and models replicating them are often high dimensional and nonlinear. These models quickly get difficult to analyse and do not have a generalised theory (except for in two dimensional systems) to predict the existence of oscillations, their stability and their time periods. However, the theory of relay feedback systems, a very particular type of nonlinear feedback, used classically in automatic control, has analytical solutions to these questions. 
 
 The aim of this project was to elucidate how useful the theory of relay feedback systems would be to analysing biological oscillations. As a first step, the basic model of relay feedback was applied to two classical biological models --- the Goodwin oscillator model for genetic oscillations and the FitzHugh-Nagumo model for action potentials. Relay feedback was able to simulate oscillations in these models, reflecting upon how biological oscillations often incorporate digital and analogue dynamics. 
 
 As a second step, the potential of nested relay feedback to model complex oscillations was investigated. A normal form model of neuronal bursting was dissected as two interconnected relay feedback systems. The Hindmarsh-Rose model of neuronal bursting was then shown to have the same structure as the normal form model, conceding it to be modelled by relay feedback. 
 
-The project revealed how relay feedback provides an appealing modelling framework for the analysis of quantitative models of biological oscillations. It highlights how biological models can be viewed as an interconnection of analogue (L.T.I) and digitial (relay) logic. Due to the theory of relay feedback oscillations being tractable in high dimensions, it provides a way to analysing high order biological models and is amenable to robustness and sensitivy analysis. 
+The project revealed how relay feedback provides an appealing modelling framework for the analysis of quantitative models of biological oscillations. It highlights how biological models can be viewed as an interconnection of analogue (L.T.I) and digitial (relay) logic. Due to the theory of relay feedback oscillations being tractable in high dimensions, it provides a way of analysing high order biological models and is amenable to robustness and sensitivity analysis. 
 
 \newpage
 \tableofcontents
 \newpage
 \section{Introduction}
-Oscillations are an integral component in the world around us. Biochemical and biophysical rhythms are ubiquitous charactereristics of living organisms, from rapid oscillations of membrane potential in nerve cells to slow cycles of ovulation in mammals \cite{fall}. Understanding the molecular and cellular mechanisms responsible for oscillations is crucial for unravelling the dynamics of life\cite{goldbeter1}. Fundamentally, oscillations are due to feedback, and classical control has usually been applied to reduce these oscillations. With the pursuit of understanding biological oscillations, feedback models have been explored to understand how to generate different types of oscillations. Such research aims to yield a better understanding of how biology works, giving us tools to engineer biology to suit our needs. 
+Oscillations are an integral component in the world around us. Biochemical and biophysical rhythms are ubiquitous characteristics of living organisms, from rapid oscillations of membrane potential in nerve cells to slow cycles of ovulation in mammals \cite{fall}. Understanding the molecular and cellular mechanisms responsible for oscillations is crucial for unravelling the dynamics of life \cite{goldbeter1}. Fundamentally, oscillations are due to feedback, and classical control has usually been applied to reduce these oscillations. With the pursuit of understanding biological oscillations, feedback models have been explored to understand how to generate different types of oscillations. Such research aims to yield a better understanding of how biology works, giving us tools to engineer biology to suit our needs. 
 
-Several models of biological oscillations display logic. Gene regulatory models incorporate a gene turning on or off. Neuronal models are excitatory, displaying oscillations when a threshold is exceeded. Such biological models of oscillations inherently combine analogue and digital signals. They may have a large number of parameters that require tuning in order to produce oscillations and pose difficulties in extracting useful information about the effect of these parameters on existence of oscillations and their frequency. Figure \ref{parameter_search} shows how for a particular three variable dynamical system, changing two parameters reveals a rich repertoire of oscillatory behaviours. A method of addressing models of oscillations described in \cite{goldbeter1}, simply amounts to simulating the system around the parameter space that is available or in a physiological range. For high dimensional systems, a parameter search approach is computationally expensive. Furthermore, this does not easily predict the frequency of oscillations.  
+Several models of biological oscillations display logic. Gene regulatory models incorporate a gene turning on or off. Neuronal models are excitatory, displaying oscillations when a threshold is exceeded. Such biological models of oscillations inherently combine analogue and digital signals. They may have a large number of parameters that require tuning in order to produce oscillations and pose difficulties in extracting useful information about the effect of these parameters on existence of oscillations and their frequency. Figure \ref{parameter_search} shows how for a particular three variable dynamical system, changing two parameters reveals a rich repertoire of oscillatory behaviours. A method of addressing models of oscillations described in \cite{goldbeter1}, simply amounts to simulating the system around the parameter space that is available or in a physiological range. For high dimensional systems, a parameter search approach is computationally expensive. 
 
 \begin{figure}[h!]
 \includegraphics[width=0.6\textwidth]{parameter_space}
@@ -80,11 +84,11 @@ Several models of biological oscillations display logic. Gene regulatory models 
 
 Another method of tackling this issue is to model oscillations as adaptation around a static nonlinearity. This approach links biological oscillation to a methodology developed in classical control --- relay feedback systems, which gives us tools to analyse oscillations.
 
-Relay feedback consists of a plant connected via negative feedback to a static hysteretic non-linearity called a relay. Relay feedback is most popularly used in automatic tuning of PID controllers. It is one of the simplest and most robust auto-tuning techniques for process controllers and has been successfully applied to industry for more than 15 years \cite{hang}. Oscillations in simple relay feedback systems have been well understood and have analytical results even for high dimensional systems. 
+Relay feedback consists of a plant connected via negative feedback to a static hysteretic nonlinearity called a relay. Relay feedback is most popularly used in automatic tuning of PID controllers. It is one of the simplest and most robust auto-tuning techniques for process controllers and has been successfully applied to industry for more than 15 years \cite{hang}. Oscillations in simple relay feedback systems have been well understood and have analytical results even for high dimensional systems. 
 
 Consequently, this raises the question: Are relay feedback models appropriate to analyse biologial oscillations? 
  
-This project starts to address this question, and the report is structured as follows. In section \ref{Sec:theory}, some of the analytical results for oscillations in relay feedback systems from \cite{astrom1995} is presented. Section \ref{Sec:continous oscillations} uses a simple relay feedback system to model continous oscillations in the Goodwin and FitzHugh-Nagumo models. Finally, section \ref{Sec:nested oscillations} investigates using two coupled relay feedback systems to model a complex oscillation --- bursting, and consequently the famous Hindmarsh-Rose model for neuronal bursting.   
+This project starts to address this question, and the report is structured as follows. In section \ref{Sec:theory}, some of the analytical results for oscillations in relay feedback systems from \cite{astrom1995} are presented. Section \ref{Sec:continous oscillations} uses a simple relay feedback system to model continuous oscillations in the Goodwin and FitzHugh-Nagumo models. Finally, section \ref{Sec:nested oscillations} investigates using two coupled relay feedback systems to model a complex oscillation --- bursting, and consequently the famous Hindmarsh-Rose model for neuronal bursting.   
 
 \section{Theory}\label{Sec:theory}
 A relay is a particular type of nonlinearity that has only two output values, a high or a low value, dependent on the input. Figure \ref{relay_element} shows a symmetric relay element that satisfies the input ($e$) and output ($u$) relationship:
@@ -216,10 +220,10 @@ where
 \begin{equation}
 \begin{array}{l}
 \displaystyle \Phi = e^{AT}  \text{  ,  }\Phi_1 = e^{A\tau} \text{  ,  }  \Phi_2 = e^{A(T-\tau)} \\
-\displaystyle \Phi_1 = \int_0^\tau e^{As}\text{d}sB \text{  ,  } \Gamma_2 = \int_0^{T-\tau}e^{As}\text{d}sB
+\displaystyle \Gamma_1 = \int_0^\tau e^{As}\text{d}sB \text{  ,  } \Gamma_2 = \int_0^{T-\tau}e^{As}\text{d}sB
 \end{array}
 \end{equation}
-The asymmetric oscillation is split into two parts, a period when the relay output is low, $\tau$ and the period when the relay output is high, $T-\tau$, as shown in Figure \ref{fig:asym_relay_oscillations}.
+The asymmetric oscillation is split into two parts, a period when the relay output is low, $\tau$, and the period when the relay output is high, $T-\tau$, as shown in Figure \ref{fig:asym_relay_oscillations}.
 
 \begin{figure}[h!]
 \includegraphics[width = 0.8\textwidth]{asym_relay_feedback}
@@ -285,7 +289,7 @@ where $x_1,x_2.x_3$ are non-dimensionalised concentrations of mRNA, protein and 
 \label{goodwin_transfer}
 \end{figure}
 
-Setting $b_1 = b_2 = b_3 = 1$ (for simplicity) and rewriting the equations such that the linear equations form the plant and the nonlinearity is a relay, results in the system shown in Figure \ref{goodwin_transfer} with state space realisation: 
+Setting $b_1 = b_2 = b_3 = 1$ (for simplicity) and rewriting the equations such that the linear equations form the plant and the nonlinearity is a relay, results in the system shown in Figure \ref{goodwin_transfer} with the state space realisation: 
 \begin{align}\label{eq:goodwin_relay_state_space}
 \dot{x} &= \begin{bmatrix}
 -1 & 0 & 0 \\  1  & -1 & 0 \\ 0 & 1 & -1
@@ -295,7 +299,7 @@ u &=\begin{cases} 	               0 \text{ if } e \geq 1)\\
 	                1 \text{ if } e < 1)\\\end{cases}
 \end{align}
 
-Using the theory for asymmetric oscillations, initial conditions were derived numerically. The limit cycle with the appropriate time period was shown to be locally stable and the simulations of the Goodwin model (with a large $p$) and the relay feedback model were very similar (see Figure \ref{goodwin_matching}). This (novel) use of relay feedback systems to model biological oscillations is a link between classical control theory and biological models. The relay feedback model of gene dynamics explicitly models the logic of a gene turning off/on, and gives new insight into understanding these oscillations. This framework  gives us a methodology to approach high-dimensional models of circadian rhythms, such as the 10 dimensional model for circadian  oscillations in \textit{Drosophila} \cite{leloup}. 
+Using the theory for asymmetric oscillations, initial conditions were derived numerically. The limit cycle with the appropriate time period was shown to be locally stable and the simulations of the Goodwin model (with a large $p$) and the relay feedback model were very similar (see Figure \ref{goodwin_matching}). This (novel) use of relay feedback systems to model biological oscillations is a link between classical control theory and biological models. The relay feedback model of gene dynamics explicitly models the logic of a gene turning off/on, and gives new insight into these oscillations. This framework  gives us a methodology to approach high-dimensional models, such as the 10 dimensional model for circadian  oscillations in \textit{Drosophila} \cite{leloup}. 
 
 \begin{figure}[h!]
 \includegraphics[width = .8\textwidth]{goodwin_mathcing}
@@ -307,7 +311,7 @@ Using the theory for asymmetric oscillations, initial conditions were derived nu
 \subsection{FitzHugh-Nagumo model}
 In this section, the use of relay feedback systems is extended to model a system where the relay is not as `obvious', as was in the previous section.
 \subsubsection{Introduction}
-The Hodgkin-Huxley model\cite{huxley} was the first quantitative model of the propagation of an electrical signal along a squid giant axon \cite{keener}. It is considered as one of the most important mathematical models in all of the physiological literature \cite{keener}, and led to the study of excitable systems.  The FitzHugh-Nagumo model simplifies the Hodgkin-Huxley model (of four variables) in terms of two variables, one fast and one slow. The FitzHugh-Nagumo model exhibits as clearly as possible the basic dynamic interrelationships between the variables of state which are responsible for the properties of threshold, refractoriness, and finite and infinite trains of impulses\cite{fitzhugh}.  With the fast variable, $v$, representing the voltage and the slow variable, $w$, representing the current, the FitzHugh-Nagumo model is:
+The Hodgkin-Huxley model\cite{huxley} was the first quantitative model of the propagation of an electrical signal along a squid giant axon \cite{keener}. It is considered as one of the most important mathematical models in all of the physiological literature \cite{keener}, and led to the study of excitable systems.  The FitzHugh-Nagumo model simplifies the Hodgkin-Huxley model (of four variables) in terms of two variables, one fast and one slow. The FitzHugh-Nagumo model exhibits as clearly as possible the basic dynamic interrelationships between the variables of state which are responsible for the properties of threshold, refractoriness, and finite and infinite trains of impulses \cite{fitzhugh}.  With the fast variable, $v$, representing the voltage and the slow variable, $w$, representing the current, the FitzHugh-Nagumo model is:
 \begin{align}
 \epsilon\dot{v} &= f(v) - w + I_\text{app}\\
 \dot{w} &= v - \gamma w
@@ -316,7 +320,7 @@ where:
 \begin{equation*}
 \epsilon \ll 1 \text{  and  } f(v) = v(1-v)(v-\alpha) \text{ , } 0 <\alpha<1 .
 \end{equation*} 
-$I_\text{app}$ is the externally applied current (representing the stimulus). The nullclines\footnote{The nullcline is the line along which a variable's time derivative is zero} of the fast and slow variables have a cubic shape and a linear shape respectively.   The input current, $I_\text{app}$, shifts the cubic nullcline, affecting where the nullclines intersect, i.e the equilibrium points. For certain input currents, the nullclines intersect at only one (unstable) point and cause continous oscillations. With $\alpha =0.1, \gamma = 0.5, \epsilon = 0.01$ and $I_{\text{app}}=0.5$, the uniqure rest point is unstable. Since $\epsilon \ll 1 $, the fast variable tries to follow the stable branches of the cubic nullcline where possible and then quickly jumps to the other stable branch. That is the voltage stays at a high value for some time and then quickly jumps to a low value and then jumps up to a high value (see Figure \ref{fig:FN_intro}).  Meanwhile, the current slowly adapts to the high/low value of the voltage, pushing the system to leave the stable branches eventually. The behaviour of the system in the phase plane follows from singular perturbation theory\cite{keener}. 
+$I_\text{app}$ is the externally applied current (representing the stimulus). The nullclines\footnote{The nullcline is the line along which a variable's time derivative is zero} of the fast and slow variables have a cubic shape and a linear shape respectively.   The input current, $I_\text{app}$, shifts the cubic nullcline, affecting where the nullclines intersect, i.e the equilibrium points. For certain input currents, the nullclines intersect at only one (unstable) point and cause continuous oscillations. With $\alpha =0.1, \gamma = 0.5, \epsilon = 0.01$ and $I_{\text{app}}=0.5$, the uniqure rest point is unstable. Since $\epsilon \ll 1 $, the fast variable tries to follow the stable branches of the cubic nullcline where possible and then quickly jumps to the other stable branch. That is the voltage stays at a high value for some time and then quickly jumps to a low value and then jumps up to a high value (see Figure \ref{fig:FN_intro}).  Meanwhile, the current slowly adapts to the high/low value of the voltage, pushing the system to leave the stable branches eventually. The behaviour of the system in the phase plane follows from singular perturbation theory\cite{keener}. 
 
 \begin{figure}
 \centering
@@ -332,7 +336,7 @@ $I_\text{app}$ is the externally applied current (representing the stimulus). Th
         \caption{Voltage oscillations.}
         \label{fig:FN_intro_voltage}
     \end{subfigure}
-    \caption{Continous oscillations in the FitzHugh-Nagumo model.}
+    \caption{Continuous oscillations in the FitzHugh-Nagumo model.}
     \label{fig:FN_intro}
 \end{figure}
 
@@ -340,7 +344,7 @@ $I_\text{app}$ is the externally applied current (representing the stimulus). Th
 \centering
     \begin{subfigure}[b]{0.45\textwidth}
         \includegraphics[width=\textwidth]{fitz_nagumo_speed}
-        \caption{Phase portrait. Hysteresis becomes more linear and `relay'.}
+        \caption{Phase portrait. Hysteresis becomes more `linear' and `relay-like'.}
         \label{fig:FN_eps_hysteresis}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
@@ -356,7 +360,7 @@ $I_\text{app}$ is the externally applied current (representing the stimulus). Th
 
 \subsubsection{Converting to relay feedback model}\label{sec:FN_to_relay}
 
-As $\epsilon\rightarrow 0$, the phase portrait of the voltage and current becomes more and more linear and closely resembles a rotated relay with hysteresis (Figure \ref{fig:FN_eps_zero}). This can be understood as  high gain inversion \cite{goodwin}, and the voltage behaves like the ouput of a skewed relay. So, when the system is continuously oscillating, it allows us to replace the cubic nullcline with a skewed relay (see Figure \ref{original_nonlinearity1}). 
+As $\epsilon\rightarrow 0$, the phase portrait of the voltage and current becomes increasingly `linear' and closely resembles a skewed relay with hysteresis (Figure \ref{fig:FN_eps_zero}). This can be understood as high gain inversion \cite{goodwin}, and the voltage behaves like the ouput of a skewed relay. So, when the system is continuously oscillating, it allows us to replace the cubic nullcline with a skewed relay (see Figure \ref{original_nonlinearity1}). 
 
 \begin{figure}[h!]
 \begin{subfigure}[t]{.4\textwidth}
@@ -434,17 +438,16 @@ As $\epsilon\rightarrow 0$, the phase portrait of the voltage and current become
 \label{fn}
 \end{figure}
 
-
-\underline{High gain inversion}
+\underline{High gain inversion:-}
 \begin{align}
-0 &= f(v) -w + I_{\text{app}}\\
+\epsilon\rightarrow0\Rightarrow0 &= f(v) -w + I_{\text{app}}\\
 v &= f^{-1}\left(w - I_{\text{app}}\right)\\
 v&\approx \text{Relay}(w) 
 \end{align}
 
 This allows us to replace the inner loop in \ref{fitz_nagumo_block_diagram1}. With a shift in co-ordinates to make the `relay' symmetric about the orgin, and a change of basis so that an unskewed relay can be used, results in the relay feedback system in Figure \ref{fig:fitz_nagumo_relay_block_diagram}. Details of this transformation are illustrated in the Appendix. Now, using equation (3), we can derive the time period of the oscillation and its local stability. The results are shown in Figure \ref{fig:matching_fitz_relay}. The relay feedback model matches the oscillations very closely. 
 
-This model reveals how the oscillations can be understood as adaptation around a hysteresis. The current slowly adapts to each change in voltage, around the relay hysteresis, causes the voltage to oscillate. 
+This model reveals how the oscillations can be understood as adaptation around a hysteresis. The current slowly adapts to each switch in voltage, around the relay hysteresis, causing the voltage to oscillate. 
 
 \begin{figure}[h!]
 
@@ -507,22 +510,22 @@ In the previous section, the use of the relay feedback framework for analysing s
 In this section, the use of relay feedback analysis is extended to bursting. Following how \cite{rinzel} split bursting into two subsystems, we dissect a bursting normal form into two coupled relay feedback systems. 
 
 \subsection{Bursting}
-Bursting is an important signaling component of neurons, characterized by a periodic alternation of bursts (periods of rapid oscillatory activity) and quiescent (membrane potential changes slowly) periods \cite{franci2}. Bursting observed in cells can have a wide variety of periods, ranging from a few seconds to a few minutes \cite{keener}. This general phenomenon is believed to play an important role in several signalling mechanisms. Bursting can also be viewed as a two state automaton in frequency \cite{drion}; encoding memory into four states-- resting, fast oscillations, slow oscillations and bursting. 
+Bursting is an important signaling component of neurons, characterized by a periodic alternation of bursts (periods of rapid oscillatory activity) and quiescent (membrane potential changes slowly) periods \cite{franci2}. Bursting observed in cells can have a wide variety of periods, ranging from a few seconds to a few minutes \cite{keener}. This general phenomenon is believed to play an important role in several signalling mechanisms. Bursting can also be viewed as a two variable automaton in frequency \cite{drion}; encoding memory into four states-- resting, fast oscillations, slow oscillations and bursting. 
 
-All neuronal bursters have three distinct time scales: a fast time-scale for spike generation, a slow time-scale for the intraburst spike frequency, and an ultra slow time-scale for the inter burst frequency\cite{franci2}. The bursting property can be understood in terms of a few canonical positive and negative feedback motifs localized in distinct time scales \cite{drion}, as shown in Figure \ref{fig:p_n_feedbacks}.
+All neuronal bursters have three distinct time scales: a fast time-scale for spike generation, a slow time-scale for the intraburst spike frequency, and an ultra slow time-scale for the inter burst frequency \cite{franci2}. The bursting property can be understood in terms of a few canonical positive and negative feedback motifs localized in distinct time scales \cite{drion}, as shown in Figure \ref{fig:p_n_feedbacks}.
 
 \begin{figure}[h!]
 \includegraphics[width = 0.5\textwidth]{feedback_interactions}
-\caption{Scheme of the four-state automaton showing the different feedbacks and their localization in frequency (from top to bottom) and in range (from left to right). Green arrows represent positive feedbacks and red arrows represent negative feedbacks. Ionic currents repsonsible for the described feedbacks are noted inside the respective arrows.Source \cite{drion}.}
+\caption{Scheme of the four-state automaton showing the different feedbacks and their localization in frequency (from top to bottom) and in range (from left to right). Green arrows represent positive feedbacks and red arrows represent negative feedbacks. Ionic currents repsonsible for the described feedbacks are noted inside the respective arrows. Source \cite{drion}.}
 \label{fig:p_n_feedbacks}
 \end{figure}
 
-This separation of timescales is used to decompose bursting into two coupled relay feedback systems. As a first step, a bursting model normal form from \cite{franci} is introduced. Then we will step through each of the positive and negative feedbacks, starting at shortest timescale, and examine how to tranform this into relay feedback. Then, the nonlinearites will be simplified to reduce the model into relay feedback systems. 
+This separation of timescales is used to decompose bursting into two coupled relay feedback systems. As a first step, a bursting model normal form from \cite{franci} is introduced. Then we will step through each of the positive and negative feedbacks, starting at the shortest timescale, and examine how to tranform this into relay feedback. Then, the nonlinearites will be simplified to reduce the model into relay feedback systems. 
 
 \subsection{A three-time scale bursting normal form}
-The three-time scale bursting normal form organized by the winged cusp singularity is presented in \cite{franci}. It is based on unfolding of the organizing center called the winged cusp to obtain a finite family distinct,robust static behaviours \cite{franci}. The model is based on Singularity theory and the interested reader is referred to \cite{franci} for a comprehensive exposition of how this model realises a variety of nonlinear behaviours. 
+The three-time scale bursting normal form organized by the winged cusp singularity is presented in \cite{franci}. It is based on unfolding the organizing center called the winged cusp to obtain a finite family distinct, robust static behaviours \cite{franci}. The model is based on Singularity theory and the interested reader is referred to \cite{franci} for a comprehensive exposition of how this model realises a variety of nonlinear behaviours. 
 
-A key point of this model is the robust co-existence of a stable fixed point and a stable relaxation limit cycle as shown in Figure \ref{fig:bursting_fundamental_phase_portait}. That is the model is rest-spike bistable. When spiking, the stable limit cycle is similar to the FitzHugh-Nagumo model's phase portrait. This model generalizes FitzHugh-Nagumo by adding a third variable (ultra-slow) in negative feedback, which adapts in the dimension normal to the phase portrait (see Figure \ref{fig:3d_bursting}). The basic idea is that there are slow processes which modulate the faster spike generating dynamics \cite{rinzel}. The ultra-slow adaptation switches the behaviour between spiking and resting. The state-space equations for this model are:
+A key feature of this model is the robust co-existence of a stable fixed point and a stable relaxation limit cycle as shown in Figure \ref{fig:bursting_fundamental_phase_portait}. That is, the model is rest-spike bistable. When spiking, the stable limit cycle is similar to the FitzHugh-Nagumo model's phase portrait. This model generalizes FitzHugh-Nagumo by adding a third variable (ultra-slow) in negative feedback, which adapts in the dimension normal to the phase portrait (see Figure \ref{fig:3d_bursting}). The basic idea is that there are slow processes which modulate the faster spike generating dynamics \cite{rinzel}. The ultra-slow adaptation switches the behaviour between spiking and resting. The state-space equations for this model are:
 \begin{equation}
 \begin{array}{l}
 \displaystyle \epsilon_f\dot{x}_{f} = -x_f + S\left(x_f + B_\delta\left(u + x_s + \tfrac{\gamma}{2}x_f\right) + \beta x_f + \alpha  - x_{us}  \right)\\
@@ -637,7 +640,7 @@ The block diagram for this circuit is shown in Figure \ref{fig:ttsbursting_circu
 \label{fig:positive_feedback_hysteresis}
 \end{figure}
 
-The fast positive feedback in Figure \ref{fig:ttsbursting_circuit} is the feedback of $H_f(s)$ through the gain $\tilde{\beta}$ and the sigmoid nonlinearity. The fast positive feedback creates a nonlinearity with hysteresis. This can be understood by considering positive feedback for a saturation function, shown in Figure \ref{fig:positive_feedback_hysteresis}. By assuming that $x_f$ is much faster than the other variables, we can replace the positve feedback loop as a relay. This is equivalent to $\epsilon_f\rightarrow 0$, which was done earlier for the FitzHugh-Nagumo model. 
+The fast positive feedback in Figure \ref{fig:ttsbursting_circuit} is the feedback of $H_f(s)$ through the gain $\tilde{\beta}$ and the sigmoid nonlinearity. The fast positive feedback creates a nonlinearity with hysteresis. This can be understood by considering positive feedback for a saturation function, shown in Figure \ref{fig:positive_feedback_hysteresis}. By assuming that $x_f$ is much faster than the other variables, we can replace the positive feedback loop as a relay. This is equivalent to $\epsilon_f\rightarrow 0$, which was done earlier for the FitzHugh-Nagumo model. 
 
 \subsubsection{The slow negative and slow positive feedback}
 \begin{figure}[h!]
@@ -645,7 +648,7 @@ The fast positive feedback in Figure \ref{fig:ttsbursting_circuit} is the feedba
 \caption{Bump nonlinearity}
 \label{fig:bump_nonlinearity}
 \end{figure}
-In the slow timescale, there is a mixture of positive and negative feedbacks. This balance of feedback provides a closed-loop behaviour that is either a regulator or a switch \cite{drion}. In the normal form, it is the bump nonlinearity (Figure \ref{fig:bump_nonlinearity}) that plays this role and affects what kind of feedback the slow plant provides. ``Rest-spike bistability requires that the stable equilibrium be in the regenerative region, that is the region where the slow feedback is positive."\footnote{Prof.Sepulchre, 2016}. This is achieved in the model by having the stable equilibrium in the region where $x_s$ is negative, and the system operates in the region where the bump has a positive gradient. When the system is spiking, the input to the bump is always greater than zero. The bump provides negative feedback in this region, causing the slow plant to adapt around the hysteresis of the sigmoid nonlinearity. That is, when spiking, the model essentially simplifies down to the FitzHugh-Nagumo model during continous oscillations. 
+In the slow timescale, there is a mixture of positive and negative feedbacks. This balance of feedback provides a closed-loop behaviour that is either a regulator or a switch \cite{drion}. In the normal form, it is the bump nonlinearity (Figure \ref{fig:bump_nonlinearity}) that plays this role and affects what kind of feedback the slow plant provides. ``Rest-spike bistability requires that the stable equilibrium be in the regenerative region, that is the region where the slow feedback is positive."\footnote{Prof.Sepulchre, 2016}. This is achieved in the model by having the stable equilibrium in the region where $x_s$ is negative, and the system operates in the region where the bump has a positive gradient. When the system is spiking, the input to the bump is always greater than zero. The bump provides negative feedback in this region, causing the slow plant to adapt around the hysteresis of the sigmoid nonlinearity. That is, when spiking, the model essentially simplifies down to the FitzHugh-Nagumo model during continuous oscillations. 
 
 
 \subsubsection{The ultra-slow negative feedback}
@@ -654,14 +657,14 @@ In the slow timescale, there is a mixture of positive and negative feedbacks. Th
 \caption{Fast nullcline changing as $\alpha$ increases. Within a fixed range of $\alpha$, the system has both the resting and the spiking equilibrium. This is the bistable range.}
 \label{fig:alphaParameter}
 \end{figure}
-In the ultra-slow time scale, the $H_{us}$ provides negative feedback. To understand how this affects the nullcline of the fast variable, the (unfolding) parameter $\alpha$ (see Figure \ref{fig:ttsbursting_circuit}) should be examined. The (unfolding) parameter $\alpha$ modulates monotonically the winged-cusp singularity\cite{franci}, as shown in Figure \ref{fig:alphaParameter}. Consequently, as $x_{us}$ reaches a particular value (its maximum value), the nullclines of the fast and slow variables will only intersect at the stable fixed point (low $x_f$). This drives the system to the quiescent period, while $x_{us}$ slowly recovers. When $x_{us}$ reaches its minimum value, the nullclines of the fast and slow variables will only intersect at a high $x_{s}$ which then becomes the unstable fixed point as $x_{us}$ recovers. This drives the system to the spiking period. The bursting model thus relies on continously adapting this parameter, using the ultra-slow variable, around the bistable range (minimum and maximum value of $x_{us}$). 
+In the ultra-slow time scale, the $H_{u}$ provides negative feedback. To understand how this affects the nullcline of the fast variable, the (unfolding) parameter $\alpha$ (see Figure \ref{fig:ttsbursting_circuit}) should be examined. The parameter $\alpha$ modulates monotonically the winged-cusp singularity \cite{franci}, as shown in Figure \ref{fig:alphaParameter}. Consequently, as $x_{us}$ reaches a particular value (its maximum value), the nullclines of the fast and slow variables will only intersect at the stable fixed point (low $x_f$). This drives the system to the quiescent period, while $x_{us}$ slowly recovers. When $x_{us}$ reaches its minimum value, the nullclines of the fast and slow variables will only intersect at a high $x_{s}$ which then becomes the unstable fixed point as $x_{us}$ recovers. This drives the system to the spiking period. The bursting model thus relies on continuously adapting this parameter, using the ultra-slow variable, around the bistable range (minimum and maximum value of $x_{us}$). 
 It is clear now that the ultra-slow parameter can be modelled as a relay feedback system, oscillating around the bistable range. 
 
 
-\subsubsection{Using piece-wise linear non-linearities}
-Using linear approximations of the non-linearieties allow us to simplify them to linear gains. As shown in Figure \ref{fig:sigmoid_linear}, the saturation function is a good approximation to the sigmoidal nonlinearity. Furthermore, since the positive feedback gain is $\tilde{\beta}:=1 + \beta$, this can be replaced by a positive feedback of just $\beta$ around a relay with no hysteresis (equivalent to the sign($\cdot$) function). This is then equivalent to a relay with hysteresis limits $\pm \beta$. 
+\subsubsection{Using piecewise linear nonlinearities}
+Using linear approximations of the nonlinearities allow us to simplify them to linear gains. As shown in Figure \ref{fig:sigmoid_linear}, the saturation function is a good approximation to the sigmoidal nonlinearity. Furthermore, since the positive feedback gain is $\tilde{\beta}:=1 + \beta$, this can be replaced by a positive feedback of just $\beta$ around a relay with no hysteresis (equivalent to the sign($\cdot$) function). This is then equivalent to a relay with hysteresis limits $\pm \beta$. 
 
-The bump nonlinearity with $\delta$ set to 0.5, can be approximated by the piecewise linear function shown in Figure \ref{fig:bump_linear}. The piecewise linear function simplifies the model very nicely since the positive/negative feedback gain is constant. The piecewise linear function is:
+The bump nonlinearity (with $\delta$ set to 0.5) can be approximated by the piecewise linear function shown in Figure \ref{fig:bump_linear}. The piecewise linear function simplifies the model very nicely since the positive/negative feedback gain is constant. The piecewise linear function is:
 \begin{equation}
 B_p:= \begin{cases}
 \frac{1}{2}x \text{ \hspace{3cm}  if } -2<x<0 \\
@@ -705,13 +708,13 @@ By assuming that the fast variable changes instantaneously ($e_f\rightarrow0$), 
 
 While the system is spiking, the bump nonlinearity can be replaced by a constant gain providing negative feedback. Furthermore, Figure \ref{fig:bursting_step2.1} shows how the ultra slow variable can be viewed as nearly constant. This is equivalent to the relay feedback system with a slowly shifting hysteresis (Figure \ref{fig:bursting_step2}). 
 
-Setting $\gamma = 0$ (without loss of generality), gives a hysteresis for the new system that is not skewed (transformation for skewed hysteresis was carried out in Section \ref{sec:FN_to_relay}). This is now a simple relay feedback system, modelling the spiking. Uing the analytical results from \cite{astrom1995} we can now predict the time periods of the fast oscillations. The shifting of the hysteresis limits, due to the ultra slow variable, simply change the time periods of the oscillations as shown in Figure\ref{fig:bursting_step2.1}.
+Setting $\gamma = 0$ (without loss of generality), gives a hysteresis for the new system that is not skewed (transformation for skewed hysteresis was carried out in Section \ref{sec:FN_to_relay}). This is now a simple relay feedback system to model the spiking. Using the analytical results from \cite{astrom1995} we can now predict the time periods of the fast oscillations. The shifting of the hysteresis limits, due to the ultra slow variable, simply change the time periods of the oscillations as shown in Figure\ref{fig:bursting_step2.1}.
 
-The ultra-slow variable, due to its slow time constant, can be regarded as only responding to an ``averaged" $x_f$. Figures \ref{fig:bursting_step3.1} and \ref{fig:bursting_step3.2} reveal the response of $\alpha$ to a moving average $x_f$. The relay hysteresis limit is the bistable range of $\alpha$, while the maximum output of the relay is slowly changing as the ``averaged" $x_f$ varies as predicted from equation (5). This reveals how the bursting circuit has been simplified into two coupled oscillators. The fast-slow oscillator which reproduces the spiking and the averge-fast--ultra-slow oscillator which dictates when the model spikes and rests (see Figure \ref{fig:bursting_step4}). 
+The ultra-slow variable, due to its slow time constant, can be regarded as only responding to an ``averaged'' $x_f$. Figures \ref{fig:bursting_step3.1} and \ref{fig:bursting_step3.2} reveal the response of $\alpha$ to a moving average $x_f$. The relay hysteresis limit is the bistable range of $\alpha$, while the maximum output of the relay is slowly changing as the ``averaged'' $x_f$ varies as predicted from equation (5). This reveals how the bursting circuit has been simplified into two coupled oscillators. The fast-slow oscillator reproduces the spiking and the averge-fast--ultra-slow oscillator dictates when the model spikes and rests (see Figure \ref{fig:bursting_step4}). 
 
-The transforming of the bursting model's normal form into relay feedback models enables us to analytically extract the time period of the ultra-slow oscillation and that of the fast oscillation. It also revealed how the two oscillators are linked and revealed how the duty cycle during spiking subtly changes due to the ultra-slow parameter. 
+The transforming of the bursting model's normal form into relay feedback models enables us to analytically extract the time period of the ultra-slow oscillation and that of the fast oscillation. It also reveals how the two oscillators are linked and how the duty cycle during spiking subtly changes due to the ultra-slow parameter. 
 
-Furthermore, this is a step towards multirate feedback systems. \cite{kranc} developed a theory where an arbitrary multirate sampled system can be replaced by a system with a single-rate sampled system with advance and delay elements. This theory would be amenable to the study of multiple interconnected relay feedback systems, modelling complex biological oscillations. 
+Furthermore, this is a step towards multirate feedback systems. \cite{kranc} developed a theory where an arbitrary multirate sampled system can be replaced by a system with a single-rate sampled system with advance and delay elements. This theory could be amenable to the study of multiple interconnected relay feedback systems, modelling complex biological oscillations. 
 
 
 \begin{figure}[h!]
@@ -763,7 +766,7 @@ Furthermore, this is a step towards multirate feedback systems. \cite{kranc} dev
       % calculate the coordinate u. We need it to place the measurement block. 
       \node [output, right of = relay,node distance = 4cm] (output) {x};
       \node [above of =  output, node distance = +0.1cm]{$x_f$};
-      \node [block, below of = relay] (Hus) {\large $H_{us}$};
+      \node [block, below of = relay] (Hus) {\large $H_{u}$};
       \node [sum, right of = Hus, node distance = 2cm](sum_ultra_slow){};
       \node [input, above of = sum_ultra_slow, node distance = 1cm](ultra_slow_const){$\bar{x}_{us}$};
       \node [block, below of = Hus](Hs){\large $H_s$};
@@ -976,7 +979,7 @@ Furthermore, this is a step towards multirate feedback systems. \cite{kranc} dev
       \node [] at (relay2) {\relayB};
       \node [coordinate, below of = relay2, node distance = 0.6cm](relay2_top){};
       \node [coordinate, right of = relay2](endB){};
-      \node [block, above of = relay2](Hus){\large $H_{us}$};
+      \node [block, above of = relay2](Hus){\large $H_{u}$};
       \node [left of = Hus](inB){};
 
       % Once the nodes are placed, connecting them is easy. %
@@ -1079,7 +1082,7 @@ The difference between this model and the three time scale bursting normal form 
       \node [input, below of = cubic_nullcline, node distance = 1.5cm](ultra_slow_const){};
       \node [sum, below of = ultra_slow_const, node distance = 0.5cm](ultra_slow_sum){};
       \node [block, below of = ultra_slow_const](bump){$g(\cdot)$};
-      \node [block, left of = ultra_slow_sum, node distance = 2cm] (Hus){\large $H_{us}$};
+      \node [block, left of = ultra_slow_sum, node distance = 2cm] (Hus){\large $H_{u}$};
       \node [block, left of = bump, node distance = 3.5cm](Hs){\large $H_s$};
 
       % Once the nodes are placed, connecting them is easy. 
@@ -1122,7 +1125,7 @@ Following the same steps as described in the three time scale bursting normal fo
 
 \FloatBarrier
 \section{Conclusions}
-The relay feedback framework's capability of modelling biological oscillations was explored. It was able to model the simple oscillations of the Goodwin and FitzHugh-Nagumo models. It was able to simplify a bursting normal form into two coupled relay feedback systems, enabling the Hindmarsh-Rose model to be caputered by relay feedback framework. The relay feedback methodology is appealing since it highlights the interconnection of analogue (L.T.I) systems with digital (relay) logic. Furthermore, it provided analytical tools using which predictions of time periods and stability can found for different parameters. This is a step towards answering the question from \cite{rinzel}: How robust is the bursting mechanism to parameter variations in the physiological range?  However, this framework fails to capture the excitatory nature of models. Relay feedback systems was able to capture the oscillatory part of the models. Future work in this area would perhaps involve modelling the next level of nested oscillations. Generalizing to an Nth level nested oscillation would provide a link to the theory of multirate feedback systems.
+The relay feedback framework's capability of modelling biological oscillations was explored. It was able to model the simple oscillations of the Goodwin and FitzHugh-Nagumo models. It was able to simplify a bursting normal form into two coupled relay feedback systems, enabling the Hindmarsh-Rose model to be captured by the relay feedback framework. The relay feedback methodology is appealing since it highlights the interconnection of analogue (L.T.I) systems with digital (relay) logic. Furthermore, it provides analytical tools using which predictions of time periods and stability can found for different parameters. This is a step towards answering the question from \cite{rinzel}: How robust is the bursting mechanism to parameter variations in the physiological range?  However, one limitation is that this framework fails to capture the excitatory nature of models. Relay feedback systems are able to capture the oscillatory part of models. Future work in this area would perhaps involve modelling the next level of nested oscillations. Generalizing to an Nth level nested oscillation would provide a link to the theory of multirate feedback systems.
 
 
 \section{Acknowledgements}
@@ -1189,7 +1192,7 @@ G.M.Kranc. (1957). \emph{Input-output analsis of multirate feedback systems.} IR
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
 \label{Appendix}
-\section{Local stability relay model of Goodwin oscillator}
+\section{Local stability of the relay model of Goodwin oscillator}
 To check the local stability of the relay model of the Goodwin oscillator, we use Theorem 5.2 from \cite{astrom1995}. It requires that the eigenvalues of the $W$ matrix lies within the unit disc. The matrix is defined as:
 \begin{equation}
 W = \left(I - \frac{w_2C}{Cw_2}\right)\Phi_2\left(I - \frac{w_1C}{Cw_1}\right)\Phi_1
@@ -1209,7 +1212,7 @@ and as defined in Section \ref{sec:asymm_oscillations}
 \end{array}
 \end{equation}
 
-For our model, the oscillation is split such that $\tau = 0.19s $ and $T = 5.93s$. With $A,B,C$ defined by \ref{eq:goodwin_relay_state_space}, we get that:
+For our model, the oscillation is split such that $\tau = 0.19s $ and $T = 5.93s$. With $A,B,C$ defined by equations (10) and (11), we get that:
 \begin{equation}
 W = 10^{-2}\begin{bmatrix}
 -2.0 & -3.1 & -8.6 \\ -5.6 & -8.8& -24.2 \\ 0.0 & 0.0 & 0.0 \\
@@ -1565,22 +1568,23 @@ v&= \xi y + u - \beta_1 = -2y+u+0.354 \\
 w&= y - \beta_2 = y + 0.562 
 \end{align}
 
-Using equation \ref{eq:2_3}, the time period was predicted to be 0.54 seconds. The local stability was tested using Theorem 3.1 of \cite{astrom1995}, with the $W$ matrix being equal to zero and hence having eigenvalues within the unit disk. 
+Using equation (3), the time period was predicted to be 0.54 seconds. The local stability was tested using Theorem 3.1 of \cite{astrom1995}, with the $W$ matrix being equal to zero and hence having eigenvalues within the unit disk. 
 
-\section{Three time scale burster}
+\section{The bistable range in the simplified bursting normal form}
 
-In order to find the bistable range for the piece-wise linear model of the system, it requires us to find the two critical points at which the system changes from having only one equilibrium to two equilibriums. This was shown for the original model in Figure \ref{fig:ttsbursting_bistable_range}. 
+In order to find the bistable range for the piecewise linear model of the system, it requires us to find the two critical points at which the system changes from having only one equilibrium to two equilibriums. This was shown for the original model in Figure \ref{fig:ttsbursting_bistable_range}. 
 
 \begin{figure}[h!]
 \includegraphics[width = 0.6\textwidth]{tts_bistable_range}
 \caption{The bistable range for the $\alpha$ parameter.}
+\label{fig:ttsbursting_bistable_range}
 \end{figure}
 
 The fast nullcline can be written as:
 \begin{equation}
 G(x_f, x_s, \alpha) = - x_f + \text{sign}\left(B\left(u+x_s + \tfrac{1}{2}\gamma x_f\right) + \beta x_f + \alpha \right)
 \end{equation}
-The extreme point of the lower branches are right when the sign $(\cdot)$ function changes from being 1 to $-1$. Since $x_f = -1$, this means: $B(u + x_s -\tfrac{1}{2}\gamma) -\beta + \alpha = 0$. This can be written as:
+The extreme point of the lower branches when the sign $(\cdot)$ function changes from being 1 to $-1$. Since $x_f = -1$, this means: $B(u + x_s -\tfrac{1}{2}\gamma) -\beta + \alpha = 0$. This can be written as:
 \begin{align}
 \tfrac{1}{2}(u + x_s -\tfrac{1}{2}\gamma) - \beta + \alpha &= 0 \text{\hspace{2cm} if } -2< (u +  x_s -\tfrac{1}{2}\gamma)<0 \\
 -\tfrac{1}{2}(u + x_s -\tfrac{1}{2}\gamma) - \beta + \alpha &= 0 \text{\hspace{2cm} if } 0< (u +  x_s -\tfrac{1}{2}\gamma)<2 \\

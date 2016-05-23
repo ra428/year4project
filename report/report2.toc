@@ -13,14 +13,14 @@
 \contentsline {subsubsection}{\numberline {4.2.1}The fast positive feedback}{13}{subsubsection.4.2.1}
 \contentsline {subsubsection}{\numberline {4.2.2}The slow negative and slow positive feedback}{13}{subsubsection.4.2.2}
 \contentsline {subsubsection}{\numberline {4.2.3}The ultra-slow negative feedback}{15}{subsubsection.4.2.3}
-\contentsline {subsubsection}{\numberline {4.2.4}Using piece-wise linear non-linearities}{16}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.4}Using piecewise linear nonlinearities}{16}{subsubsection.4.2.4}
 \contentsline {subsubsection}{\numberline {4.2.5}Separation of time scales to separate into relay feedback systems}{18}{subsubsection.4.2.5}
 \contentsline {subsection}{\numberline {4.3}Hindmarsh-Rose model}{22}{subsection.4.3}
 \contentsline {subsubsection}{\numberline {4.3.1}Introduction}{22}{subsubsection.4.3.1}
 \contentsline {subsubsection}{\numberline {4.3.2}Separation of time scales to dissect into relay feedback systems}{23}{subsubsection.4.3.2}
 \contentsline {section}{\numberline {5}Conclusions}{26}{section.5}
 \contentsline {section}{\numberline {6}Acknowledgements}{26}{section.6}
-\contentsline {section}{Appendix \numberline {A}Local stability relay model of Goodwin oscillator}{28}{Appendix.a.A}
+\contentsline {section}{Appendix \numberline {A}Local stability of the relay model of Goodwin oscillator}{28}{Appendix.a.A}
 \contentsline {section}{Appendix \numberline {B}FitzHugh-Nagumo to standard relay feedback}{29}{Appendix.a.B}
-\contentsline {section}{Appendix \numberline {C}Three time scale burster}{31}{Appendix.a.C}
+\contentsline {section}{Appendix \numberline {C}The bistable range in the simplified bursting normal form}{31}{Appendix.a.C}
 \contentsline {section}{Appendix \numberline {D}Risk assessment retrospective}{33}{Appendix.a.D}
