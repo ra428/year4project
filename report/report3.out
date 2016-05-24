@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Theory}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Symmetric oscillations}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Asymmetric oscillations}{section.2}% 4
+\BOOKMARK [1][-]{section.3}{Relay feedback models of fundamental biological limit cycles}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{Goodwin oscillator model}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{FitzHugh-Nagumo model}{section.3}% 7
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Introduction}{subsection.3.2}% 8
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Converting to relay feedback model}{subsection.3.2}% 9
+\BOOKMARK [1][-]{section.4}{Relay feedback model of nested oscillations}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Bursting}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{A three-time scale bursting normal form}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.1}{The fast positive feedback}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.2}{The slow negative and slow positive feedback}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.3}{The ultra-slow negative feedback}{subsection.4.2}% 15
+\BOOKMARK [3][-]{subsubsection.4.2.4}{Using piecewise linear nonlinearities}{subsection.4.2}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.5}{Separation of time scales to separate into relay feedback systems}{subsection.4.2}% 17
+\BOOKMARK [2][-]{subsection.4.3}{Hindmarsh-Rose model}{section.4}% 18
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Introduction}{subsection.4.3}% 19
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Separation of time scales to dissect into relay feedback systems}{subsection.4.3}% 20
+\BOOKMARK [1][-]{section.5}{Conclusions}{}% 21
+\BOOKMARK [1][-]{section.6}{Acknowledgements}{}% 22
+\BOOKMARK [1][-]{Appendix.a.A}{Appendix Local stability of the relay model of Goodwin oscillator}{}% 23
+\BOOKMARK [1][-]{Appendix.a.B}{Appendix FitzHugh-Nagumo to standard relay feedback}{}% 24
+\BOOKMARK [1][-]{Appendix.a.C}{Appendix Bursting normal form}{}% 25
+\BOOKMARK [2][-]{subsection.a.C.1}{The bistable range in the simplified bursting normal form}{Appendix.a.C}% 26
+\BOOKMARK [2][-]{subsection.a.C.2}{Implementation details}{Appendix.a.C}% 27
+\BOOKMARK [1][-]{Appendix.a.D}{Appendix Risk assessment retrospective}{}% 28
