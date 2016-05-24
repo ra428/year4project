@@ -22,5 +22,7 @@
 \BOOKMARK [1][-]{section.6}{Acknowledgements}{}% 22
 \BOOKMARK [1][-]{Appendix.a.A}{Appendix Local stability of the relay model of Goodwin oscillator}{}% 23
 \BOOKMARK [1][-]{Appendix.a.B}{Appendix FitzHugh-Nagumo to standard relay feedback}{}% 24
-\BOOKMARK [1][-]{Appendix.a.C}{Appendix The bistable range in the simplified bursting normal form}{}% 25
-\BOOKMARK [1][-]{Appendix.a.D}{Appendix Risk assessment retrospective}{}% 26
+\BOOKMARK [1][-]{Appendix.a.C}{Appendix Bursting normal form}{}% 25
+\BOOKMARK [2][-]{subsection.a.C.1}{The bistable range in the simplified bursting normal form}{Appendix.a.C}% 26
+\BOOKMARK [2][-]{subsection.a.C.2}{Implementation details}{Appendix.a.C}% 27
+\BOOKMARK [1][-]{Appendix.a.D}{Appendix Risk assessment retrospective}{}% 28

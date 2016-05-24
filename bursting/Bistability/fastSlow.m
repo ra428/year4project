@@ -1,5 +1,5 @@
 % Relay model for bistability
-clear all
+% clear all
 
 %% Functions
 bump = @(x,delta) (tanh(x+delta) - tanh(x-delta) -2*tanh(delta));

@@ -22,5 +22,7 @@
 \contentsline {section}{\numberline {6}Acknowledgements}{26}{section.6}
 \contentsline {section}{Appendix \numberline {A}Local stability of the relay model of Goodwin oscillator}{28}{Appendix.a.A}
 \contentsline {section}{Appendix \numberline {B}FitzHugh-Nagumo to standard relay feedback}{29}{Appendix.a.B}
-\contentsline {section}{Appendix \numberline {C}The bistable range in the simplified bursting normal form}{31}{Appendix.a.C}
+\contentsline {section}{Appendix \numberline {C}Bursting normal form}{31}{Appendix.a.C}
+\contentsline {subsection}{\numberline {C.1}The bistable range in the simplified bursting normal form}{31}{subsection.a.C.1}
+\contentsline {subsection}{\numberline {C.2}Implementation details}{33}{subsection.a.C.2}
 \contentsline {section}{Appendix \numberline {D}Risk assessment retrospective}{33}{Appendix.a.D}

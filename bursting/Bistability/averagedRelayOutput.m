@@ -51,16 +51,38 @@ for i = 1:iterMax
     averagedRelay(i) = 2*t(1,i)/t(2,i)-1;
 end
 
+% figure()
+% axis([alphaMin, alphaMax, 0, 8])
+% plot(alphaArray,t(1,:),'b-')
+% hold on
+% plot(alphaArray,t(2,:),'r-')
+% plot(alphaArray,averagedRelay(:),'g-')
+% legend('\tau','T','averagedRelay')
+% xlabel('\alpha')
+% ylabel('Time')
+% 
+% axis([alphaMin, alphaMax, 0, 8])
+
+
 figure()
-axis([alphaMin, alphaMax, 0, 8])
-plot(alphaArray,t(1,:),'b-')
+p1 = plot(alphaArray,t(1,:),'b-')
 hold on
-plot(alphaArray,t(2,:),'r-')
-plot(alphaArray,averagedRelay(:),'g-')
-legend('\tau','T','averagedRelay')
-xlabel('\alpha')
+p2 = plot(alphaArray,t(2,:),'r-')
+l1 = legend('\tau','T')
+xlabel('x_{us}')
 ylabel('Time')
+axis([0.3, 0.55, 0, 8])
+set(p1,'LineWidth',2)
+set(p2,'LineWidth',2)
+set(l1,'FontSize',16)
 
-axis([alphaMin, alphaMax, 0, 8])
-
+figure()
+p3 = plot(alphaArray,averagedRelay(:),'g-')
+hold on
+p4 = plot(SimOut.get('ultra_slow').Data,filtered_xf,'r')
+xlabel('x_{us}')
+ylabel('\langle x_f \rangle')
+set(p3,'LineWidth',2)
+set (p4,'LineWidth',2)
+axis([0.3, 0.55, -1, 1])
 
