@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.14)  30 MAY 2016 18:04
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.12.14)  30 MAY 2016 18:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1050,7 +1050,7 @@ Overfull \hbox (2.57233pt too wide) in paragraph at lines 116--116
  []
 
 
-</home/rajiv/IIB/year4project/report/figures/relay_feedback.jpg, id=173, 867.24
+</home/rajiv/IIB/year4project/report/figures/relay_feedback.jpg, id=177, 867.24
 pt x 536.0025pt>
 File: /home/rajiv/IIB/year4project/report/figures/relay_feedback.jpg Graphic fi
 le (type jpg)
@@ -1072,7 +1072,7 @@ back.jpg used on input line 130.
  [4
 
 ]
-</home/rajiv/IIB/year4project/report/figures/goldbeter_model.jpg, id=234, 926.7
+</home/rajiv/IIB/year4project/report/figures/goldbeter_model.jpg, id=240, 926.7
 1219pt x 617.30624pt>
 File: /home/rajiv/IIB/year4project/report/figures/goldbeter_model.jpg Graphic f
 ile (type jpg)
@@ -1093,16 +1093,7 @@ Overfull \vbox (19.77425pt too high) detected at line 165
 [7
 
 ]
-</home/rajiv/IIB/year4project/report/figures/fn1.jpg, id=322, 609.27625pt x 411
-.5375pt>
-File: /home/rajiv/IIB/year4project/report/figures/fn1.jpg Graphic file (type jp
-g)
- <use /home/rajiv/IIB/year4project/report/figures/fn1.jpg>
-Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fn1.jpg us
-ed on input line 319.
-(pdftex.def)             Requested size: 153.64493pt x 103.77582pt.
-
-</home/rajiv/IIB/year4project/report/figures/fn2.jpg, id=323, 610.28pt x 409.53
+</home/rajiv/IIB/year4project/report/figures/fn2.jpg, id=331, 610.28pt x 409.53
 pt>
 File: /home/rajiv/IIB/year4project/report/figures/fn2.jpg Graphic file (type jp
 g)
@@ -1110,10 +1101,19 @@ g)
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fn2.jpg us
 ed on input line 319.
 (pdftex.def)             Requested size: 153.64493pt x 103.10086pt.
+
+</home/rajiv/IIB/year4project/report/figures/fn1.jpg, id=332, 609.27625pt x 411
+.5375pt>
+File: /home/rajiv/IIB/year4project/report/figures/fn1.jpg Graphic file (type jp
+g)
+ <use /home/rajiv/IIB/year4project/report/figures/fn1.jpg>
+Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fn1.jpg us
+ed on input line 319.
+(pdftex.def)             Requested size: 153.64493pt x 103.77582pt.
  [8
 
- </home/rajiv/IIB/year4project/report/figures/fn1.jpg> </home/rajiv/IIB/year4pr
-oject/report/figures/fn2.jpg>]
+ </home/rajiv/IIB/year4project/report/figures/fn2.jpg> </home/rajiv/IIB/year4pr
+oject/report/figures/fn1.jpg>]
 Overfull \hbox (1.19109pt too wide) in paragraph at lines 369--369
 []  
  []
@@ -1121,7 +1121,7 @@ Overfull \hbox (1.19109pt too wide) in paragraph at lines 369--369
 [9
 
 ]
-</home/rajiv/IIB/year4project/report/figures/fn_phase_portrait.jpg, id=378, 658
+</home/rajiv/IIB/year4project/report/figures/fn_phase_portrait.jpg, id=389, 658
 .46pt x 472.76625pt>
 File: /home/rajiv/IIB/year4project/report/figures/fn_phase_portrait.jpg Graphic
  file (type jpg)
@@ -1131,7 +1131,7 @@ Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/fn_phase_p
 ortrait.jpg used on input line 391.
 (pdftex.def)             Requested size: 153.64493pt x 110.31377pt.
 
-</home/rajiv/IIB/year4project/report/figures/fn_voltage_time.jpg, id=379, 630.3
+</home/rajiv/IIB/year4project/report/figures/fn_voltage_time.jpg, id=390, 630.3
 55pt x 471.7625pt>
 File: /home/rajiv/IIB/year4project/report/figures/fn_voltage_time.jpg Graphic f
 ile (type jpg)
@@ -1156,7 +1156,7 @@ Overfull \hbox (12.53386pt too wide) in paragraph at lines 549--549
  []
 
 
-</home/rajiv/IIB/year4project/report/figures/positive.png, id=434, 244.915pt x 
+</home/rajiv/IIB/year4project/report/figures/positive.png, id=447, 244.915pt x 
 182.6825pt>
 File: /home/rajiv/IIB/year4project/report/figures/positive.png Graphic file (ty
 pe png)
@@ -1168,7 +1168,7 @@ ng used on input line 549.
 [12
 
  </home/rajiv/IIB/year4project/report/figures/positive.png>]
-</home/rajiv/IIB/year4project/report/figures/feedback.png, id=463, 245.91875pt 
+</home/rajiv/IIB/year4project/report/figures/feedback.png, id=477, 245.91875pt 
 x 359.3425pt>
 File: /home/rajiv/IIB/year4project/report/figures/feedback.png Graphic file (ty
 pe png)
@@ -1180,7 +1180,7 @@ ng used on input line 598.
 [13
 
  </home/rajiv/IIB/year4project/report/figures/feedback.png>]
-</home/rajiv/IIB/year4project/report/figures/fn_relay.jpg, id=492, 634.37pt x 4
+</home/rajiv/IIB/year4project/report/figures/fn_relay.jpg, id=507, 634.37pt x 4
 81.8pt>
 File: /home/rajiv/IIB/year4project/report/figures/fn_relay.jpg Graphic file (ty
 pe jpg)
@@ -1191,111 +1191,123 @@ pg used on input line 642.
  [14
 
  </home/rajiv/IIB/year4project/report/figures/fn_relay.jpg>]
-</home/rajiv/IIB/year4project/report/figures/endocrine-glands.jpg, id=521, 552.
+</home/rajiv/IIB/year4project/report/figures/typical_bursting.jpg, id=537, 878.
+28125pt x 562.1pt>
+File: /home/rajiv/IIB/year4project/report/figures/typical_bursting.jpg Graphic 
+file (type jpg)
+
+<use /home/rajiv/IIB/year4project/report/figures/typical_bursting.jpg>
+Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/typical_bu
+rsting.jpg used on input line 651.
+(pdftex.def)             Requested size: 215.10196pt x 137.65996pt.
+ [15
+
+ </home/rajiv/IIB/year4project/report/figures/typical_bursting.jpg>]
+</home/rajiv/IIB/year4project/report/figures/endocrine-glands.jpg, id=565, 552.
 0625pt x 552.0625pt>
 File: /home/rajiv/IIB/year4project/report/figures/endocrine-glands.jpg Graphic 
 file (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/endocrine-glands.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/endocrine-
-glands.jpg used on input line 665.
+glands.jpg used on input line 671.
 (pdftex.def)             Requested size: 153.64493pt x 153.6414pt.
 
-</home/rajiv/IIB/year4project/report/figures/bursting_examples.png, id=522, 826
+</home/rajiv/IIB/year4project/report/figures/bursting_examples.png, id=566, 826
 .08624pt x 625.33624pt>
 File: /home/rajiv/IIB/year4project/report/figures/bursting_examples.png Graphic
  file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/bursting_examples.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/bursting_e
-xamples.png used on input line 665.
+xamples.png used on input line 671.
 (pdftex.def)             Requested size: 153.64493pt x 116.3056pt.
 
-[15
+[16
 
  </home/rajiv/IIB/year4project/report/figures/endocrine-glands.jpg> </home/raji
 v/IIB/year4project/report/figures/bursting_examples.png>]
-</home/rajiv/IIB/year4project/report/figures/hRose_bursting2.jpg, id=550, 620.3
+</home/rajiv/IIB/year4project/report/figures/hRose_bursting2.jpg, id=595, 620.3
 175pt x 473.77pt>
 File: /home/rajiv/IIB/year4project/report/figures/hRose_bursting2.jpg Graphic f
 ile (type jpg)
 
 <use /home/rajiv/IIB/year4project/report/figures/hRose_bursting2.jpg>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/hRose_burs
-ting2.jpg used on input line 679.
+ting2.jpg used on input line 685.
 (pdftex.def)             Requested size: 215.10196pt x 164.28217pt.
- [16
+ [17
 
  </home/rajiv/IIB/year4project/report/figures/hRose_bursting2.jpg>]
-</home/rajiv/IIB/year4project/report/figures/tts_circuit.png, id=577, 963.6pt x
+</home/rajiv/IIB/year4project/report/figures/tts_circuit.png, id=624, 963.6pt x
  607.26875pt>
 File: /home/rajiv/IIB/year4project/report/figures/tts_circuit.png Graphic file 
 (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_circuit.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_circui
-t.png used on input line 701.
+t.png used on input line 707.
 (pdftex.def)             Requested size: 184.3758pt x 116.18842pt.
 
-</home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png, id=578
+</home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png, id=625
 , 621.32124pt x 571.13374pt>
 File: /home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png Gr
 aphic file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/feedback_i
-nteractions2.png used on input line 701.
+nteractions2.png used on input line 707.
 (pdftex.def)             Requested size: 122.91406pt x 112.9785pt.
 
-[17
+[18
 
  </home/rajiv/IIB/year4project/report/figures/tts_circuit.png> </home/rajiv/IIB
 /year4project/report/figures/feedback_interactions2.png>]
-</home/rajiv/IIB/year4project/report/figures/tts_circuit1.png, id=608, 963.6pt 
+</home/rajiv/IIB/year4project/report/figures/tts_circuit1.png, id=656, 963.6pt 
 x 607.26875pt>
 File: /home/rajiv/IIB/year4project/report/figures/tts_circuit1.png Graphic file
  (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_circuit1.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_circui
-t1.png used on input line 701.
+t1.png used on input line 707.
 (pdftex.def)             Requested size: 184.3758pt x 116.18842pt.
 
-</home/rajiv/IIB/year4project/report/figures/feedback_interactions3.png, id=609
+</home/rajiv/IIB/year4project/report/figures/feedback_interactions3.png, id=657
 , 621.32124pt x 571.13374pt>
 File: /home/rajiv/IIB/year4project/report/figures/feedback_interactions3.png Gr
 aphic file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/feedback_interactions3.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/feedback_i
-nteractions3.png used on input line 701.
+nteractions3.png used on input line 707.
 (pdftex.def)             Requested size: 122.91406pt x 112.9785pt.
 
-[18
+[19
 
  </home/rajiv/IIB/year4project/report/figures/tts_circuit1.png> </home/rajiv/II
 B/year4project/report/figures/feedback_interactions3.png>]
-</home/rajiv/IIB/year4project/report/figures/tts_circuit2.png, id=640, 963.6pt 
+</home/rajiv/IIB/year4project/report/figures/tts_circuit2.png, id=689, 963.6pt 
 x 607.26875pt>
 File: /home/rajiv/IIB/year4project/report/figures/tts_circuit2.png Graphic file
  (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_circuit2.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_circui
-t2.png used on input line 701.
+t2.png used on input line 707.
 (pdftex.def)             Requested size: 184.3758pt x 116.18842pt.
 
-</home/rajiv/IIB/year4project/report/figures/feedback_interactions4.png, id=641
+</home/rajiv/IIB/year4project/report/figures/feedback_interactions4.png, id=690
 , 621.32124pt x 571.13374pt>
 File: /home/rajiv/IIB/year4project/report/figures/feedback_interactions4.png Gr
 aphic file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/feedback_interactions4.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/feedback_i
-nteractions4.png used on input line 701.
+nteractions4.png used on input line 707.
 (pdftex.def)             Requested size: 122.91406pt x 112.9785pt.
 
-[19
+[20
 
  </home/rajiv/IIB/year4project/report/figures/tts_circuit2.png> </home/rajiv/II
 B/year4project/report/figures/feedback_interactions4.png>]
@@ -1304,21 +1316,21 @@ File: /home/rajiv/IIB/year4project/report/figures/tts_circuit.png Graphic file
 
 <use /home/rajiv/IIB/year4project/report/figures/tts_circuit.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/tts_circui
-t.png used on input line 701.
+t.png used on input line 707.
 (pdftex.def)             Requested size: 184.3758pt x 116.18842pt.
 File: /home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png Gr
 aphic file (type png)
 
 <use /home/rajiv/IIB/year4project/report/figures/feedback_interactions2.png>
 Package pdftex.def Info: /home/rajiv/IIB/year4project/report/figures/feedback_i
-nteractions2.png used on input line 701.
+nteractions2.png used on input line 707.
 (pdftex.def)             Requested size: 122.91406pt x 112.9785pt.
 
-[20
-
-] [21
+[21
 
 ] [22
+
+] [23
 
 ]
 \tf@nav=\write6
@@ -1330,25 +1342,25 @@ nteractions2.png used on input line 701.
 \tf@snm=\write8
 \openout8 = `finalPresentation1.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 814.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 814.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 820.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 820.
  (./finalPresentation1.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 814.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 814.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 820.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 820.
 Package rerunfilecheck Info: File `finalPresentation1.out' has not changed.
-(rerunfilecheck)             Checksum: F2C39C6D4AF37AE847C60B29F8F78E23;699.
+(rerunfilecheck)             Checksum: 93AABFB715124C1BA81F6CB8F9833B6B;699.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 814.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 820.
  ) 
 Here is how much of TeX's memory you used:
- 21303 strings out of 494985
- 432807 string characters out of 6180355
- 560287 words of memory out of 5000000
- 23921 multiletter control sequences out of 15000+600000
+ 21319 strings out of 494985
+ 433340 string characters out of 6180355
+ 560705 words of memory out of 5000000
+ 23934 multiletter control sequences out of 15000+600000
  16171 words of font info for 62 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  49i,20n,67p,427b,1373s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1369,10 +1381,10 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi9.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on finalPresentation1.pdf (22 pages, 1378717 bytes).
+Output written on finalPresentation1.pdf (23 pages, 1451753 bytes).
 PDF statistics:
- 824 PDF objects out of 1000 (max. 8388607)
- 711 compressed objects within 8 object streams
- 59 named destinations out of 1000 (max. 500000)
- 277 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 877 PDF objects out of 1000 (max. 8388607)
+ 761 compressed objects within 8 object streams
+ 61 named destinations out of 1000 (max. 500000)
+ 282 words of extra memory for PDF output out of 10000 (max. 10000000)
 

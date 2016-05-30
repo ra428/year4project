@@ -11,5 +11,5 @@
 \beamer@subsectionintoc {2}{4}{Modelling using relay feedback}{14}{0}{2}
 \beamer@sectionintoc {3}{Bursting}{15}{0}{3}
 \beamer@subsectionintoc {3}{1}{Introduction}{15}{0}{3}
-\beamer@sectionintoc {4}{Conclusions}{22}{0}{4}
-\beamer@subsectionintoc {4}{1}{Conclusion}{22}{0}{4}
+\beamer@sectionintoc {4}{Conclusions}{23}{0}{4}
+\beamer@subsectionintoc {4}{1}{Conclusion}{23}{0}{4}

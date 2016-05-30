@@ -6,7 +6,8 @@ close all
 cubicNullcline = @(x,y) y+3*x.^2-x.^3;
 quadraticNullcline = @(x,y) 1-5*x.^2-y;
 % tus = 50;
-epsilon = 0.01;
+% epsilon = 0.01;
+epsilon = 1;
 tmax = 2000;
 ultra_slow_plant_X0 = 2000;
 % ultra_slow_plant_X0 = 0.61;
@@ -30,12 +31,13 @@ SimOut = sim('hRoseModel','StopTime','tmax');
 figure(1)
 plot(SimOut.get('xf').Time,SimOut.get('xf').Data,'b')
 hold on
-plot(SimOut.get('xus').Time,SimOut.get('xus').Data,'r')
+% plot(SimOut.get('xus').Time,SimOut.get('xus').Data,'r')
 % plot(SimOut.get('xs').Time,SimOut.get('xs').Data,'g')
 xlabel('Time')
+ylabel('Voltage')
 % l = legend('$x_f$','$x_{us}$','$x_s$');
-l = legend('$x_f$','$x_{us}$');
-set(l,'Interpreter','latex','FontSize',15)
+% l = legend('$x_f$','$x_{us}$');
+% set(l,'Interpreter','latex','FontSize',15)
 
 % Plot the phase portrait
 figure(2)
