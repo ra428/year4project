@@ -1,0 +1,15 @@
+\beamer@endinputifotherversion {3.24pt}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Relay feedback}{2}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{1}{Relay}{2}{0}{1}
+\beamer@subsubsectionintoc {1}{1}{2}{Relay feedback}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Outline}{7}{0}{1}
+\beamer@sectionintoc {2}{FitzHugh-Nagumo}{8}{0}{2}
+\beamer@subsectionintoc {2}{1}{Introduction}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Typical oscillations}{10}{0}{2}
+\beamer@subsectionintoc {2}{3}{Feedback}{11}{0}{2}
+\beamer@subsectionintoc {2}{4}{Modelling using relay feedback}{14}{0}{2}
+\beamer@sectionintoc {3}{Bursting}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{Introduction}{15}{0}{3}
+\beamer@sectionintoc {4}{Conclusions}{22}{0}{4}
+\beamer@subsectionintoc {4}{1}{Conclusion}{22}{0}{4}

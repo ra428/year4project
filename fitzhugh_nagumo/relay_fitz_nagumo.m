@@ -121,9 +121,10 @@ B = 1; C = 1; D = 0;
 
 % Astrom's theory for initial conditions and stability of system
 [a1 , a2 ] = getInitialConditionsAsymmRelay(A,B,C,d1,d2,T,tau);     X0 =a2;
-stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
+% stable = checkStability(A,B,C,T,tau,d1,d2) % Stability check
 
 %% Simulink
+load_system('fitz_relay')
 set_param('fitz_relay', 'StopTime', 'tmax')
 set_param('fitz_relay/Relay','OffOutputValue','d1','OnOutputValue','-d2','OffSwitchValue','epsilon_1', 'OnSwitchValue','epsilon_2' )
 set_param('fitz_relay/State-Space','A','A','B','B','C','C','D','D','X0','X0')
@@ -148,7 +149,7 @@ hold off
 figure(2)
 plot(v(:,2),v(:,1))
 hold on
-plot(actual_current,actual_voltage)
+% plot(actual_current,actual_voltage)
 xlabel('Current')
 ylabel('Voltage')
 
@@ -157,7 +158,13 @@ v2 = linspace(min(v(:,1))-0.1, max(v(:,1))+0.1, 100);
 alpha_cubic = 0.1; 
 f = (-v2.^3 + (1+alpha_cubic).*v2.^2 - alpha_cubic.*v2)+I_app;
 plot(f,v2,'--')
+current_array = linspace(.35,.75);
+current_nullcline = gamma*current_array;
+plot(current_array, current_nullcline)
 % axis([0.35 0.8 -0.4 1])
-legend('FitzHugh-Nagumo','Relay feedback', 'Cubic nullcline')
+% legend('FitzHugh-Nagumo','Relay feedback', 'Cubic nullcline')
+l = legend('Trajectory','$\frac{dv}{dt} = 0$','$\frac{di}{dt}=0$')
+set(l,'Interpreter','latex')
+
 
 
